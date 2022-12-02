@@ -1,7 +1,7 @@
 const ApiFeatures = require("../utils/apiFetures");
 const tryCatch = require("../middleware/tryCatch");
-const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorHandler");
+const Product = require("../models/productModel");
 
 // create product  -> admin
 exports.createProduct = tryCatch(async (req, res, next) => {
@@ -13,15 +13,18 @@ exports.createProduct = tryCatch(async (req, res, next) => {
 exports.getAllProduct = tryCatch(async (req, res, next) => {
   const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
+
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
 
-  let products = await apiFeature.query;
+  let products = await apiFeature.query.clone();
+
   let filteredProductsCount = products.length;
+
   apiFeature.pagination(resultPerPage);
-  products = await apiFeature.query;
+
+  products = await apiFeature.query.clone();
 
   res.status(200).json({
     success: true,

@@ -1,0 +1,29 @@
+const tryCatch = require("./tryCatch");
+const ErrorHandler = require("../utils/errorHandler");
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
+
+const isAuthenticatedUser = tryCatch(async (req, res, next) => {
+  const { token } = req.cookies;
+  if (!token) {
+    return next(new ErrorHandler("Please Login to access this resource", 401));
+  }
+
+  const decoded = jwt.verify(token, process.env.jwt_SECRET);
+  req.user = await User.findById(decoded.id);
+  next();
+});
+
+/** Check user role to access some resource */
+exports.authorizeRole = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      new ErrorHandler(
+        `Role: ${req.user.role} is not allowed to a access this resource`
+      );
+    }
+    next();
+  };
+};
+
+module.exports = isAuthenticatedUser;
