@@ -3,7 +3,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
-const isAuthenticatedUser = tryCatch(async (req, res, next) => {
+exports.isAuthenticatedUser = tryCatch(async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
@@ -25,5 +25,3 @@ exports.authorizeRole = (...roles) => {
     next();
   };
 };
-
-module.exports = isAuthenticatedUser;
