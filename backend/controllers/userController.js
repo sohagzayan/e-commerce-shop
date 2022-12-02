@@ -5,6 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
+const userModel = require("../models/userModel");
+
 // create a new user
 exports.registerUser = tryCatch(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -65,7 +68,7 @@ exports.forgotPassword = tryCatch(async (req, res, next) => {
   }
   const resetToken = user.getResetPassword();
   await user.save({ validateBeforeSave: false });
-  const resetPasswordUrl = `${req.protocol}//${req.get(
+  const resetPasswordUrl = `${req.protocol}://${req.get(
     "host"
   )}/api/v1/password/reset/${resetToken}`;
   const message = `your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you are not requested this email then please ignore it`;
@@ -86,4 +89,33 @@ exports.forgotPassword = tryCatch(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
     return next(new ErrorHandler(error.message, 500));
   }
+});
+
+exports.resetPassword = tryCatch(async (req, res, next) => {
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpires: { $gt: Date.now() },
+  });
+  if (!user) {
+    return next(
+      new ErrorHandler(
+        "Reset password token is invalid or has been expired",
+        400
+      )
+    );
+  }
+  if (req.body.password !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password does not match", 400));
+  }
+  const hashPassword = await bcrypt.hash(req.body.password, 10);
+
+  user.password = hashPassword;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+  await user.save();
+  sendToken(user, 200, res);
 });
