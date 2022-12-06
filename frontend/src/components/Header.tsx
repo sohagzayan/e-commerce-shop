@@ -10,15 +10,17 @@ import MobileMenu from "../components/MobileMenu";
 const HeaderWrapper = styled(Box)(({ theme }) => ({
   padding: "15px",
   backgroundColor: "#fff",
-  boxShadow: "0 2px 10px 0 rgb(0 0 0 / 10%)",
-  width: "80%",
+  // boxShadow: "0 2px 10px 0 rgb(0 0 0 / 10%)",
+  maxWidth: "1200px",
+  position: "sticky",
+  top: "0",
   [theme.breakpoints.down("lg")]: {
     width: "90%",
   },
   [theme.breakpoints.down("md")]: {
     width: "92%",
   },
-  margin: "10px auto",
+  margin: "0px auto",
   borderRadius: "10px",
 }));
 
