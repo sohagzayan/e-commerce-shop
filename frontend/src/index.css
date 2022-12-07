@@ -13,3 +13,54 @@ body {
 a {
   text-decoration: none;
 }
+
+/** Color pic on order product */
+
+.color_rounded {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-right: 30px;
+  margin-left: 5px;
+  border: 1px solid transparent;
+  transition: all 0.4s ease-out;
+}
+
+.color_rounded::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: all 0.4s ease-out;
+}
+/* 
+.color1 {
+  background-color: #ff8666;
+  margin-right: 16px;
+}
+.color2 {
+  background-color: #ff497c;
+  margin-right: 16px;
+}
+.color3 {
+  background-color: #8d6abe;
+}
+
+.color1.active::after {
+  border: 2px solid #ff8666;
+}
+.color2.active::after {
+  border: 2px solid #ff497c;
+}
+.color3.active::after {
+  border: 2px solid #8d6abe;
+} */

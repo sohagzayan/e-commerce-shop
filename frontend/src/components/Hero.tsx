@@ -33,7 +33,7 @@ const HeroInner = styled("div")(({ theme }) => ({
 
 const Li = styled("li")(({ theme }) => ({
   position: "absolute",
-  bottom: "-30%",
+  bottom: "-60%",
   left: "0",
   width: "100%",
   height: "auto",

@@ -13,7 +13,8 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
   // boxShadow: "0 2px 10px 0 rgb(0 0 0 / 10%)",
   maxWidth: "1200px",
   position: "sticky",
-  top: "0",
+  top: 0,
+  left: 0,
   [theme.breakpoints.down("lg")]: {
     width: "90%",
   },
