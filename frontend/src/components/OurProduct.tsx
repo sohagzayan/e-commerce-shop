@@ -28,7 +28,7 @@ const Button = styled("button")(({ theme }) => ({
 
 const OurProduct = () => {
   return (
-    <OurProductWraper>
+    <OurProductWraper sx={{ overflow: "hidden" }}>
       <Container maxWidth="lg">
         <Box sx={{ marginTop: "100px" }}>
           <Span>
@@ -55,7 +55,7 @@ const OurProduct = () => {
           </Typography>
         </Box>
         <Box>
-          <Grid container spacing={{ xs: 2, md: 5 }}>
+          <Grid container spacing={{ xs: 1, md: 3 }}>
             {productMenu?.map((menu, index) => (
               <Grid item lg={3} md={4} sm={6} xs={12}>
                 <Product key={index} menu={menu} />

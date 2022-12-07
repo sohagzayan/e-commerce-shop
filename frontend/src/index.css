@@ -42,25 +42,56 @@ a {
   border-radius: 50%;
   transition: all 0.4s ease-out;
 }
-/* 
-.color1 {
-  background-color: #ff8666;
-  margin-right: 16px;
-}
-.color2 {
-  background-color: #ff497c;
-  margin-right: 16px;
-}
-.color3 {
-  background-color: #8d6abe;
+
+/* Image Change Hover  */
+
+.image_wrapper {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
-.color1.active::after {
-  border: 2px solid #ff8666;
+.onHover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  visibility: hidden;
+  opacity: 0;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in;
+  /* border: 1px solid red; */
 }
-.color2.active::after {
-  border: 2px solid #ff497c;
+.cardWrapper:hover .onHover {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in;
+  width: 100%;
 }
-.color3.active::after {
-  border: 2px solid #8d6abe;
-} */
+.beforeHover {
+  /* border: 1px solid red; */
+}
+.cardWrapper:hover .beforeHover {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.productCardWrapper {
+  position: absolute;
+  bottom: -30%;
+  opacity: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  transition: all 0.5s ease-in;
+}
+
+.cardWrapper:hover .productCardWrapper {
+  bottom: 7%;
+  transition: all 0.7s ease-in-out;
+  opacity: 1;
+}

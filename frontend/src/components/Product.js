@@ -2,16 +2,19 @@ import { Box, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ProductController from "./ProductController";
 
 const CardWrapper = styled(Box)(({ theme }) => ({}));
 
 const Span = styled(Box)(({ theme }) => ({
-  backgroundColor: "#f7f7f7",
+  backgroundColor: "#F6F7FB",
   borderRadius: "9px",
   position: "relative",
   display: "flex",
-  justifyContent: " center",
+  justifyContent: "center",
+  overflow: "hidden",
 }));
+const Image = styled("img")(({ theme }) => ({}));
 const TypographyOfferPrice = styled(Box)(({ theme }) => ({
   color: "#292930",
   fontSize: "1.2rem",
@@ -59,7 +62,7 @@ const Product = ({ menu }) => {
   const [activeColor, setActiveColor] = useState(Color[0]);
 
   return (
-    <CardWrapper>
+    <CardWrapper className="cardWrapper">
       <Box
         sx={{
           display: "flex",
@@ -68,9 +71,10 @@ const Product = ({ menu }) => {
           position: "relative",
         }}
       >
-        <Span>
-          <img src={image1} alt="product" />
-          {/* <img className="image_onHover" src={image2} alt="product" /> */}
+        <Span className="image_wrapper">
+          <img className="beforeHover" src={image1} alt="product" />
+          <img className="onHover" src={image2} alt="product" />
+          <ProductController />
         </Span>
 
         <DiscountRange>20% off</DiscountRange>
