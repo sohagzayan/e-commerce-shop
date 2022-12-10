@@ -24,7 +24,7 @@ a {
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  margin-right: 30px;
+  margin-right: 15px;
   margin-left: 5px;
   border: 1px solid transparent;
   transition: all 0.4s ease-out;
@@ -34,6 +34,33 @@ a {
   content: "";
   width: 20px;
   height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: all 0.4s ease-out;
+}
+
+.color_roundedFilter {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  transition: all 0.4s ease-out;
+}
+
+.color_roundedFilter::after {
+  content: "";
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -94,4 +121,53 @@ a {
   bottom: 7%;
   transition: all 0.7s ease-in-out;
   opacity: 1;
+}
+
+/* Header animation */
+.HeaderBox {
+  background-color: #f9f3f0;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 60;
+}
+
+.goUp {
+  transform: translate(100px);
+}
+
+/* Some media query for nev two  */
+.searchIcon {
+  display: none;
+}
+@media (max-width: 1152px) {
+  .searForm {
+    display: none;
+  }
+  .searchIcon {
+    display: block;
+  }
+}
+
+/* size Button */
+
+.sizeButton {
+  border: 2px solid #f6f7fb;
+  background: #fff;
+  padding: 5px 13px;
+  border-radius: 30px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #777777;
+  font-weight: 600;
 }

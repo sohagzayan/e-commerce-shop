@@ -76,9 +76,7 @@ const Product = ({ menu }) => {
           <img className="onHover" src={image2} alt="product" />
           <ProductController />
         </Span>
-
         <DiscountRange>20% off</DiscountRange>
-
         <CardContent>
           <Typography
             sx={{ color: "#777777", fontWeight: "600", marginBottom: "7px" }}
