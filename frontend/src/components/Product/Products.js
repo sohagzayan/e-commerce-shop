@@ -1,20 +1,16 @@
-import React from "react";
-import {
-  Box,
-  Container,
-  Grid,
-  styled,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import Filter from "./Filter";
-import { productMenu } from "../util/Product";
+import React, { useState } from "react";
+import { Box, Container, Grid, useMediaQuery, useTheme } from "@mui/material";
+import Filter from "../ProductFiltering/Filter";
+import { productMenu } from "../../util/Product";
 import Product from "./Product";
-const OurProductWraper = styled(Box)(({ theme }) => ({}));
+import ProductHeader from "../Product/ProductHeader";
+import MobileFilter from "../ProductFiltering/MobileFilter";
 
 const Products = () => {
   const theme = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box sx={{ marginTop: "30px", overflow: "hidden" }}>
       <Container maxWidth="lg">
@@ -23,8 +19,8 @@ const Products = () => {
             <Grid item md={3} sx={{ display: matches ? "none" : "" }}>
               <Filter />
             </Grid>
-
             <Grid item md={9} xs={12}>
+              <ProductHeader setIsOpen={setIsOpen} matches={matches} />
               <Box>
                 <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
                   {productMenu?.map((menu, index) => (
@@ -38,6 +34,7 @@ const Products = () => {
           </Grid>
         </Box>
       </Container>
+      <MobileFilter setIsOpen={setIsOpen} isOpen={isOpen} />
     </Box>
   );
 };

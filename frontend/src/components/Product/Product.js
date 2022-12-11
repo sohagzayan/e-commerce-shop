@@ -1,6 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
-import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductController from "./ProductController";
 
@@ -14,7 +13,6 @@ const Span = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   overflow: "hidden",
 }));
-const Image = styled("img")(({ theme }) => ({}));
 const TypographyOfferPrice = styled(Box)(({ theme }) => ({
   color: "#292930",
   fontSize: "1.2rem",

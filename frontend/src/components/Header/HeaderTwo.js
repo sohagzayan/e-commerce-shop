@@ -1,12 +1,20 @@
 import { ListItem, Badge, Grid, Box, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import logo from "../assets/logo.png";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import DirectionsIcon from "@mui/icons-material/Directions";
+import React, { useEffect, useState } from "react";
+import logo from "../../assets/logo.png";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Sling as Hamburger } from "hamburger-react";
-import MobileMenu from "../components/MobileMenu";
+import MobileMenu from "./MobileMenuSidebar";
+import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import { NavLink } from "react-router-dom";
 
 const HeaderBoxs = styled(Box)(({ theme }) => ({
   paddingBottom: "10px",
@@ -87,8 +95,14 @@ const Image = styled("img")(({ theme }) => ({
   },
 }));
 
-const Header = () => {
-  const [openDrower, setOpenDrower] = React.useState(false);
+const PaperEdited = styled(Paper)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
+
+const HeaderTwo = () => {
+  const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [scrollCount, setScrollCount] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -98,45 +112,64 @@ const Header = () => {
   }, []);
 
   return (
-    <HeaderBoxs
-      style={{ backgroundColor: scrollCount <= 200 ? "#f9f3f0" : "" }}
-    >
+    <HeaderBoxs>
       <HeaderWrapper>
         <Grid container>
-          <Grid item xs={3}>
+          <Grid item xs={2} md={3}>
             <HeaderLogo>
-              {/* <Typography
-              fontWeight="700"
-              color="primary"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                fontSize: "22px",
-                color: "#0053A8",
-              }}
-            >
-              <ShoppingBagOutlinedIcon
-                color="primary"
-                sx={{ fontSize: "30px" }}
-              />
-              cTrade
-            </Typography> */}
               <Image src={logo} alt="" />
             </HeaderLogo>
           </Grid>
-          <Grid item xs={6} sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid item xs={5} sx={{ display: "flex", justifyContent: "center" }}>
             <HeaderMenuList>
-              <ListItemMenu>Home</ListItemMenu>
-              <ListItemMenu>Shop</ListItemMenu>
+              <ListItemMenu>
+                <NavLink to="/">Home</NavLink>
+              </ListItemMenu>
+              <ListItemMenu>
+                <NavLink to="/shop">Shop</NavLink>
+              </ListItemMenu>
               <ListItemMenu>Pages</ListItemMenu>
               <ListItemMenu>About</ListItemMenu>
               <ListItemMenu>Blog</ListItemMenu>
               <ListItemMenu>Contact</ListItemMenu>
             </HeaderMenuList>
           </Grid>
-          <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
+          <Grid
+            item
+            xs={5}
+            md={4}
+            sx={{ display: "flex", justifyContent: "end" }}
+          >
             <HeaderIcons>
-              <Span>
+              <Box className="searForm">
+                <PaperEdited
+                  component="form"
+                  sx={{
+                    p: "0px 2px",
+                    display: "flex",
+                    alignItems: "center",
+                    boxShadow: "none",
+                    border: "1px solid #f0f0f0",
+                    //   width: 400,
+                  }}
+                >
+                  <IconButton sx={{ p: "10px" }} aria-label="menu">
+                    <SearchIcon />
+                  </IconButton>
+                  <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder="What you are looking for?"
+                    inputProps={{ "aria-label": "search google maps" }}
+                  />
+                  <IconButton
+                    type="button"
+                    sx={{ p: "10px" }}
+                    aria-label="search"
+                  ></IconButton>
+                </PaperEdited>
+              </Box>
+
+              <Span className="searchIcon">
                 <SearchIcon sx={{ fontSize: "22px" }} />
               </Span>
               <Span className="icon">
@@ -154,17 +187,20 @@ const Header = () => {
                 <Hamburger
                   easing="ease-in"
                   size={26}
-                  toggled={openDrower}
-                  toggle={setOpenDrower}
+                  toggled={isOpenSideBar}
+                  toggle={setIsOpenSideBar}
                 />
               </MenuHamberGer>
             </HeaderIcons>
           </Grid>
         </Grid>
-        <MobileMenu openDrower={openDrower} setOpenDrower={setOpenDrower} />
+        <MobileMenu
+          isOpenSideBar={isOpenSideBar}
+          setIsOpenSideBar={setIsOpenSideBar}
+        />
       </HeaderWrapper>
     </HeaderBoxs>
   );
 };
 
-export default Header;
+export default HeaderTwo;

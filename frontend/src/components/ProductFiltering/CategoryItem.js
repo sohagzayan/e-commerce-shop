@@ -14,7 +14,7 @@ const CategoryItem = ({ categories }) => {
   };
 
   return (
-    <ListItem key="index" sx={{ padding: "8px 0px" }}>
+    <ListItem key="index" sx={{ padding: "8px 0px", cursor: "pointer" }}>
       <Checkbox
         sx={{
           width: "10px",
@@ -26,7 +26,9 @@ const CategoryItem = ({ categories }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "controlled" }}
       />
-      <Label for={categories}>{categories}</Label>
+      <Label sx={{ cursor: "pointer" }} for={categories}>
+        {categories}
+      </Label>
     </ListItem>
   );
 };

@@ -4,38 +4,67 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import logo from "../assets/logo.png";
-import Drawer from "@mui/material/Drawer";
+import logo from "../../assets/logo.png";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
 import { NavLink } from "react-router-dom";
-
-interface Props {
-  setOpenDrower: React.Dispatch<React.SetStateAction<boolean>>;
-  openDrower: boolean;
-}
-const TemporaryDrawer: React.FC<Props> = (props) => {
-  const { openDrower, setOpenDrower } = props;
+import { motion, AnimatePresence } from "framer-motion";
+import { Backdrop } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }) => {
+  // console.log(isOpenSideBar);
   return (
-    <div>
-      <React.Fragment>
-        <Drawer open={openDrower} onClose={() => setOpenDrower(false)}>
+    <div className="sidebar-container">
+      <Backdrop
+        sx={{ display: "flex", justifyContent: "start" }}
+        open={isOpenSideBar}
+        // onClick={() => setIsOpenSideBar(false)}
+      >
+        <motion.div
+          animate={{
+            width: isOpenSideBar ? "300px" : "0px",
+            // x: isOpen ? 0 : -100,
+            transition: {
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+            },
+          }}
+          className="sidebar"
+        >
           <List
             sx={{
               width: 250,
             }}
           >
-            <ListItemButton>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <img src={logo} alt="" />
-            </ListItemButton>
+              <CloseIcon
+                onClick={() => setIsOpenSideBar(false)}
+                sx={{
+                  color: "#777777",
+                  backgroundColor: "#F6F7FB",
+                  fontSize: "30px",
+                  padding: "1px",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
             <Divider sx={{ marginBottom: "30px" }} />
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setOpenDrower(false)}
+              onClick={() => setIsOpenSideBar(false)}
             >
               <NavLink to="/">
                 <ListItemButton>
@@ -54,7 +83,7 @@ const TemporaryDrawer: React.FC<Props> = (props) => {
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setOpenDrower(false)}
+              onClick={() => setIsOpenSideBar(false)}
             >
               <NavLink to="/shop">
                 <ListItemButton>
@@ -74,7 +103,7 @@ const TemporaryDrawer: React.FC<Props> = (props) => {
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setOpenDrower(false)}
+              onClick={() => setIsOpenSideBar(false)}
             >
               <NavLink to="/about">
                 <ListItemButton>
@@ -93,7 +122,7 @@ const TemporaryDrawer: React.FC<Props> = (props) => {
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setOpenDrower(false)}
+              onClick={() => setIsOpenSideBar(false)}
             >
               <NavLink to="/blog">
                 <ListItemButton>
@@ -113,7 +142,7 @@ const TemporaryDrawer: React.FC<Props> = (props) => {
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => setOpenDrower(false)}
+              onClick={() => setIsOpenSideBar(false)}
             >
               <NavLink to="/contact">
                 <ListItemButton>
@@ -131,10 +160,10 @@ const TemporaryDrawer: React.FC<Props> = (props) => {
               </NavLink>
             </ListItem>
           </List>
-        </Drawer>
-      </React.Fragment>
+        </motion.div>
+      </Backdrop>
     </div>
   );
 };
 
-export default TemporaryDrawer;
+export default MobileMenuSidebar;

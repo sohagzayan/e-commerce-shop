@@ -1,9 +1,9 @@
 import { Box, Button, Container, styled, Typography } from "@mui/material";
 import React from "react";
-import clockImage from "../assets/product-39.png";
+import clockImage from "../../assets/product-39.png";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import shape from "../assets/shape.png";
+import shape from "../../assets/shape.png";
 
 const HeroWrapper = styled(Box)(({ theme }) => ({
   minHeight: "550px",

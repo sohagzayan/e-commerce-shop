@@ -1,7 +1,7 @@
 import { Container, styled, Box, Typography, Grid } from "@mui/material";
 import React from "react";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
-import { productMenu } from "../util/Product";
+import { productMenu } from "../../util/Product";
 import Product from "./Product";
 
 const OurProductWraper = styled(Box)(({ theme }) => ({}));

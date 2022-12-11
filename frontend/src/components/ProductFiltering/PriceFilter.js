@@ -1,6 +1,6 @@
 import { Box, Slider, styled, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { filterPrice } from "../util/FilterOption";
+import { filterPrice } from "../../util/FilterOption";
 import FilterHeader from "./FilterHeader";
 import { motion, AnimatePresence } from "framer-motion";
 const Button = styled("button")(({ theme }) => ({}));

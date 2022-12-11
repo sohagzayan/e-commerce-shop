@@ -1,6 +1,6 @@
 import { Box, Grid, styled } from "@mui/material";
 import React, { useState } from "react";
-import { filterColor } from "../util/FilterOption";
+import { filterColor } from "../../util/FilterOption";
 import FilterHeader from "./FilterHeader";
 import { motion, AnimatePresence } from "framer-motion";
 const Button = styled("button")(({ theme }) => ({}));
