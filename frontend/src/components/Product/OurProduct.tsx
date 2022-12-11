@@ -1,30 +1,8 @@
-import { Container, styled, Box, Typography, Grid } from "@mui/material";
-import React from "react";
+import { Container, Box, Typography, Grid } from "@mui/material";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { productMenu } from "../../util/Product";
 import Product from "./Product";
-
-const OurProductWraper = styled(Box)(({ theme }) => ({}));
-
-const Span = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  fontSize: "15px",
-  fontWeight: "700",
-  color: "#8C71DB",
-  marginBottom: "10px",
-}));
-
-const Button = styled("button")(({ theme }) => ({
-  backgroundColor: "#F6F7FB",
-  color: "#777777",
-  padding: "18px 50px",
-  border: "none",
-  fontWeight: "600",
-  fontSize: "16px",
-  borderRadius: "10px",
-  cursor: "pointer",
-}));
+import { OurProductWraper, Span, Button } from "../../style/Product/OurProduct";
 
 const OurProduct = () => {
   return (

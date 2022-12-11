@@ -6,20 +6,22 @@ import Products from "../components/Product/Products";
 import { motion } from "framer-motion";
 const Shop = () => {
   return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: 0 }}
-      transition={{ duration: 0.3, type: "spring", damping: 10 }}
-    >
-      <Box>
+    <Box sx={{ overflowX: "hidden" }}>
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: 0 }}
+        transition={{ duration: 0.1, type: "spring", damping: 10 }}
+      >
         <Box>
-          <HeaderTwo />
-          <ExploreAllProducts />
-          <Products />
+          <Box>
+            <HeaderTwo />
+            <ExploreAllProducts />
+            <Products />
+          </Box>
         </Box>
-      </Box>
-    </motion.div>
+      </motion.div>
+    </Box>
   );
 };
 

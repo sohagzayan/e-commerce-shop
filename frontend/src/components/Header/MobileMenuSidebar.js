@@ -11,11 +11,10 @@ import ListItem from "@mui/material/ListItem";
 import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
 import { NavLink } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Backdrop } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }) => {
-  // console.log(isOpenSideBar);
   return (
     <div className="sidebar-container">
       <Backdrop

@@ -1,9 +1,10 @@
-import { Box, Checkbox, FormControlLabel, List, ListItem } from "@mui/material";
+import { Box, List } from "@mui/material";
 import React, { useState } from "react";
 import { filterCategories } from "../../util/FilterOption";
 import CategoryItem from "./CategoryItem";
 import FilterHeader from "./FilterHeader";
 import { AnimatePresence, motion } from "framer-motion";
+
 const CategoryFilter = () => {
   const [showOption, setShowOption] = useState(true);
   const menuAnimation = {

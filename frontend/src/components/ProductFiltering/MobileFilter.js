@@ -7,17 +7,7 @@ import ColorFilter from "./ColorFilter";
 import SizeFilter from "./SizeFilter";
 import PriceFilter from "./PriceFilter";
 import { motion, AnimatePresence } from "framer-motion";
-
-const Button = styled("button")(({ theme }) => ({
-  backgroundColor: "#3577f0",
-  width: "100%",
-  padding: "16px 38px",
-  fontWeight: "700",
-  borderRadius: "6px",
-  fontSize: "16px",
-  border: "none",
-  color: "#fff",
-}));
+import { ResetButton } from "../../style/ProductFiltering/ProductFiltering";
 
 const MobileFilter = ({ setIsOpen, isOpen }) => {
   return (
@@ -64,7 +54,7 @@ const MobileFilter = ({ setIsOpen, isOpen }) => {
               <ColorFilter />
               <SizeFilter />
               <PriceFilter />
-              <Button>All Reset</Button>
+              <ResetButton>All Reset</ResetButton>
             </Box>
           </motion.div>
         </Backdrop>

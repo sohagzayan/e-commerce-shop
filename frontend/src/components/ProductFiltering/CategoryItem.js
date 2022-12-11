@@ -1,11 +1,6 @@
 import { Checkbox, ListItem, styled } from "@mui/material";
 import React, { useState } from "react";
-
-const Label = styled("label")(({ theme }) => ({
-  fontSize: "14px",
-  color: "#777777",
-  fontWeight: "600",
-}));
+import { Label } from "../../style/ProductFiltering/ProductFiltering";
 
 const CategoryItem = ({ categories }) => {
   const [checked, setChecked] = useState(false);

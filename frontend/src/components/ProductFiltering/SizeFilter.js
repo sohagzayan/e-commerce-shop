@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { filterSize } from "../../util/FilterOption";
 import FilterHeader from "./FilterHeader";
 import { motion, AnimatePresence } from "framer-motion";
-const Button = styled("button")(({ theme }) => ({}));
+import { GetSizeButton } from "../../style/ProductFiltering/ProductFiltering";
 
 const SizeFilter = () => {
   const [showOption, setShowOption] = useState(true);
@@ -42,7 +42,7 @@ const SizeFilter = () => {
           >
             <Box sx={{ display: "flex", flexWrap: "wrap" }}>
               {filterSize.map((size, index) => (
-                <Button
+                <GetSizeButton
                   key={index}
                   className="sizeButton"
                   onClick={() => setActiveSize(size)}
@@ -53,7 +53,7 @@ const SizeFilter = () => {
                   }}
                 >
                   {size}
-                </Button>
+                </GetSizeButton>
               ))}
             </Box>
           </motion.div>

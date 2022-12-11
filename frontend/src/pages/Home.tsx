@@ -10,18 +10,20 @@ const HomeWrapper = styled(Box)(({ theme }) => ({
 
 const Home = () => {
   return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: 0 }}
-      transition={{ duration: 0.3, type: "spring", damping: 10 }}
-    >
-      <HomeWrapper>
-        <Header />
-        <Hero />
-        <OurProduct />
-      </HomeWrapper>
-    </motion.div>
+    <Box sx={{ overflowX: "hidden" }}>
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: 0 }}
+        transition={{ duration: 0.1, type: "spring", damping: 10 }}
+      >
+        <HomeWrapper>
+          <Header />
+          <Hero />
+          <OurProduct />
+        </HomeWrapper>
+      </motion.div>
+    </Box>
   );
 };
 

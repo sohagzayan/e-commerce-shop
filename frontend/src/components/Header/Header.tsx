@@ -1,4 +1,4 @@
-import { ListItem, Badge, Grid, Box, styled } from "@mui/material";
+import { Badge, Grid, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,85 +7,32 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Sling as Hamburger } from "hamburger-react";
 import MobileMenuSidebar from "./MobileMenuSidebar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import userLove from "../../assets/icon/003-heart.png";
+import userShooping from "../../assets/icon/shopping-cart.png";
+import userSearch from "../../assets/icon/004-search-interface-symbol.png";
+import userAccount from "../../assets/icon/user.png";
+import {
+  HeaderBoxs,
+  HeaderIcons,
+  HeaderLogo,
+  HeaderWrapper,
+  Image,
+  MenuHamberGer,
+  Span,
+} from "../../style/Header/Header";
+import { headerMenu } from "../../util/HeaderMenu";
 
-const HeaderBoxs = styled(Box)(({ theme }) => ({
-  paddingBottom: "10px",
-  paddingTop: "10px",
-  position: "sticky",
-  top: 0,
-  left: 0,
-  zIndex: 60,
-}));
-
-const HeaderWrapper = styled(Box)(({ theme }) => ({
-  padding: "20px  10px",
-  backgroundColor: "#fff",
-  // boxShadow: "0 2px 10px 0 rgb(0 0 0 / 10%)",
-  maxWidth: "1200px",
-  position: "sticky",
-  top: 0,
-  left: 0,
-  [theme.breakpoints.down("lg")]: {
-    width: "90%",
-  },
-  [theme.breakpoints.down("md")]: {
-    width: "92%",
-  },
-  margin: "0px auto",
-  borderRadius: "10px",
-}));
-
-const HeaderLogo = styled("div")({
+const Ul = styled("ul")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-});
+}));
 
-const HeaderMenuList = styled("div")(({ theme }) => ({
-  display: "flex",
+const Li = styled("li")(({ theme }) => ({
+  margin: "0 20px",
   fontSize: "16px",
-  fontWeight: "500",
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
-
-const HeaderIcons = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
-const ListItemMenu = styled(ListItem)({
-  cursor: "pointer",
-});
-
-const Span = styled("span")(({ theme }) => ({
-  margin: "0 10px",
   color: "#292930",
-  fontWeight: "300",
-  [theme.breakpoints.down("sm")]: {
-    margin: "0 5px",
-  },
-}));
-
-const MenuHamberGer = styled("span")(({ theme }) => ({
-  margin: "0 7px",
-  color: "#292930",
-  fontWeight: "300",
-  display: "none",
-  [theme.breakpoints.down("md")]: {
-    display: "block",
-  },
-  [theme.breakpoints.down("sm")]: {
-    margin: "0 2px",
-  },
-}));
-
-const Image = styled("img")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    width: "130px",
-    padding: "10px 0",
-  },
+  fontWeight: "600",
 }));
 
 const Header = () => {
@@ -107,54 +54,37 @@ const Header = () => {
         <Grid container>
           <Grid item xs={3}>
             <HeaderLogo>
-              {/* <Typography
-              fontWeight="700"
-              color="primary"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                fontSize: "22px",
-                color: "#0053A8",
-              }}
-            >
-              <ShoppingBagOutlinedIcon
-                color="primary"
-                sx={{ fontSize: "30px" }}
-              />
-              cTrade
-            </Typography> */}
               <Image src={logo} alt="" />
             </HeaderLogo>
           </Grid>
           <Grid item xs={6} sx={{ display: "flex", justifyContent: "center" }}>
-            <HeaderMenuList>
-              <ListItemMenu>
-                <NavLink to="/">Home</NavLink>
-              </ListItemMenu>
-              <ListItemMenu>
-                <NavLink to="/shop">Shop</NavLink>
-              </ListItemMenu>
-              <ListItemMenu>Pages</ListItemMenu>
-              <ListItemMenu>About</ListItemMenu>
-              <ListItemMenu>Blog</ListItemMenu>
-              <ListItemMenu>Contact</ListItemMenu>
-            </HeaderMenuList>
+            <Ul>
+              {headerMenu.map((menu) => (
+                <Li>
+                  <Link to={menu.path}>{menu.name}</Link>
+                </Li>
+              ))}
+            </Ul>
           </Grid>
           <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
             <HeaderIcons>
               <Span>
-                <SearchIcon sx={{ fontSize: "22px" }} />
+                {/* <SearchIcon sx={{ fontSize: "22px" }} /> */}
+                <img width={25} src={userSearch} alt="" />
               </Span>
               <Span className="icon">
-                <FavoriteBorderIcon sx={{ fontSize: "22px" }} />
+                {/* <FavoriteBorderIcon sx={{ fontSize: "22px" }} /> */}
+                <img width={25} src={userLove} alt="" />
               </Span>
               <Span>
                 <Badge badgeContent={2} color="primary">
-                  <ShoppingCartOutlinedIcon sx={{ fontSize: "22px" }} />
+                  <img width={25} src={userShooping} alt="" />
+                  {/* <ShoppingCartOutlinedIcon sx={{ fontSize: "22px" }} /> */}
                 </Badge>
               </Span>
               <Span>
-                <AccountCircleOutlinedIcon sx={{ fontSize: "23px" }} />
+                {/* <AccountCircleOutlinedIcon sx={{ fontSize: "23px" }} /> */}
+                <img width={25} src={userAccount} alt="" />
               </Span>
               <MenuHamberGer>
                 <Hamburger
