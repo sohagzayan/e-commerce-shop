@@ -13,20 +13,15 @@ function App() {
   const location = useLocation();
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
-      <Routes location={location} key={location.pathname}>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route
-          path="/shop"
-          element={
-            <Suspense fallback="Loading....">
-              <LazyShop />
-            </Suspense>
-          }
-        />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
     </AnimatePresence>
   );
 }
 
 export default App;
+
+// exitBeforeEnter initial={false}

@@ -50,6 +50,8 @@ export const HeaderIcons = styled("div")({
 
 export const ListItemMenu = styled(ListItem)({
   cursor: "pointer",
+  position: "relative",
+  padding: "0 10px",
 });
 
 export const Span = styled("span")(({ theme }) => ({
@@ -57,8 +59,9 @@ export const Span = styled("span")(({ theme }) => ({
   color: "#292930",
   fontWeight: "300",
   [theme.breakpoints.down("sm")]: {
-    margin: "0 5px",
+    margin: "0 10px",
   },
+  cursor: "pointer",
 }));
 
 export const MenuHamberGer = styled("span")(({ theme }) => ({

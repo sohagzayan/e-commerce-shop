@@ -12,8 +12,15 @@ import Box from "@mui/material/Box";
 import ListItemButton from "@mui/material/ListItemButton";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Backdrop } from "@mui/material";
+import { Backdrop, styled } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { headerMenu } from "../../util/HeaderMenu";
+
+const Ul = styled("ul")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+}));
+
 const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }) => {
   return (
     <div className="sidebar-container">
@@ -59,105 +66,22 @@ const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }) => {
                 }}
               />
             </Box>
-            <Divider sx={{ marginBottom: "30px" }} />
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setIsOpenSideBar(false)}
-            >
-              <NavLink to="/">
-                <ListItemButton>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItem: "center",
-                      color: "#202020",
-                    }}
-                  >
-                    <HomeOutlinedIcon sx={{ marginRight: "25px" }} /> Home
-                  </Box>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setIsOpenSideBar(false)}
-            >
-              <NavLink to="/shop">
-                <ListItemButton>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItem: "center",
-                      color: "#202020",
-                    }}
-                  >
-                    <ShoppingCartOutlinedIcon sx={{ marginRight: "25px" }} />{" "}
-                    Shop
-                  </Box>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setIsOpenSideBar(false)}
-            >
-              <NavLink to="/about">
-                <ListItemButton>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItem: "center",
-                      color: "#202020",
-                    }}
-                  >
-                    <InfoOutlinedIcon sx={{ marginRight: "25px" }} /> About
-                  </Box>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setIsOpenSideBar(false)}
-            >
-              <NavLink to="/blog">
-                <ListItemButton>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItem: "center",
-                      color: "#202020",
-                    }}
-                  >
-                    <AssignmentOutlinedIcon sx={{ marginRight: "25px" }} /> Blog
-                  </Box>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
+            <Divider sx={{ marginBottom: "30px", marginTop: "10px" }} />
 
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => setIsOpenSideBar(false)}
-            >
-              <NavLink to="/contact">
-                <ListItemButton>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItem: "center",
-                      color: "#202020",
-                    }}
-                  >
-                    <ContactsOutlinedIcon sx={{ marginRight: "25px" }} />{" "}
-                    Contact
-                  </Box>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
+            {
+              <Ul>
+                {headerMenu.map((menu) => (
+                  <li style={{ marginBottom: "20px" }} className="">
+                    <NavLink
+                      className={({ isActive }) => (isActive ? "" : "")}
+                      to={menu.path}
+                    >
+                      {menu.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </Ul>
+            }
           </List>
         </motion.div>
       </Backdrop>

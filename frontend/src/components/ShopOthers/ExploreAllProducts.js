@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Container, Grid } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import BreadcrumbsLink from "./BreadcrumbsLink";
 import ProductImage from "../../assets/product/product-45.png";
 const ExploreAllProducts = () => {

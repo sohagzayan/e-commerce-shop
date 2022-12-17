@@ -1,4 +1,4 @@
-import { Badge, Grid, Box } from "@mui/material";
+import { Badge, Grid, Box, styled } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,7 +9,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Sling as Hamburger } from "hamburger-react";
 import MobileMenu from "./MobileMenuSidebar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+
 import {
   HeaderBoxs,
   HeaderIcons,
@@ -22,16 +23,33 @@ import {
   PaperEdited,
   Span,
 } from "../../style/Header/Header";
+import { headerMenu } from "../../util/HeaderMenu";
+
+const Ul = styled("ul")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+}));
+
+const Li = styled("li")(({ theme }) => ({
+  margin: "0 20px",
+  fontSize: "16px",
+  color: "#292930",
+  fontWeight: "600",
+}));
 
 const HeaderTwo = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [scrollCount, setScrollCount] = useState(0);
+  const location = useLocation();
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollCount(window.scrollY);
       // console.log(window.scrollY);
     });
   }, []);
+
+  // console.log(location);
 
   return (
     <HeaderBoxs>
@@ -44,16 +62,20 @@ const HeaderTwo = () => {
           </Grid>
           <Grid item xs={5} sx={{ display: "flex", justifyContent: "center" }}>
             <HeaderMenuList>
-              <ListItemMenu>
-                <NavLink to="/">Home</NavLink>
-              </ListItemMenu>
-              <ListItemMenu>
-                <NavLink to="/shop">Shop</NavLink>
-              </ListItemMenu>
-              <ListItemMenu>Pages</ListItemMenu>
-              <ListItemMenu>About</ListItemMenu>
-              <ListItemMenu>Blog</ListItemMenu>
-              <ListItemMenu>Contact</ListItemMenu>
+              <Ul>
+                {headerMenu.map((menu) => (
+                  <li className="">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "headerMenu active" : "headerMenu"
+                      }
+                      to={menu.path}
+                    >
+                      {menu.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </Ul>
             </HeaderMenuList>
           </Grid>
           <Grid
@@ -76,7 +98,7 @@ const HeaderTwo = () => {
                   }}
                 >
                   <IconButton sx={{ p: "10px" }} aria-label="menu">
-                    <SearchIcon />
+                    <SearchIcon sx={{ color: "#80808d", fontSize: "23px" }} />
                   </IconButton>
                   <InputBase
                     sx={{ ml: 1, flex: 1 }}
@@ -92,22 +114,29 @@ const HeaderTwo = () => {
               </Box>
 
               <Span className="searchIcon">
-                <SearchIcon sx={{ fontSize: "22px" }} />
+                <SearchIcon sx={{ color: "#80808d", fontSize: "23px" }} />
               </Span>
               <Span className="icon">
-                <FavoriteBorderIcon sx={{ fontSize: "22px" }} />
+                <FavoriteBorderIcon
+                  sx={{ color: "#80808d", fontSize: "23px" }}
+                />
               </Span>
               <Span>
                 <Badge badgeContent={2} color="primary">
-                  <ShoppingCartOutlinedIcon sx={{ fontSize: "22px" }} />
+                  <ShoppingCartOutlinedIcon
+                    sx={{ color: "#80808d", fontSize: "23px" }}
+                  />
                 </Badge>
               </Span>
               <Span>
-                <AccountCircleOutlinedIcon sx={{ fontSize: "23px" }} />
+                <AccountCircleOutlinedIcon
+                  sx={{ color: "#80808d", fontSize: "23px" }}
+                />
               </Span>
               <MenuHamberGer>
                 <Hamburger
                   easing="ease-in"
+                  color="#80808d"
                   size={26}
                   toggled={isOpenSideBar}
                   toggle={setIsOpenSideBar}

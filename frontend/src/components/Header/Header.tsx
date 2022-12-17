@@ -4,19 +4,16 @@ import logo from "../../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ContactsIcon from "@mui/icons-material/Contacts";
 import { Sling as Hamburger } from "hamburger-react";
 import MobileMenuSidebar from "./MobileMenuSidebar";
-import { Link, NavLink } from "react-router-dom";
-import userLove from "../../assets/icon/003-heart.png";
-import userShooping from "../../assets/icon/shopping-cart.png";
-import userSearch from "../../assets/icon/004-search-interface-symbol.png";
-import userAccount from "../../assets/icon/user.png";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   HeaderBoxs,
   HeaderIcons,
   HeaderLogo,
   HeaderWrapper,
+  HeaderMenuList,
   Image,
   MenuHamberGer,
   Span,
@@ -39,6 +36,8 @@ const Header = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   console.log(isOpenSideBar);
   const [scrollCount, setScrollCount] = useState(0);
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollCount(window.scrollY);
@@ -58,33 +57,42 @@ const Header = () => {
             </HeaderLogo>
           </Grid>
           <Grid item xs={6} sx={{ display: "flex", justifyContent: "center" }}>
-            <Ul>
-              {headerMenu.map((menu) => (
-                <Li>
-                  <Link to={menu.path}>{menu.name}</Link>
-                </Li>
-              ))}
-            </Ul>
+            <HeaderMenuList>
+              <Ul>
+                {headerMenu.map((menu) => (
+                  <li className="">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "headerMenu active" : "headerMenu"
+                      }
+                      to={menu.path}
+                    >
+                      {menu.name}
+                    </NavLink>
+                  </li>
+                ))}
+              </Ul>
+            </HeaderMenuList>
           </Grid>
           <Grid item xs={3} sx={{ display: "flex", justifyContent: "end" }}>
             <HeaderIcons>
               <Span>
-                {/* <SearchIcon sx={{ fontSize: "22px" }} /> */}
-                <img width={25} src={userSearch} alt="" />
+                <SearchIcon sx={{ fontSize: "23px", color: "#80808d" }} />
               </Span>
               <Span className="icon">
-                {/* <FavoriteBorderIcon sx={{ fontSize: "22px" }} /> */}
-                <img width={25} src={userLove} alt="" />
+                <FavoriteBorderIcon
+                  sx={{ fontSize: "23px", color: "#80808d" }}
+                />
               </Span>
               <Span>
                 <Badge badgeContent={2} color="primary">
-                  <img width={25} src={userShooping} alt="" />
-                  {/* <ShoppingCartOutlinedIcon sx={{ fontSize: "22px" }} /> */}
+                  <ShoppingCartOutlinedIcon
+                    sx={{ fontSize: "23px", color: "#80808d" }}
+                  />
                 </Badge>
               </Span>
               <Span>
-                {/* <AccountCircleOutlinedIcon sx={{ fontSize: "23px" }} /> */}
-                <img width={25} src={userAccount} alt="" />
+                <ContactsIcon sx={{ fontSize: "23px", color: "#80808d" }} />
               </Span>
               <MenuHamberGer>
                 <Hamburger

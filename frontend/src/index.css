@@ -227,3 +227,30 @@ select {
   overflow-y: auto;
   padding: 20px;
 }
+
+/* header Menu */
+
+.headerMenu {
+  margin: 0 20px;
+  position: relative;
+  color: #292930;
+  transition: all 0.3s ease-in;
+}
+.headerMenu::after {
+  content: "";
+  position: absolute;
+  background-color: #292930;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  transition: all 0.3s ease-in;
+}
+.headerMenu.active::after {
+  width: 100%;
+}
+
+.headerMenu:hover:after {
+  transition: all 0.3s ease-in;
+  width: 100%;
+}
