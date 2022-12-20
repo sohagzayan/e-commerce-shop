@@ -1,15 +1,8 @@
 import * as React from "react";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import logo from "../../assets/logo.png";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
 import Box from "@mui/material/Box";
-import ListItemButton from "@mui/material/ListItemButton";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Backdrop, styled } from "@mui/material";
@@ -21,7 +14,12 @@ const Ul = styled("ul")(({ theme }) => ({
   flexDirection: "column",
 }));
 
-const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }) => {
+interface Props {
+  isOpenSideBar: boolean;
+  setIsOpenSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }: Props) => {
   return (
     <div className="sidebar-container">
       <Backdrop

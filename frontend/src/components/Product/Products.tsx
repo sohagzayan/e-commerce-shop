@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Container, Grid, useMediaQuery, useTheme } from "@mui/material";
 import Filter from "../ProductFiltering/Filter";
 import { productMenu } from "../../util/Product";
 import Product from "./Product";
-import ProductHeader from "../Product/ProductHeader";
+import ProductHeader from "./ProductHeader";
 import MobileFilter from "../ProductFiltering/MobileFilter";
 
 const Products = () => {
@@ -23,9 +23,9 @@ const Products = () => {
               <ProductHeader setIsOpen={setIsOpen} matches={matches} />
               <Box>
                 <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
-                  {productMenu?.map((menu, index) => (
+                  {productMenu?.map((product, index) => (
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                      <Product key={index} menu={menu} />
+                      <Product key={index} menu={product} />
                     </Grid>
                   ))}
                 </Grid>

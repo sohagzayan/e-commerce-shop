@@ -7,6 +7,7 @@ import Shop from "./pages/Shop";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import About from "./pages/About";
+import MyWishList from "./pages/MyWishList";
 const LazyShop = lazy(() => import("./pages/Shop"));
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/wishlist" element={<MyWishList />} />
       </Routes>
     </AnimatePresence>
   );

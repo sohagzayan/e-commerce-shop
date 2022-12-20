@@ -2,7 +2,14 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-const Filter = ({ title, content, setShowOption, showOption }) => {
+
+interface FilterProps {
+  title: string;
+  setShowOption: React.Dispatch<React.SetStateAction<boolean>>;
+  showOption: boolean;
+}
+
+const Filter = ({ title, setShowOption, showOption }: FilterProps) => {
   return (
     <Box sx={{ marginBottom: "10px", paddingBottom: "5px" }}>
       <Box
@@ -26,7 +33,7 @@ const Filter = ({ title, content, setShowOption, showOption }) => {
               color: "#27272E",
             }}
           >
-            {title}
+            {title} Hee hee e
           </Typography>
           <Typography variant="h5">
             <motion.div animate={showOption ? { rotate: -90 } : { rotate: 0 }}>
@@ -34,7 +41,6 @@ const Filter = ({ title, content, setShowOption, showOption }) => {
             </motion.div>
           </Typography>
         </Box>
-        {content}
       </Box>
     </Box>
   );

@@ -13,7 +13,11 @@ body {
 a {
   text-decoration: none;
 }
-
+li,
+ul {
+  padding: 0;
+  margin: 0;
+}
 /** Color pic on order product */
 
 .color_rounded {
@@ -253,4 +257,85 @@ select {
 .headerMenu:hover:after {
   transition: all 0.3s ease-in;
   width: 100%;
+}
+
+/* drop Down Extra Info */
+.dropDownExtraInfo {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(37, 47, 63, 0.1);
+  width: 120px;
+  padding: 10px;
+  border-radius: 6px;
+  z-index: 99;
+}
+.dropDownExtraInfo > ul > li {
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.2s linear;
+}
+.dropDownExtraInfo > ul > li:hover {
+  background-color: #ff497c;
+  border-radius: 6px;
+  color: #fff;
+  transition: all 0.3s ease-out;
+}
+
+/* Sticky Header  */
+
+/* .sticky */
+
+/* header responsive moment */
+.listWrapperMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 1016px) {
+  .listWrapperMenu {
+    display: none;
+  }
+}
+
+/* on Active Icon Look Header Icons */
+.onActiveIconLook {
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease-in;
+}
+
+.onActiveIconLook::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: #ff497c;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50px;
+  z-index: -1;
+  transition: all 0.3s ease-in;
+}
+.onActiveIconLook:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.3s ease-in;
+}
+
+.onViewIcon {
+  color: #80808d;
+  font-size: 23px;
+  transition: all 0.6s ease-in;
+}
+.onActiveIconLook:hover .onViewIcon {
+  color: #fff;
+  transition: all 0.5s ease-in;
+}
+.onActiveIconLook.active::after {
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.3s ease-in;
 }

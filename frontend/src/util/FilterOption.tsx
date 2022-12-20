@@ -1,4 +1,4 @@
-export const filterCategories = [
+export const filterCategories: string[] = [
   "Sun Care",
   "Night Care",
   "Treatment",

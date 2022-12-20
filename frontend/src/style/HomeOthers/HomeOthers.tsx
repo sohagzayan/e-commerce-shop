@@ -6,7 +6,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   padding: "100px 0",
   position: "relative",
   zIndex: "20",
-  backgroundColor: "#f9f3f0",
+  backgroundColor: "#F7F7F7",
 }));
 
 export const Span = styled("span")(({ theme }) => ({

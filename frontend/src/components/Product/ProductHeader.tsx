@@ -1,7 +1,13 @@
 import { Box } from "@mui/material";
 import React from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-const ProductHeader = ({ matches, setIsOpen }) => {
+
+interface ProductHeaderProps {
+  matches: Boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ProductHeader = ({ matches, setIsOpen }: ProductHeaderProps) => {
   return (
     <Box>
       <Box

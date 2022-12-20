@@ -2,9 +2,13 @@ import { Checkbox, ListItem, styled } from "@mui/material";
 import React, { useState } from "react";
 import { Label } from "../../style/ProductFiltering/ProductFiltering";
 
-const CategoryItem = ({ categories }) => {
+interface CategoryItemProps {
+  categories: string;
+}
+
+const CategoryItem = ({ categories }: CategoryItemProps) => {
   const [checked, setChecked] = useState(false);
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
 
@@ -21,7 +25,7 @@ const CategoryItem = ({ categories }) => {
         onChange={handleChange}
         inputProps={{ "aria-label": "controlled" }}
       />
-      <Label sx={{ cursor: "pointer" }} for={categories}>
+      <Label sx={{ cursor: "pointer" }} htmlFor={categories}>
         {categories}
       </Label>
     </ListItem>

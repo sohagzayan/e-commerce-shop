@@ -6,14 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 const Button = styled("button")(({ theme }) => ({}));
 
 const PriceFilter = () => {
-  const [value, setValue] = useState([2000, 6000]);
+  const [value, setValue] = useState<number[]>([2000, 6000]);
   const [showOption, setShowOption] = useState(true);
   const [activeSize, setActiveSize] = useState(filterPrice[0]);
-  function valuetext(value) {
+  function valuetext(value: number) {
     return `${value}°C`;
   }
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
   };
 
   const menuAnimation = {

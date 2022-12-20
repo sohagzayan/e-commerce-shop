@@ -1,5 +1,5 @@
 import { Box, List } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { filterCategories } from "../../util/FilterOption";
 import CategoryItem from "./CategoryItem";
 import FilterHeader from "./FilterHeader";
@@ -25,14 +25,14 @@ const CategoryFilter = () => {
   };
 
   const menuItemAnimation = {
-    hidden: (index) => ({
+    hidden: (index: number) => ({
       padding: 0,
       x: "-100%",
       transition: {
         duration: (index + 1) * 0.1,
       },
     }),
-    show: (index) => ({
+    show: (index: number) => ({
       x: 0,
       transition: {
         duration: (index + 1) * 0.1,

@@ -11,8 +11,13 @@ import {
   TypographyOldPrice,
   Span,
 } from "../../style/Product/Product";
+import { IProductData } from "../../util/Product";
 
-const Product = ({ menu }) => {
+interface ProductProps {
+  menu: IProductData;
+}
+
+const Product = ({ menu }: ProductProps) => {
   const { image1, image2, name, price, discountPrice } = menu;
   const Color = ["#ff497c", "#ff8666", "#8d6abe"];
   const [activeColor, setActiveColor] = useState(Color[0]);

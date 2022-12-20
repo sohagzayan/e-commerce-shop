@@ -1,5 +1,5 @@
-import { Backdrop, Box, styled } from "@mui/material";
-import React, { useState } from "react";
+import { Backdrop, Box } from "@mui/material";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CategoryFilter from "./CategoryFilter";
 import GenderFilter from "./GenderFilter";
@@ -9,7 +9,12 @@ import PriceFilter from "./PriceFilter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResetButton } from "../../style/ProductFiltering/ProductFiltering";
 
-const MobileFilter = ({ setIsOpen, isOpen }) => {
+interface MobileFilterProps {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+}
+
+const MobileFilter = ({ setIsOpen, isOpen }: MobileFilterProps) => {
   return (
     <AnimatePresence>
       <Box className="filter-sidebar-container">

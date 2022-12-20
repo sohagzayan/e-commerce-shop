@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import BreadcrumbsLink from "./BreadcrumbsLink";
 import ProductImage from "../../assets/product/product-45.png";
+
 const ExploreAllProducts = () => {
   return (
     <Box sx={{ backgroundColor: "#f8f8f8", padding: "20px 0" }}>

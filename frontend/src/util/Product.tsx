@@ -3,9 +3,19 @@ import product2 from "../assets/product/product-01(2).png";
 import product3 from "../assets/product/product-03(2).png";
 import product4 from "../assets/product/product-04.png";
 import product5 from "../assets/product/product-06.png";
-import product6 from "../assets/product/product-16.png";
 
-export const productMenu = [
+export interface IProductData {
+  name: string;
+  description: string;
+  price: number;
+  discountPrice: number;
+  review: number;
+  discountPercentage: number;
+  image1: string;
+  image2: string;
+}
+
+export const productMenu: IProductData[] = [
   {
     name: "Level 20 RGB Cherry",
     description:
