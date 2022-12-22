@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { IProductData } from "../../util/Product";
 import GradeIcon from "@mui/icons-material/Grade";
@@ -12,7 +12,6 @@ interface CardProductProps {
 
 const CardProduct = ({ product }: CardProductProps) => {
   const [quentity, setQuentity] = useState(10);
-  console.log(product);
   return (
     <Box sx={{ marginBottom: "25px", marginTop: "25px" }}>
       <Box

@@ -68,8 +68,8 @@ const MobileMenuSidebar = ({ isOpenSideBar, setIsOpenSideBar }: Props) => {
 
             {
               <Ul>
-                {headerMenu.map((menu) => (
-                  <li style={{ marginBottom: "20px" }} className="">
+                {headerMenu.map((menu, index) => (
+                  <li key={index} style={{ marginBottom: "20px" }} className="">
                     <NavLink
                       className={({ isActive }) => (isActive ? "" : "")}
                       to={menu.path}

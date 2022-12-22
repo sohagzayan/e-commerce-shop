@@ -20,7 +20,6 @@ export const BottomHeaderWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const BottomHeaderRoot = styled(Box)(({ theme }) => ({
-  backgroundColor: "#fff",
   padding: "20px 0",
   marginBottom: "10px",
   [theme.breakpoints.down("md")]: {

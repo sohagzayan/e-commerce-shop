@@ -2,7 +2,8 @@ import { Box, styled } from "@mui/material";
 import Hero from "../components/HomeOthers/Hero";
 import OurProduct from "../components/Product/OurProduct";
 import { motion } from "framer-motion";
-import BottomHeader from "../components/Header/Header";
+import Header from "../components/Header/Header";
+import HeroSlider from "../components/HomeOthers/HeroSlider";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   height: "100000px",
@@ -11,7 +12,7 @@ const HomeWrapper = styled(Box)(({ theme }) => ({
 const Home = () => {
   return (
     <>
-      <BottomHeader />
+      <Header />
       <Box sx={{ overflowX: "hidden" }}>
         <motion.div
           initial={{ x: -200, opacity: 0 }}
@@ -19,10 +20,9 @@ const Home = () => {
           exit={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, type: "tween" }}
         >
-          <HomeWrapper>
-            <Hero />
-            <OurProduct />
-          </HomeWrapper>
+          {/* <Hero /> */}
+          <HeroSlider />
+          <OurProduct />
         </motion.div>
       </Box>
     </>

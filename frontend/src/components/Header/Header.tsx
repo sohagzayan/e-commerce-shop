@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { headerMenu } from "../../util/HeaderMenu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,7 +11,7 @@ import MobileMenuSidebar from "./MobileMenuSidebar";
 import logo from "../../assets/logo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import MyAccountMenu from "../MyAccount/MyAccountMenu";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   BottomHeaderRoot,
   BottomHeaderWrapper,
@@ -23,12 +23,14 @@ import {
   MenuHamburger,
 } from "../../style/Header/Header";
 import CardView from "../CardView/CardView";
+import SearchProduct from "../SearchProduct/SearchProduct";
 
 const BottomHeader = () => {
-  const [scrollCount, setScrollCount] = useState(0);
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
+  const [isOpenSearchProduct, setIsOpenSearchProduct] = useState(false);
   const [showMyAccountMenu, setShowMyAccountMenu] = useState(false);
   const [showCardView, setShowCardView] = useState(false);
+  const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
   const usd: string[] = ["USD", "AUD", "EUR"];
   const lan: string[] = ["EN", "ARB", "SPN"];
@@ -61,24 +63,22 @@ const BottomHeader = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setScrollCount(window.scrollY);
-      // console.log(window.scrollY);
+      if (window.scrollY >= 80) {
+        setNavbar(true);
+      } else {
+        setNavbar(false);
+      }
     });
   }, []);
 
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 0, opacity: 1 }}
+        initial={{ x: -30, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        style={{
-          position: "sticky",
-          top: 0,
-          transition: "all .3s ease-in",
-          zIndex: "99",
-        }}
+        className={navbar ? "navbar active" : "navbar "}
       >
         <BottomHeaderRoot>
           <Container maxWidth="lg">
@@ -99,7 +99,10 @@ const BottomHeader = () => {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
                   <IconListElement>
-                    <SearchIcon sx={{ fontSize: "23px", color: "#80808d" }} />
+                    <SearchIcon
+                      onClick={() => setIsOpenSearchProduct(true)}
+                      sx={{ fontSize: "23px", color: "#80808d" }}
+                    />
                   </IconListElement>
                   <IconListElement>
                     <FavoriteBorderIcon
@@ -160,6 +163,12 @@ const BottomHeader = () => {
               <CardView
                 showCardView={showCardView}
                 setShowCardView={setShowCardView}
+              />
+            </motion.div>
+            <motion.div>
+              <SearchProduct
+                setIsOpenSearchProduct={setIsOpenSearchProduct}
+                isOpenSearchProduct={isOpenSearchProduct}
               />
             </motion.div>
           </Container>

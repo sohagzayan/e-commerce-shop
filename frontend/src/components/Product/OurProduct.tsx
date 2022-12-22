@@ -35,7 +35,7 @@ const OurProduct = () => {
         <Box>
           <Grid container spacing={{ xs: 1, md: 3 }}>
             {productMenu?.map((menu, index) => (
-              <Grid item lg={3} md={4} sm={6} xs={12}>
+              <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
                 <Product key={index} menu={menu} />
               </Grid>
             ))}
