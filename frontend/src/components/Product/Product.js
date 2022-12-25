@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import "aos/dist/aos.css";
 import ProductController from "./ProductController";
+import image2 from "../../assets/product/product-01(2).png";
 import {
   Button,
   CardContent,
@@ -11,14 +11,9 @@ import {
   TypographyOldPrice,
   Span,
 } from "../../style/Product/Product";
-import { IProductData } from "../../util/Product";
 
-interface ProductProps {
-  menu: IProductData;
-}
-
-const Product = ({ menu }: ProductProps) => {
-  const { image1, image2, name, price, discountPrice } = menu;
+const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
+  const { name, price, discountPrice } = data;
   const Color = ["#ff497c", "#ff8666", "#8d6abe"];
   const [activeColor, setActiveColor] = useState(Color[0]);
 
@@ -33,9 +28,9 @@ const Product = ({ menu }: ProductProps) => {
         }}
       >
         <Span className="image_wrapper">
-          <img className="beforeHover" src={image1} alt="product" />
+          <img className="beforeHover" src={data?.image[0].url} alt="product" />
           <img className="onHover" src={image2} alt="product" />
-          <ProductController />
+          <ProductController seIsOpenDetails={seIsOpenDetails} />
         </Span>
         <DiscountRange>20% off</DiscountRange>
         <CardContent>

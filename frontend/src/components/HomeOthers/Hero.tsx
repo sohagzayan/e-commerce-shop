@@ -4,7 +4,7 @@ import clockImage from "../../assets/product-39.png";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import shape from "../../assets/shape.png";
-import Header from "../Header/Header";
+import Header from "../Header/HeaderOne";
 
 import {
   HeroInner,

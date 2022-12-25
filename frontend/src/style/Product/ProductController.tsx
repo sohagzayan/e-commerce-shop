@@ -26,4 +26,5 @@ export const Icon = styled(Box)(({ theme }) => ({
   boxShadow: "0 16px 32px 0 rgb(0 0 0 / 6%)",
   color: "#292930",
   fontSize: "12px",
+  cursor: "pointer",
 }));

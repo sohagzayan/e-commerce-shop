@@ -7,6 +7,7 @@ import ProductHeader from "./ProductHeader";
 import MobileFilter from "../ProductFiltering/MobileFilter";
 
 const Products = () => {
+  const [isOpenDetails, seIsOpenDetails] = useState(false);
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
@@ -23,9 +24,13 @@ const Products = () => {
               <ProductHeader setIsOpen={setIsOpen} matches={matches} />
               <Box>
                 <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
-                  {productMenu?.map((product, index) => (
+                  {productMenu?.map((data, index) => (
                     <Grid key={index} item lg={4} md={6} sm={6} xs={12}>
-                      <Product key={index} menu={product} />
+                      <Product
+                        data={data}
+                        isOpenDetails={isOpenDetails}
+                        seIsOpenDetails={seIsOpenDetails}
+                      />
                     </Grid>
                   ))}
                 </Grid>

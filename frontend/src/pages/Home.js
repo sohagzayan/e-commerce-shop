@@ -1,17 +1,14 @@
-import { Box, styled } from "@mui/material";
-import Hero from "../components/HomeOthers/Hero";
+import { Box } from "@mui/material";
 import OurProduct from "../components/Product/OurProduct";
 import { motion } from "framer-motion";
-import Header from "../components/Header/Header";
+import Header from "../components/Header/HeaderOne";
 import HeroSlider from "../components/HomeOthers/HeroSlider";
-
-const HomeWrapper = styled(Box)(({ theme }) => ({
-  height: "100000px",
-}));
+import MetaData from "../util/MetaData";
 
 const Home = () => {
   return (
     <>
+      <MetaData title="Home Page Is Working" />
       <Header />
       <Box sx={{ overflowX: "hidden" }}>
         <motion.div

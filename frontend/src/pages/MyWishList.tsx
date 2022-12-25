@@ -1,4 +1,3 @@
-import Header from "../components/Header/Header";
 import {
   Box,
   Container,
@@ -8,13 +7,14 @@ import {
 } from "@mui/material";
 import MyWishListDesktopView from "../components/MyWishList/MyWishListDesktopView";
 import MyWishListMobileView from "../components/MyWishList/MyWishListMobileView";
+import HeaderTwo from "../components/Header/HeaderTwo";
 
 const MyWishList = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <>
-      <Header />
+      <HeaderTwo />
       <Container maxWidth="lg" sx={{ marginTop: "50px" }}>
         <Box sx={{ marginBottom: "30px" }}>
           <Typography variant="h5" sx={{ fontWeight: "600" }}>

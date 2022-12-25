@@ -93,3 +93,8 @@
     width: 100%;
   }
 }
+
+/* Product Wrapper*/
+.productWrapper::-webkit-scrollbar {
+  width: 0px;
+}

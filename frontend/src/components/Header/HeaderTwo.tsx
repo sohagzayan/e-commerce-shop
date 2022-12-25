@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { headerMenu } from "../../util/HeaderMenu";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -24,12 +24,14 @@ import {
 } from "../../style/Header/Header";
 import CardView from "../CardView/CardView";
 import SearchProduct from "../SearchProduct/SearchProduct";
+import LoginSidebar from "../LoginRegister/LoginSidebar";
 
-const BottomHeader = () => {
+const HeaderTwo = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isOpenSearchProduct, setIsOpenSearchProduct] = useState(false);
   const [showMyAccountMenu, setShowMyAccountMenu] = useState(false);
   const [showCardView, setShowCardView] = useState(false);
+  const [showLoginSideBar, setShowLoginSideBar] = useState(false);
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
   const usd: string[] = ["USD", "AUD", "EUR"];
@@ -61,16 +63,6 @@ const BottomHeader = () => {
     },
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 80) {
-        setNavbar(true);
-      } else {
-        setNavbar(false);
-      }
-    });
-  }, []);
-
   return (
     <AnimatePresence>
       <motion.div
@@ -78,7 +70,7 @@ const BottomHeader = () => {
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className={navbar ? "navbar active" : "navbar "}
+        className="navbarTwo"
       >
         <BottomHeaderRoot>
           <Container maxWidth="lg">
@@ -99,27 +91,41 @@ const BottomHeader = () => {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
                   <IconListElement>
+                    <Typography
+                      onClick={() => setShowLoginSideBar(true)}
+                      sx={{
+                        fontSize: "15px",
+                        color: "#232323",
+                        ":hover": {
+                          color: "#535353",
+                        },
+                      }}
+                    >
+                      Login / Register
+                    </Typography>
+                  </IconListElement>
+                  <IconListElement>
                     <SearchIcon
                       onClick={() => setIsOpenSearchProduct(true)}
-                      sx={{ fontSize: "23px", color: "#80808d" }}
+                      sx={{ fontSize: "23px", color: "#232323" }}
                     />
                   </IconListElement>
                   <IconListElement>
                     <FavoriteBorderIcon
                       onClick={() => navigate("/wishlist")}
-                      sx={{ fontSize: "23px", color: "#80808d" }}
+                      sx={{ fontSize: "23px", color: "#232323" }}
                     />
                   </IconListElement>
                   <IconListElement>
                     <ShoppingCartOutlinedIcon
                       onClick={() => setShowCardView((state) => !state)}
-                      sx={{ fontSize: "23px", color: "#80808d" }}
+                      sx={{ fontSize: "23px", color: "#232323" }}
                     />
                   </IconListElement>
                   <IconListElement>
                     <ContactsIcon
                       onClick={() => setShowMyAccountMenu((state) => !state)}
-                      sx={{ fontSize: "23px", color: "#80808d" }}
+                      sx={{ fontSize: "23px", color: "#232323" }}
                     />
                     <AnimatePresence>
                       {showMyAccountMenu && (
@@ -136,8 +142,8 @@ const BottomHeader = () => {
                   </IconListElement>
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
-                  <UsdAndLan menu={usd} />
-                  <UsdAndLan menu={lan} />
+                  {/* <UsdAndLan menu={usd} />
+                  <UsdAndLan menu={lan} /> */}
                 </UsdLanOptionWrapper>
                 <MenuHamburger>
                   <Hamburger
@@ -171,6 +177,17 @@ const BottomHeader = () => {
                 isOpenSearchProduct={isOpenSearchProduct}
               />
             </motion.div>
+            <motion.div
+              variants={cardViewAnimation}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+            >
+              <LoginSidebar
+                showLoginSideBar={showLoginSideBar}
+                setShowLoginSideBar={setShowLoginSideBar}
+              />
+            </motion.div>
           </Container>
         </BottomHeaderRoot>
       </motion.div>
@@ -178,4 +195,4 @@ const BottomHeader = () => {
   );
 };
 
-export default BottomHeader;
+export default HeaderTwo;

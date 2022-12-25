@@ -7,10 +7,14 @@ import {
   Button,
 } from "../../style/Product/ProductController";
 
-const ProductController = () => {
+interface ControllerProps {
+  seIsOpenDetails: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ProductController = ({ seIsOpenDetails }: ControllerProps) => {
   return (
     <ProductControllerWrapper className="productCardWrapper">
-      <Icon>
+      <Icon onClick={() => seIsOpenDetails(true)}>
         <RemoveRedEyeOutlinedIcon sx={{ fontSize: "20px" }} />
       </Icon>
       <Button>Add to Card</Button>

@@ -72,3 +72,5 @@ export const productMenu: IProductData[] = [
     image2: product4,
   },
 ];
+
+export const ProductImage = [product1, product2, product3];

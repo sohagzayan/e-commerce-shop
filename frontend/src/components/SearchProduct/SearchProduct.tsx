@@ -50,7 +50,7 @@ const SearchProduct = ({
             },
           }}
         >
-          <SearchProductWrapper sx={{}}>
+          <SearchProductWrapper>
             <Box
               onClick={() => setIsOpenSearchProduct(false)}
               sx={{

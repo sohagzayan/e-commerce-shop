@@ -8,16 +8,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import About from "./pages/About";
 import MyWishList from "./pages/MyWishList";
-const LazyShop = lazy(() => import("./pages/Shop"));
+import MyAccount from "./pages/MyAccount";
 
 function App() {
-  const location = useLocation();
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/my-account" element={<MyAccount />} />
         <Route path="/wishlist" element={<MyWishList />} />
       </Routes>
     </AnimatePresence>
