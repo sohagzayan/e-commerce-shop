@@ -23,6 +23,13 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  deliveryAvailable: {
+    type: String,
+    default: "free",
+  },
+  CouponCode: {
+    type: String,
+  },
   image: [
     {
       publicId: {

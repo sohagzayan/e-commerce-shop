@@ -11,12 +11,28 @@ import {
   TypographyOldPrice,
   Span,
 } from "../../style/Product/Product";
+import { useNavigate } from "react-router-dom";
+import ReviewStar from "react-rating-stars-component";
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded";
+import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
-  const { name, price, discountPrice } = data;
+  const { name, price, discountPrice, _id } = data;
   const Color = ["#ff497c", "#ff8666", "#8d6abe"];
   const [activeColor, setActiveColor] = useState(Color[0]);
-
+  const navigate = useNavigate();
+  const option = {
+    edit: false,
+    color: "rgba(20, 20, 20,0.1)",
+    activeColor: "#FFDC60",
+    isHalf: true,
+    size: window.innerWidth < 600 ? 20 : 22,
+    emptyIcon: <StarBorderRoundedIcon />,
+    halfIcon: <StarHalfRoundedIcon />,
+    filledIcon: <StarRateRoundedIcon />,
+    value: data.ratings,
+  };
   return (
     <CardWrapper className="cardWrapper">
       <Box
@@ -27,13 +43,36 @@ const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
           position: "relative",
         }}
       >
-        <Span className="image_wrapper">
+        <Span
+          onClick={() => navigate(`/details/${_id}`)}
+          className="image_wrapper"
+          sx={{ cursor: "pointer" }}
+        >
           <img className="beforeHover" src={data?.image[0].url} alt="product" />
           <img className="onHover" src={image2} alt="product" />
           <ProductController seIsOpenDetails={seIsOpenDetails} />
         </Span>
         <DiscountRange>20% off</DiscountRange>
         <CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "5px",
+            }}
+          >
+            <ReviewStar {...option} />
+            <Typography
+              sx={{
+                fontSize: "16px",
+                color: "#777",
+                fontWeight: "600",
+                marginLeft: "3px",
+              }}
+            >
+              (232)
+            </Typography>
+          </Box>
           <Typography
             sx={{ color: "#777777", fontWeight: "600", marginBottom: "7px" }}
           >

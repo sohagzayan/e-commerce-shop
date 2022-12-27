@@ -9,12 +9,14 @@ import { useLocation } from "react-router-dom";
 import About from "./pages/About";
 import MyWishList from "./pages/MyWishList";
 import MyAccount from "./pages/MyAccount";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/details/:id" element={<ProductDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/my-account" element={<MyAccount />} />
