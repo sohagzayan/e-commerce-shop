@@ -15,6 +15,7 @@ export const Button = styled("button")(({ theme }) => ({
   fontSize: "16px",
   border: "none",
   color: "#fff",
+  cursor: "pointer",
 }));
 
 export const ResetButton = styled("button")(({ theme }) => ({

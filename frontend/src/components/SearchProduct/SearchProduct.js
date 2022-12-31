@@ -5,6 +5,9 @@ import SearchProductHeader from "./SearchProductHeader";
 import { productMenu } from "../../util/Product";
 import SingleSearchProduct from "./SingleSearchProduct";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct, getSearchProduct } from "../../actions/productAction";
 
 const SearchProductWrapper = styled(Box)(({ theme }) => ({
   position: "fixed",
@@ -28,15 +31,14 @@ const SearchProductWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-interface SearchProductProps {
-  isOpenSearchProduct: boolean;
-  setIsOpenSearchProduct: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.searchProduct);
+  useEffect(() => {
+    dispatch(getSearchProduct(searchKeyword));
+  }, [dispatch, searchKeyword]);
 
-const SearchProduct = ({
-  isOpenSearchProduct,
-  setIsOpenSearchProduct,
-}: SearchProductProps) => {
   return (
     <Backdrop open={isOpenSearchProduct}>
       <AnimatePresence>
@@ -71,14 +73,13 @@ const SearchProduct = ({
               <CloseIcon />
             </Box>
             <Box>
-              <form
+              <Box
                 style={{
                   width: "100%",
                   height: "50px",
                   position: "relative",
                   marginTop: "35px",
                 }}
-                action=""
               >
                 <SearchIcon
                   sx={{
@@ -91,6 +92,7 @@ const SearchProduct = ({
                   }}
                 />
                 <input
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                   placeholder="Write Something...."
                   style={{
                     width: "100%",
@@ -102,25 +104,34 @@ const SearchProduct = ({
                     color: "#777",
                     outline: "none",
                   }}
+                  value={searchKeyword}
                   type="text"
                 />
-                <CloseIcon
-                  sx={{
-                    fontSize: "18px",
-                    position: "absolute",
-                    top: "50%",
-                    right: "1%",
-                    transform: "translate(-50%,-50%)",
-                    color: "#777",
-                    cursor: "pointer",
-                  }}
-                />
-              </form>
+                {searchKeyword && (
+                  <CloseIcon
+                    onClick={() => setSearchKeyword("")}
+                    sx={{
+                      fontSize: "18px",
+                      position: "absolute",
+                      top: "50%",
+                      right: "1%",
+                      transform: "translate(-50%,-50%)",
+                      color: "#777",
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+              </Box>
               <SearchProductHeader />
               <Box>
-                {productMenu.map((product, index) => (
-                  <SingleSearchProduct key={index} product={product} />
-                ))}
+                {products &&
+                  products?.map((product, index) => (
+                    <SingleSearchProduct
+                      setIsOpenSearchProduct={setIsOpenSearchProduct}
+                      key={index}
+                      product={product}
+                    />
+                  ))}
               </Box>
             </Box>
           </SearchProductWrapper>

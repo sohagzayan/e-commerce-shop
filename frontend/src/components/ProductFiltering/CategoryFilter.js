@@ -5,7 +5,7 @@ import CategoryItem from "./CategoryItem";
 import FilterHeader from "./FilterHeader";
 import { AnimatePresence, motion } from "framer-motion";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ setPCategory, pCategory }) => {
   const [showOption, setShowOption] = useState(true);
   const menuAnimation = {
     hidden: {
@@ -25,14 +25,14 @@ const CategoryFilter = () => {
   };
 
   const menuItemAnimation = {
-    hidden: (index: number) => ({
+    hidden: (index) => ({
       padding: 0,
       x: "-100%",
       transition: {
         duration: (index + 1) * 0.1,
       },
     }),
-    show: (index: number) => ({
+    show: (index) => ({
       x: 0,
       transition: {
         duration: (index + 1) * 0.1,
@@ -63,7 +63,11 @@ const CategoryFilter = () => {
                     custom={index}
                     variants={menuItemAnimation}
                   >
-                    <CategoryItem categories={categories} />
+                    <CategoryItem
+                      categories={categories}
+                      pCategory={pCategory}
+                      setPCategory={setPCategory}
+                    />
                   </motion.div>
                 ))}
               </List>

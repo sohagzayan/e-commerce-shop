@@ -5,7 +5,7 @@ module.exports = (error, req, res, next) => {
   error.message = error.message || "Internal Server Error";
   // cast error handling or mongodb id error
   if (error.name === "CastError") {
-    const message = `Resource not found Invalid: ${err.path}`;
+    const message = `Resource not found Invalid: ${error.path}`;
     error = new ErrorHandler(message, 400);
   }
 

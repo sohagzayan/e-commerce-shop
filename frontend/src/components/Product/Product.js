@@ -18,9 +18,8 @@ import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
 const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
-  const { name, price, discountPrice, _id } = data;
-  const Color = ["#ff497c", "#ff8666", "#8d6abe"];
-  const [activeColor, setActiveColor] = useState(Color[0]);
+  const { name, price, discountPrice, _id, colorVariant } = data;
+  const [activeColor, setActiveColor] = useState(colorVariant[0]);
   const navigate = useNavigate();
   const option = {
     edit: false,
@@ -31,7 +30,7 @@ const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
     emptyIcon: <StarBorderRoundedIcon />,
     halfIcon: <StarHalfRoundedIcon />,
     filledIcon: <StarRateRoundedIcon />,
-    value: data.ratings,
+    value: parseInt(data.ratings),
   };
   return (
     <CardWrapper className="cardWrapper">
@@ -43,16 +42,23 @@ const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
           position: "relative",
         }}
       >
-        <Span
-          onClick={() => navigate(`/details/${_id}`)}
-          className="image_wrapper"
-          sx={{ cursor: "pointer" }}
-        >
-          <img className="beforeHover" src={data?.image[0].url} alt="product" />
-          <img className="onHover" src={image2} alt="product" />
+        <Box sx={{ position: "relative" }}>
+          <Span
+            onClick={() => navigate(`/details/${_id}`)}
+            className="image_wrapper"
+            sx={{ cursor: "pointer" }}
+          >
+            <img
+              className="beforeHover"
+              src={data?.image[0].url}
+              alt="product"
+            />
+            <img className="onHover" src={image2} alt="product" />
+          </Span>
           <ProductController seIsOpenDetails={seIsOpenDetails} />
-        </Span>
+        </Box>
         <DiscountRange>20% off</DiscountRange>
+
         <CardContent>
           <Box
             sx={{
@@ -81,28 +87,31 @@ const Product = ({ data, seIsOpenDetails, isOpenDetails }) => {
           <Box
             sx={{ display: "flex", alignItems: "center", marginBottom: "6px" }}
           >
-            <TypographyOfferPrice>${discountPrice}</TypographyOfferPrice>
+            <TypographyOfferPrice>${price}</TypographyOfferPrice>
             <TypographyOldPrice>${price}</TypographyOldPrice>
           </Box>
-          <Box>
-            {Color.map((c, index) => (
-              <Button
-                key={index}
-                className="color_rounded "
-                onClick={() => setActiveColor(c)}
-                sx={{
-                  backgroundColor: `${c}`,
-                  "::after": {
-                    border: {
-                      border: `1px solid ${
-                        activeColor === c ? c : "transparent"
-                      }`,
-                    },
-                  },
-                }}
-              ></Button>
-            ))}
-          </Box>
+          {colorVariant.length > 0 && (
+            <Box>
+              {colorVariant &&
+                colorVariant.map((c, index) => (
+                  <Button
+                    key={index}
+                    className="color_rounded "
+                    onClick={() => setActiveColor(c)}
+                    sx={{
+                      backgroundColor: `${c}`,
+                      "::after": {
+                        border: {
+                          border: `1px solid ${
+                            activeColor === c ? c : "transparent"
+                          }`,
+                        },
+                      },
+                    }}
+                  ></Button>
+                ))}
+            </Box>
+          )}
         </CardContent>
       </Box>
     </CardWrapper>

@@ -5,15 +5,19 @@ import FilterHeader from "./FilterHeader";
 import { motion, AnimatePresence } from "framer-motion";
 const Button = styled("button")(({ theme }) => ({}));
 
-const PriceFilter = () => {
-  const [value, setValue] = useState<number[]>([2000, 6000]);
+const PriceFilter = ({
+  price,
+  setPrice,
+  setActiveExactPrice,
+  activeExactPrice,
+}) => {
   const [showOption, setShowOption] = useState(true);
-  const [activeSize, setActiveSize] = useState(filterPrice[0]);
-  function valuetext(value: number) {
-    return `${value}°C`;
+
+  function valuetext(value) {
+    return `${price}°C`;
   }
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+  const handleChange = (event, newValue) => {
+    setPrice(newValue);
   };
 
   const menuAnimation = {
@@ -53,11 +57,11 @@ const PriceFilter = () => {
                   <Button
                     key={index}
                     className="sizeButton"
-                    onClick={() => setActiveSize(price)}
+                    onClick={() => setActiveExactPrice(price)}
                     sx={{
                       backgroundColor:
-                        activeSize === price ? "#0d6efd" : "transparent",
-                      color: activeSize === price ? "#fff" : "#777777",
+                        activeExactPrice === price ? "#0d6efd" : "transparent",
+                      color: activeExactPrice === price ? "#fff" : "#777777",
                     }}
                   >
                     {price}
@@ -67,9 +71,9 @@ const PriceFilter = () => {
               <Box>
                 <Slider
                   min={10}
-                  max={10000}
+                  max={5000}
                   getAriaLabel={() => "Temperature range"}
-                  value={value}
+                  value={price}
                   onChange={handleChange}
                   valueLabelDisplay="auto"
                   getAriaValueText={valuetext}
@@ -82,9 +86,9 @@ const PriceFilter = () => {
                   }}
                 >
                   <Box sx={{ marginRight: "20px", fontWeight: "500" }}>
-                    Price: ${value[0]}
+                    Price: ${price[0]}
                   </Box>
-                  <Box> ${value[1]}</Box>
+                  <Box> ${price[1]}</Box>
                 </Box>
               </Box>
             </Box>

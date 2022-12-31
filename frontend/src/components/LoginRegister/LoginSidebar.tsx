@@ -64,12 +64,12 @@ const LoginSidebar = ({
               />
               <label
                 style={{ fontSize: "13px", fontWeight: "400" }}
-                htmlFor="email"
+                htmlFor="password"
               >
                 Password <span style={{ color: "#E01020" }}>*</span>
               </label>
               <input
-                id="email"
+                id="password"
                 type="email"
                 style={{
                   width: "100%",

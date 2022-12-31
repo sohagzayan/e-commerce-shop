@@ -1,29 +1,43 @@
 export const filterCategories: string[] = [
-  "Sun Care",
-  "Night Care",
+  "apple",
+  "mouse",
   "Treatment",
-  "Monisturizers",
+  "juse",
   "Eye Care",
   "Masks",
   "Featured",
   "On Sale",
 ];
 
-export const filterGender = ["Man (60)", "Women (10)", "Unisex (90)"];
+export const filterGender = [
+  {
+    name: "Man (60)",
+    gender: "man",
+  },
+  {
+    name: "Women (10)",
+    gender: "women",
+  },
+  {
+    name: "Unisex (90)",
+    gender: "unisex",
+  },
+];
 
 export const filterColor = [
-  "#906145",
-  "#fab8c4",
+  "#fff",
+  "#8d6abe",
+  "#ff497c",
   "#ffdc60",
   "#896ba7",
   "#dbdeff",
   "#badeff",
   "#dfbf9b",
-  "#badeff",
+  "#0b79e0",
   "#dbdeff",
   "#ffeddc",
 ];
 
 export const filterSize = ["xs", "s", "m", "l", "sl", "xxl", "3xl", "4xl"];
 
-export const filterPrice = [50, 3000, 4000, 6000, 7000];
+export const filterPrice = ["0", "100", "200", "400", "500", "600"];

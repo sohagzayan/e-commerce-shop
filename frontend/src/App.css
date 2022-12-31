@@ -98,3 +98,14 @@
 .productWrapper::-webkit-scrollbar {
   width: 0px;
 }
+
+/* user account  */
+
+.avatar-upload::-webkit-file-upload-button {
+  cursor: pointer;
+  width: 100%;
+  height: 6vh;
+  z-index: 1;
+  margin: 0;
+  border: none;
+}

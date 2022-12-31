@@ -1,20 +1,20 @@
 import { Backdrop, Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CategoryFilter from "./CategoryFilter";
-import GenderFilter from "./GenderFilter";
+import GenderFilter from "./RatingFilter";
 import ColorFilter from "./ColorFilter";
 import SizeFilter from "./SizeFilter";
 import PriceFilter from "./PriceFilter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ResetButton } from "../../style/ProductFiltering/ProductFiltering";
+import { filterColor } from "../../util/FilterOption";
 
-interface MobileFilterProps {
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpen: boolean;
-}
+const MobileFilter = ({ setIsOpen, isOpen }) => {
+  const [activeColor, setActiveColor] = useState(filterColor[0]);
+  const [price, setPrice] = useState([2000, 6000]);
+  const [pCategory, setPCategory] = useState("");
 
-const MobileFilter = ({ setIsOpen, isOpen }: MobileFilterProps) => {
   return (
     <AnimatePresence>
       <Box className="filter-sidebar-container">
@@ -54,11 +54,17 @@ const MobileFilter = ({ setIsOpen, isOpen }: MobileFilterProps) => {
               <CloseIcon />
             </Box>
             <Box>
-              <CategoryFilter />
+              <CategoryFilter
+                setPCategory={setPCategory}
+                pCategory={pCategory}
+              />
               <GenderFilter />
-              <ColorFilter />
+              <ColorFilter
+                setActiveColor={setActiveColor}
+                activeColor={activeColor}
+              />
               <SizeFilter />
-              <PriceFilter />
+              <PriceFilter price={price} setPrice={setPrice} />
               <ResetButton>All Reset</ResetButton>
             </Box>
           </motion.div>

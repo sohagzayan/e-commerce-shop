@@ -1,5 +1,5 @@
 import "font-awesome/css/font-awesome.min.css";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -10,8 +10,13 @@ import About from "./pages/About";
 import MyWishList from "./pages/MyWishList";
 import MyAccount from "./pages/MyAccount";
 import ProductDetails from "./pages/ProductDetails";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <Routes>

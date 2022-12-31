@@ -23,6 +23,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  viewCount: {
+    type: Number,
+    default: 0,
+  },
   deliveryAvailable: {
     type: String,
     default: "free",
@@ -45,6 +49,14 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, "Please Enter category name"],
+  },
+  gender: {
+    type: String,
+    default: "unisex",
+  },
+  colorVariant: {
+    type: [String],
+    default: [],
   },
   stock: {
     type: Number,

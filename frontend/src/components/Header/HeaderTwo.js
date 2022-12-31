@@ -25,17 +25,18 @@ import {
 import CardView from "../CardView/CardView";
 import SearchProduct from "../SearchProduct/SearchProduct";
 import LoginSidebar from "../LoginRegister/LoginSidebar";
+import { useSelector } from "react-redux";
 
-const BottomHeader = () => {
+const HeaderTwo = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isOpenSearchProduct, setIsOpenSearchProduct] = useState(false);
   const [showMyAccountMenu, setShowMyAccountMenu] = useState(false);
   const [showCardView, setShowCardView] = useState(false);
   const [showLoginSideBar, setShowLoginSideBar] = useState(false);
   const [navbar, setNavbar] = useState(false);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
-  const usd: string[] = ["USD", "AUD", "EUR"];
-  const lan: string[] = ["EN", "ARB", "SPN"];
 
   const menuAnimation = {
     hidden: {
@@ -63,16 +64,6 @@ const BottomHeader = () => {
     },
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 80) {
-        setNavbar(true);
-      } else {
-        setNavbar(false);
-      }
-    });
-  }, []);
-
   return (
     <AnimatePresence>
       <motion.div
@@ -80,7 +71,7 @@ const BottomHeader = () => {
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className={navbar ? "navbar active" : "navbar "}
+        className="navbarTwo"
       >
         <BottomHeaderRoot>
           <Container maxWidth="lg">
@@ -100,20 +91,22 @@ const BottomHeader = () => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
-                  <IconListElement>
-                    <Typography
-                      onClick={() => setShowLoginSideBar(true)}
-                      sx={{
-                        fontSize: "15px",
-                        color: "#232323",
-                        ":hover": {
-                          color: "#535353",
-                        },
-                      }}
-                    >
-                      Login / Register
-                    </Typography>
-                  </IconListElement>
+                  {!isAuthenticated && (
+                    <IconListElement>
+                      <Typography
+                        onClick={() => setShowLoginSideBar(true)}
+                        sx={{
+                          fontSize: "15px",
+                          color: "#232323",
+                          ":hover": {
+                            color: "#535353",
+                          },
+                        }}
+                      >
+                        Login / Register
+                      </Typography>
+                    </IconListElement>
+                  )}
                   <IconListElement>
                     <SearchIcon
                       onClick={() => setIsOpenSearchProduct(true)}
@@ -132,24 +125,36 @@ const BottomHeader = () => {
                       sx={{ fontSize: "23px", color: "#232323" }}
                     />
                   </IconListElement>
-                  <IconListElement>
-                    <ContactsIcon
-                      onClick={() => setShowMyAccountMenu((state) => !state)}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
-                    <AnimatePresence>
-                      {showMyAccountMenu && (
-                        <motion.div
-                          variants={menuAnimation}
-                          initial="hidden"
-                          animate="show"
-                          exit="hidden"
-                        >
-                          <MyAccountMenu />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </IconListElement>
+                  {isAuthenticated && (
+                    <IconListElement>
+                      {/* <ContactsIcon
+                       
+                        sx={{ fontSize: "23px", color: "#232323" }}
+                      /> */}
+                      <img
+                        onClick={() => setShowMyAccountMenu((state) => !state)}
+                        style={{
+                          width: "40px",
+                          borderRadius: "50%",
+                          border: "3px solid #cbd3d9",
+                        }}
+                        src={user.avatar.url}
+                        alt="avater"
+                      />
+                      <AnimatePresence>
+                        {showMyAccountMenu && (
+                          <motion.div
+                            variants={menuAnimation}
+                            initial="hidden"
+                            animate="show"
+                            exit="hidden"
+                          >
+                            <MyAccountMenu user={user} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </IconListElement>
+                  )}
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
                   {/* <UsdAndLan menu={usd} />
@@ -205,4 +210,4 @@ const BottomHeader = () => {
   );
 };
 
-export default BottomHeader;
+export default HeaderTwo;

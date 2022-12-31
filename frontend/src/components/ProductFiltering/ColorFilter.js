@@ -5,9 +5,8 @@ import FilterHeader from "./FilterHeader";
 import { motion, AnimatePresence } from "framer-motion";
 const Button = styled("button")(({ theme }) => ({}));
 
-const ColorFilter = () => {
+const ColorFilter = ({ setActiveColor, activeColor }) => {
   const [showOption, setShowOption] = useState(true);
-  const [activeColor, setActiveColor] = useState(filterColor[0]);
   const menuAnimation = {
     hidden: {
       opacity: 0,
@@ -46,7 +45,7 @@ const ColorFilter = () => {
                   className="color_roundedFilter"
                   onClick={() => setActiveColor(c)}
                   sx={{
-                    backgroundColor: `${c}`,
+                    backgroundColor: `${c === "#fff" ? "#000" : c}`,
                     "::after": {
                       border: {
                         border: `1px solid ${

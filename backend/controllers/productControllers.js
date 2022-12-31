@@ -11,26 +11,56 @@ exports.createProduct = tryCatch(async (req, res, next) => {
 
 // get all product  -> admin
 exports.getAllProduct = tryCatch(async (req, res, next) => {
-  const resultPerPage = 8;
+  const { category, search, minPrice, maxPrice, rating, colorVariant, price } =
+    req.body;
+  const currentPage = req.query.page;
+
+  const resultPerPage = 6;
   const productsCount = await Product.countDocuments();
+  const skip = resultPerPage * (currentPage - 1);
 
-  const apiFeature = new ApiFeatures(Product.find(), req.query)
-    .search()
-    .filter();
+  let filterObg = {};
 
-  let products = await apiFeature.query.clone();
+  if (search) {
+    filterObg.name = {
+      $regex: search,
+      $options: "i",
+    };
+  }
 
-  let filteredProductsCount = products.length;
+  if (category && category.length > 0) {
+    filterObg.category = category;
+  }
+  if ((minPrice, maxPrice)) {
+    filterObg.price = {
+      $gte: parseInt(minPrice),
+      $lte: parseInt(maxPrice),
+    };
+  }
+  if (rating) {
+    filterObg.ratings = { $lte: parseInt(rating) };
+  }
+  if (colorVariant) {
+    filterObg.colorVariant = { $in: colorVariant };
+  }
 
-  apiFeature.pagination(resultPerPage);
+  if (price) {
+    filterObg.price = parseInt(price);
+  }
 
-  products = await apiFeature.query.clone();
+  /* get filter product count here */
+  const FilteredProductsCount = await Product.find(filterObg);
 
+  const products = await Product.find(filterObg)
+    .limit(resultPerPage)
+    .skip(skip);
+  const filteredProductsCount = FilteredProductsCount.length;
+  console.log(filteredProductsCount);
   res.status(200).json({
     success: true,
-    products,
-    productsCount,
     resultPerPage,
+    productsCount,
+    products,
     filteredProductsCount,
   });
 });

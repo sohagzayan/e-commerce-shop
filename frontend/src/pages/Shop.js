@@ -2,8 +2,8 @@ import { Box } from "@mui/material";
 import ExploreAllProducts from "../components/ShopOthers/ExploreAllProducts";
 import Products from "../components/Product/Products";
 import { motion } from "framer-motion";
-import BottomHeader from "../components/Header/HeaderOne";
 import HeaderTwo from "../components/Header/HeaderTwo";
+
 const Shop = () => {
   return (
     <>

@@ -7,17 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../actions/productAction";
-
-const OurProduct = () => {
+const OurProduct = ({ products }) => {
   const [isOpenDetails, seIsOpenDetails] = useState(false);
-  const dispatch = useDispatch();
-  const { loading, error, products, productsCount } = useSelector(
-    (state) => state.products
-  );
-
-  useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
 
   return (
     <AnimatePresence>

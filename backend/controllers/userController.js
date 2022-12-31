@@ -7,9 +7,15 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const userModel = require("../models/userModel");
+const cloudinary = require("cloudinary");
 
 // create a new user
 exports.registerUser = tryCatch(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
   const { name, email, password } = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
   const user = await User.create({
@@ -17,8 +23,8 @@ exports.registerUser = tryCatch(async (req, res, next) => {
     email,
     password: hashPassword,
     avatar: {
-      publicId: "test id that",
-      url: "user profile image",
+      publicId: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 

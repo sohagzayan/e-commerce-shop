@@ -6,10 +6,7 @@ import { IProductData } from "../../util/Product";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-
-interface ProductProps {
-  product: IProductData;
-}
+import { useNavigate } from "react-router-dom";
 
 const ProductContentWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -45,6 +42,7 @@ const ControllerButton = styled(Button)(({ theme }) => ({
 
 const ImageWrapper = styled(Box)(({ theme }) => ({
   marginRight: "30px",
+  cursor: "pointer",
   [theme.breakpoints.down("sm")]: {
     marginRight: "10px",
   },
@@ -60,7 +58,8 @@ const SearchProductWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SingleSearchProduct = ({ product }: ProductProps) => {
+const SingleSearchProduct = ({ product, setIsOpenSearchProduct }) => {
+  const navigate = useNavigate();
   return (
     <SearchProductWrapper>
       <Box
@@ -71,8 +70,13 @@ const SingleSearchProduct = ({ product }: ProductProps) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-          <ImageWrapper>
-            <img width="120px" src={product.image1} alt="" />
+          <ImageWrapper
+            onClick={() => {
+              navigate(`/details/${product._id}`);
+              setIsOpenSearchProduct(false);
+            }}
+          >
+            <img width="120px" src={product.image[0].url} alt="" />
           </ImageWrapper>
           <ProductContentWrapper>
             <Box>

@@ -6,6 +6,9 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  SEARCH_PRODUCTS_REQUEST,
+  SEARCH_PRODUCTS_SUCCESS,
+  SEARCH_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 export const productReducer = (state = { products: [] }, action) => {
@@ -20,8 +23,39 @@ export const productReducer = (state = { products: [] }, action) => {
         loading: false,
         products: action.payload.products,
         productsCount: action.payload.productsCount,
+        resultPerPage: action.payload.resultPerPage,
+        filteredProductsCount: action.payload.filteredProductsCount,
       };
     case ALL_PRODUCT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+// Search Product Reducer
+export const productSearchReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case SEARCH_PRODUCTS_REQUEST:
+      return {
+        loading: true,
+        products: [],
+      };
+    case SEARCH_PRODUCTS_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        productsCount: action.payload.productsCount,
+      };
+    case SEARCH_PRODUCTS_FAIL:
       return {
         loading: false,
         error: action.payload,
