@@ -1,7 +1,7 @@
 import { Box, List } from "@mui/material";
 import { useState } from "react";
 import { filterGender } from "../../util/FilterOption";
-import CategoryItem from "./CategoryItem";
+import CategoryItem from "../Filtering/CategoryItem";
 import FilterHeader from "./FilterHeader";
 import { AnimatePresence, motion } from "framer-motion";
 import GenderFilterItem from "./GenderFilterItem";

@@ -34,7 +34,7 @@ const HeaderTwo = () => {
   const [showCardView, setShowCardView] = useState(false);
   const [showLoginSideBar, setShowLoginSideBar] = useState(false);
   const [navbar, setNavbar] = useState(false);
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  // const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
 
@@ -84,14 +84,16 @@ const HeaderTwo = () => {
                 <div className="listWrapperMenu">
                   {headerMenu.map((menu, index) => (
                     <ListElement key={index}>
-                      <NavLink to={menu.path}>{menu.name}</NavLink>
+                      <NavLink style={{ color: "#0F172A" }} to={menu.path}>
+                        {menu.name}
+                      </NavLink>
                     </ListElement>
                   ))}
                 </div>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
-                  {!isAuthenticated && (
+                  {/* {!isAuthenticated && (
                     <IconListElement>
                       <Typography
                         onClick={() => setShowLoginSideBar(true)}
@@ -106,31 +108,37 @@ const HeaderTwo = () => {
                         Login / Register
                       </Typography>
                     </IconListElement>
-                  )}
-                  <IconListElement>
-                    <SearchIcon
-                      onClick={() => setIsOpenSearchProduct(true)}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  )} */}
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => setIsOpenSearchProduct(true)}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-search-line"
+                    ></i>
                   </IconListElement>
-                  <IconListElement>
-                    <FavoriteBorderIcon
-                      onClick={() => navigate("/wishlist")}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => navigate("/wishlist")}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-heart-2-line"
+                    ></i>
                   </IconListElement>
-                  <IconListElement>
-                    <ShoppingCartOutlinedIcon
-                      onClick={() => setShowCardView((state) => !state)}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => setShowCardView((state) => !state)}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-shopping-cart-line"
+                    ></i>
                   </IconListElement>
-                  {isAuthenticated && (
+                  {/* {isAuthenticated && (
                     <IconListElement>
-                      {/* <ContactsIcon
-                       
-                        sx={{ fontSize: "23px", color: "#232323" }}
-                      /> */}
+                    
                       <img
                         onClick={() => setShowMyAccountMenu((state) => !state)}
                         style={{
@@ -154,7 +162,7 @@ const HeaderTwo = () => {
                         )}
                       </AnimatePresence>
                     </IconListElement>
-                  )}
+                  )} */}
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
                   {/* <UsdAndLan menu={usd} />

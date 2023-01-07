@@ -26,7 +26,7 @@ const Loading = () => {
         ariaLabel="tail-spin-loading"
         radius="1"
         wrapperStyle={{}}
-        wrapperClass=""
+        wrapperclassName=""
         visible={true}
       />
     </Box>

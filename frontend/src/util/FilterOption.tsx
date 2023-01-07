@@ -38,6 +38,34 @@ export const filterColor = [
   "#ffeddc",
 ];
 
-export const filterSize = ["xs", "s", "m", "l", "sl", "xxl", "3xl", "4xl"];
+export const filterSize = ["xxs", "xs", "s", "m", "l", "xl", "2xl"];
 
 export const filterPrice = ["0", "100", "200", "400", "500", "600"];
+
+export const colorFiltering = [
+  { id: 1, name: "White", value: "#fff" },
+  { id: 2, name: "Beige", value: "#ECDCBD" },
+  { id: 3, name: "Blue", value: "#0061B7" },
+  { id: 4, name: "Black", value: "#000" },
+  { id: 5, name: "Brown", value: "#AC886B" },
+  { id: 6, name: "Green", value: "#4ADE80" },
+  { id: 7, name: "Navy", value: "#00007C" },
+];
+
+export interface SortsStateType {
+  name?: string;
+  createdAt?: number;
+  ratings?: number;
+  views?: number;
+  price?: number;
+}
+
+export const sortFiltering = [
+  { id: 1, name: "All" },
+  { id: 2, name: "Newest", createdAt: -1 },
+  { id: 2, name: "Oldest", createdAt: 1 },
+  { id: 3, name: "Best Rating", ratings: 1 },
+  { id: 4, name: "Most Popular", views: 1 },
+  { id: 5, name: "Most Expensive", price: -1 },
+  { id: 6, name: "Most Cheapest", price: 1 },
+];

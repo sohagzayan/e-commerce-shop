@@ -22,7 +22,7 @@ import ProductDetailsController from "../components/Product/ProductDetailsContro
 import { motion, AnimatePresence } from "framer-motion";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, getProductDetails } from "../actions/productAction";
+// import { clearErrors, getProductDetails } from "../actions/productAction";
 import { useParams } from "react-router-dom";
 import ReviewStar from "react-rating-stars-component";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
@@ -31,7 +31,7 @@ import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import ProductReviews from "../components/ProductReviews/ProductReviews";
 import { useAlert } from "react-alert";
 import Loading from "../components/Loading/Loading";
-import { ScrollTop } from "../util/ScrollTop";
+import { ScrollTop } from "../sharedFunction/ScrollTop";
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
 }));
@@ -57,17 +57,9 @@ const ProductDetails = ({}) => {
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
-  const { loading, error, product } = useSelector(
-    (state) => state.productDetails
-  );
-
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    dispatch(getProductDetails(id));
-  }, [dispatch, id, error]);
+  // const { loading, error, product } = useSelector(
+  //   (state) => state.productDetails
+  // );
 
   const option = {
     color: "rgba(20, 20, 20,0.1)",
@@ -78,12 +70,12 @@ const ProductDetails = ({}) => {
     emptyIcon: <StarBorderRoundedIcon />,
     halfIcon: <StarHalfRoundedIcon />,
     filledIcon: <StarRateRoundedIcon />,
-    value: product.ratings,
+    value: 3,
   };
 
   return (
     <Fragment>
-      {loading ? (
+      {false ? (
         <Loading />
       ) : (
         <Fragment>
@@ -163,7 +155,7 @@ const ProductDetails = ({}) => {
                                 marginTop: "20px",
                               }}
                             >
-                              {product?.name}
+                              {/* {product?.name} */}
                             </Typography>
                             <Typography
                               sx={{
@@ -173,7 +165,7 @@ const ProductDetails = ({}) => {
                                 marginTop: "12px",
                               }}
                             >
-                              ${product?.price}
+                              {/* ${product?.price} */}
                             </Typography>
                             <Box
                               sx={{ marginTop: "20px", marginBottom: "20px" }}
@@ -233,7 +225,7 @@ const ProductDetails = ({}) => {
                             <Typography
                               sx={{ fontSize: "17px", color: "#333" }}
                             >
-                              {product?.description}
+                              {/* {product?.description} */}
                             </Typography>
                             <ProductColorPicker />
                             <ProductSizePicker />
@@ -242,7 +234,7 @@ const ProductDetails = ({}) => {
                         </Grid>
                       </Grid>
                     </Box>
-                    <ProductReviews product={product} />
+                    {/* <ProductReviews product={product} /> */}
                   </Container>
                 </Box>
               </ProductDetailsWrapper>

@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, List, ListItem, styled, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
-import { logOut } from "../../actions/userAction";
+// import { logOut } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 
 const Button = styled("button")(({ theme }) => ({
@@ -23,8 +23,9 @@ const Button = styled("button")(({ theme }) => ({
 const MyAccountMenu = ({ user }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logOutHandle = () => {
-    dispatch(logOut());
+    // dispatch(logOut());
     alert.success("Logout Successfully");
   };
   return (
@@ -85,6 +86,7 @@ const MyAccountMenu = ({ user }) => {
         </ListItem>
 
         <ListItem
+          onClick={() => navigate("/my-profile")}
           sx={{
             borderBottom: "1px solid #eee",
             margin: "11px 0",

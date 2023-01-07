@@ -7,7 +7,7 @@ import SingleSearchProduct from "./SingleSearchProduct";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct, getSearchProduct } from "../../actions/productAction";
+// import { getProduct, getSearchProduct } from "../../actions/productAction";
 
 const SearchProductWrapper = styled(Box)(({ theme }) => ({
   position: "fixed",
@@ -34,10 +34,11 @@ const SearchProductWrapper = styled(Box)(({ theme }) => ({
 const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.searchProduct);
-  useEffect(() => {
-    dispatch(getSearchProduct(searchKeyword));
-  }, [dispatch, searchKeyword]);
+  // const { products } = useSelector((state) => state.searchProduct);
+
+  // useEffect(() => {
+  //   dispatch(getSearchProduct(searchKeyword));
+  // }, [dispatch, searchKeyword]);
 
   return (
     <Backdrop open={isOpenSearchProduct}>
@@ -124,14 +125,14 @@ const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
               </Box>
               <SearchProductHeader />
               <Box>
-                {products &&
+                {/* {products &&
                   products?.map((product, index) => (
                     <SingleSearchProduct
                       setIsOpenSearchProduct={setIsOpenSearchProduct}
                       key={index}
                       product={product}
                     />
-                  ))}
+                  ))} */}
               </Box>
             </Box>
           </SearchProductWrapper>

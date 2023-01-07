@@ -26,7 +26,6 @@ import CardView from "../CardView/CardView";
 import SearchProduct from "../SearchProduct/SearchProduct";
 import LoginSidebar from "../LoginRegister/LoginSidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser, logOut } from "../../actions/userAction";
 
 const BottomHeader = () => {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -37,7 +36,7 @@ const BottomHeader = () => {
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  // const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const menuAnimation = {
     hidden: {
@@ -82,7 +81,7 @@ const BottomHeader = () => {
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className={navbar ? "navbar active" : "navbar "}
+        className={navbar ? "navbar active" : "navbar"}
       >
         <BottomHeaderRoot>
           <Container maxWidth="lg">
@@ -95,14 +94,16 @@ const BottomHeader = () => {
                 <div className="listWrapperMenu">
                   {headerMenu.map((menu, index) => (
                     <ListElement key={index}>
-                      <NavLink to={menu.path}>{menu.name}</NavLink>
+                      <NavLink style={{ color: "0F172A" }} to={menu.path}>
+                        {menu.name}
+                      </NavLink>
                     </ListElement>
                   ))}
                 </div>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
-                  {!isAuthenticated && (
+                  {/* {!isAuthenticated && (
                     <IconListElement>
                       <Typography
                         onClick={() => setShowLoginSideBar(true)}
@@ -117,27 +118,36 @@ const BottomHeader = () => {
                         Login / Register
                       </Typography>
                     </IconListElement>
-                  )}
+                  )} */}
 
-                  <IconListElement>
-                    <SearchIcon
-                      onClick={() => setIsOpenSearchProduct(true)}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => setIsOpenSearchProduct(true)}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-search-line"
+                    ></i>
                   </IconListElement>
-                  <IconListElement>
-                    <FavoriteBorderIcon
-                      onClick={() => navigate("/wishlist")}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => navigate("/wishlist")}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-heart-2-line"
+                    ></i>
                   </IconListElement>
-                  <IconListElement>
-                    <ShoppingCartOutlinedIcon
-                      onClick={() => setShowCardView((state) => !state)}
-                      sx={{ fontSize: "23px", color: "#232323" }}
-                    />
+                  <IconListElement
+                    className="onActiveIconLook"
+                    onClick={() => setShowCardView((state) => !state)}
+                  >
+                    <i
+                      style={{ fontSize: "20px", color: "#232323" }}
+                      className="ri-shopping-cart-line"
+                    ></i>
                   </IconListElement>
-                  {isAuthenticated && (
+                  {/* {isAuthenticated && (
                     <IconListElement>
                       <img
                         onClick={() => setShowMyAccountMenu((state) => !state)}
@@ -162,7 +172,7 @@ const BottomHeader = () => {
                         )}
                       </AnimatePresence>
                     </IconListElement>
-                  )}
+                  )} */}
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
                   {/* <UsdAndLan menu={usd} />

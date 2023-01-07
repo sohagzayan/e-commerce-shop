@@ -17,14 +17,15 @@ export const BottomHeaderWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  height: "5rem",
+  padding: "4px 0",
+  color: "rgb(51 65 85/1)",
 }));
 
 export const BottomHeaderRoot = styled(Box)(({ theme }) => ({
-  padding: "20px 0",
-  marginBottom: "10px",
-  [theme.breakpoints.down("md")]: {
-    padding: "20px 0",
-  },
+  // [theme.breakpoints.down("md")]: {
+  //   padding: "20px 0",
+  // },
 }));
 
 export const UsdLanOptionWrapper = styled(Box)(({ theme }) => ({
@@ -54,12 +55,9 @@ export const IconListWrapper = styled("ul")(({ theme }) => ({
 }));
 
 export const IconListElement = styled("li")(({ theme }) => ({
-  marginLeft: "25px",
+  marginLeft: "4px",
   fontSize: "15px",
   cursor: "pointer",
-  [theme.breakpoints.down("sm")]: {
-    marginLeft: "10px",
-  },
 }));
 
 export const Logo = styled("img")(({ theme }) => ({

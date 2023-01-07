@@ -5,7 +5,7 @@ import MyAccountLogin from "../components/MyAccount/MyAccountLogin";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { login, register } from "../actions/userAction";
+// import { login, register } from "../actions/userAction";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,11 @@ const MyAccount = () => {
   const [avatarPreview, setAvatarPreview] = useState("./profile.png");
 
   const { name, email, password } = user;
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login(loginEmail, loginPassword));
-    console.log("login from submit");
-  };
+  // const loginSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(login(loginEmail, loginPassword));
+  //   console.log("login from submit");
+  // };
   const registerSubmit = (e) => {
     e.preventDefault();
     const myForm = new FormData();
@@ -33,7 +33,7 @@ const MyAccount = () => {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     console.log("singup from submit");
-    dispatch(register(myForm));
+    // dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {
@@ -109,7 +109,7 @@ const MyAccount = () => {
                           setLoginEmail,
                           loginPassword,
                           setLoginPassword,
-                          loginSubmit,
+                          // loginSubmit,
                         }}
                       />
                     </motion.div>

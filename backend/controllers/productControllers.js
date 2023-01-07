@@ -11,8 +11,17 @@ exports.createProduct = tryCatch(async (req, res, next) => {
 
 // get all product  -> admin
 exports.getAllProduct = tryCatch(async (req, res, next) => {
-  const { category, search, minPrice, maxPrice, rating, colorVariant, price } =
-    req.body;
+  const {
+    category,
+    search,
+    minPrice,
+    maxPrice,
+    rating,
+    price,
+    sorts,
+    colorVariant,
+    sizeVariant,
+  } = req.body;
   const currentPage = req.query.page;
 
   const resultPerPage = 6;
@@ -20,6 +29,7 @@ exports.getAllProduct = tryCatch(async (req, res, next) => {
   const skip = resultPerPage * (currentPage - 1);
 
   let filterObg = {};
+  let sortOrderObg = {};
 
   if (search) {
     filterObg.name = {
@@ -40,22 +50,34 @@ exports.getAllProduct = tryCatch(async (req, res, next) => {
   if (rating) {
     filterObg.ratings = { $lte: parseInt(rating) };
   }
-  if (colorVariant) {
+  if (colorVariant && colorVariant.length) {
     filterObg.colorVariant = { $in: colorVariant };
+  }
+  if (sizeVariant && sizeVariant.length) {
+    filterObg.sizeVariant = { $in: sizeVariant };
   }
 
   if (price) {
     filterObg.price = parseInt(price);
   }
 
+  /* exclude some field for sorting */
+  if (sorts) {
+    const { id, name, ...rest } = sorts;
+    sortOrderObg = {
+      ...rest,
+    };
+  }
+
   /* get filter product count here */
   const FilteredProductsCount = await Product.find(filterObg);
 
   const products = await Product.find(filterObg)
+    .sort(sortOrderObg)
     .limit(resultPerPage)
     .skip(skip);
+  // console.log("sorted", sortOrderObg, "Product", );
   const filteredProductsCount = FilteredProductsCount.length;
-  console.log(filteredProductsCount);
   res.status(200).json({
     success: true,
     resultPerPage,

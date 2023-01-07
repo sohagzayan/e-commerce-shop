@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProduct } from "../../actions/productAction";
+// import { getProduct } from "../../actions/productAction";
 import { Button } from "../../style/ProductFiltering/ProductFiltering";
 import { filterColor } from "../../util/FilterOption";
 import CategoryFilter from "./CategoryFilter";
