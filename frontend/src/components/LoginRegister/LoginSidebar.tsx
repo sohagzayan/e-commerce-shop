@@ -1,17 +1,53 @@
-import { Box, Backdrop, Button, Typography } from "@mui/material";
+import { Box, Backdrop, Button, Typography, styled } from "@mui/material";
 import GoCreateAccount from "./GoCreateAccount";
 import LoginSidebarHeader from "./LoginSidebarHeader";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/reducerSlice/authSlice";
+import { useState } from "react";
+import { AppDispatch } from "../../store/store";
+import { useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 interface LoginSidebarProps {
   setShowLoginSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   showLoginSideBar: boolean;
 }
 
+const Input = styled("input")(({ theme }) => ({
+  width: "100%",
+  height: "2.75rem",
+  outline: "none",
+  color: "#777",
+  marginTop: "6px",
+  marginBottom: "20px",
+  border: "1px solid rgba(229,231,235,1)",
+  borderRadius: "1rem",
+  padding: "0 20px",
+  fontSize: "17px",
+  ":focus": {
+    border: "1px solid #7DD3FC",
+  },
+}));
+
 const LoginSidebar = ({
   setShowLoginSideBar,
   showLoginSideBar,
 }: LoginSidebarProps) => {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const alert = useAlert();
+
+  const loginSubmit = (e: any) => {
+    console.log("ok here me");
+    e.preventDefault();
+    dispatch(login(loginEmail, loginPassword));
+    alert.success("Login Success");
+    navigate("/");
+  };
+
   return (
     <AnimatePresence>
       <Backdrop open={showLoginSideBar}>
@@ -39,90 +75,68 @@ const LoginSidebar = ({
           <Box>
             <LoginSidebarHeader setShowLoginSideBar={setShowLoginSideBar} />
 
-            <form action="" style={{ padding: "20px" }}>
+            <form onSubmit={loginSubmit} style={{ padding: "20px" }}>
               <label
-                style={{ fontSize: "13px", fontWeight: "400" }}
+                style={{
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "16px",
+                  marginBottom: "2px",
+                }}
                 htmlFor="email"
               >
-                Username or email address{" "}
-                <span style={{ color: "#E01020" }}>*</span>
+                Email Address
               </label>
-              <input
+              <Input
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
                 id="email"
                 type="email"
-                style={{
-                  width: "100%",
-                  padding: "13px 10px",
-                  borderRadius: "6px",
-                  outline: "none",
-                  fontSize: "14px",
-                  border: "1px solid rgba(0,0,0,.1)",
-                  color: "#777",
-                  marginTop: "10px",
-                  marginBottom: "20px",
-                }}
               />
               <label
-                style={{ fontSize: "13px", fontWeight: "400" }}
+                style={{
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "17px",
+                  marginBottom: "2px",
+                }}
                 htmlFor="password"
               >
-                Password <span style={{ color: "#E01020" }}>*</span>
+                Password
               </label>
-              <input
+              <Input
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
                 id="password"
-                type="email"
-                style={{
-                  width: "100%",
-                  padding: "13px 10px",
-                  borderRadius: "6px",
-                  outline: "none",
-                  fontSize: "14px",
-                  border: "1px solid rgba(0,0,0,.1)",
-                  color: "#777",
-                  marginTop: "6px",
-                }}
+                type="password"
               />
               <Button
+                type="submit"
                 sx={{
                   width: "100%",
-                  backgroundColor: "rgb(46, 107, 198)",
-                  padding: "12px 20px",
-                  color: "#fff",
+                  backgroundColor: "#111827",
                   fontWeight: "600",
-                  cursor: "pointer",
-                  marginTop: "20px",
+                  fontSize: "15px",
+                  boxShadow:
+                    "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
+                  textTransform: "capitalize",
+                  border: "none",
+                  color: "#fff",
+                  padding: "12px 20px",
+                  borderRadius: "6px",
                   ":hover": {
-                    backgroundColor: "rgb(26, 93, 194)",
+                    backgroundColor: "#111827d6",
                   },
                 }}
               >
                 Log in
               </Button>
             </form>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 20px",
-                borderBottom: "1px solid #e5e2e2",
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <input
-                  style={{ marginRight: "4px" }}
-                  id="remember"
-                  type="checkbox"
-                />
-                <label htmlFor="remember" style={{ fontSize: "13px" }}>
-                  Remember me
-                </label>
-              </Box>
-              <Box>
-                <Typography sx={{ fontSize: "12px", color: "rgb(46,107,198)" }}>
-                  Lost your password?
-                </Typography>
-              </Box>
+
+            <Box sx={{ padding: "0px 20px" }}>
+              <Typography sx={{ fontSize: "14px", color: "#61A24A" }}>
+                Forgot password?
+              </Typography>
             </Box>
+
             <GoCreateAccount />
           </Box>
         </motion.div>

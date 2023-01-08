@@ -12,7 +12,7 @@ import MyAccount from "./pages/MyAccount";
 import ProductDetails from "./pages/ProductDetails";
 import MyProfile from "./pages/MyProfile";
 import { store } from "./store/store";
-import { loadUser } from "./store/authSlice";
+import { loadUser } from "./store/reducerSlice/authSlice";
 
 function App() {
   useEffect(() => {

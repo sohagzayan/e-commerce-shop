@@ -2,16 +2,21 @@ import HeaderTwo from "../components/Header/HeaderTwo";
 import { Box, Typography, Container, Grid, Button } from "@mui/material";
 import MyAccountRegister from "../components/MyAccount/MyAccountRegister";
 import MyAccountLogin from "../components/MyAccount/MyAccountLogin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/authSlice";
+import { clearError, login, register } from "../store/reducerSlice/authSlice";
 import { useAlert } from "react-alert";
 import { Navigate, useNavigate } from "react-router-dom";
+import { AppDispatch } from "../store/store";
 // import { login, register } from "../actions/userAction";
 
 const MyAccount = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, isAuthenticated, error } = useSelector(
+    (state: any) => state.user
+  );
+
   const alert = useAlert();
   const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
@@ -21,28 +26,28 @@ const MyAccount = () => {
     email: "",
     password: "",
   });
-  const [avatar, setAvatar] = useState();
-  const [avatarPreview, setAvatarPreview] = useState("./profile.png");
+  const [avatar, setAvatar] = useState<any>();
+  const [avatarPreview, setAvatarPreview] = useState<any>("./profile.png");
 
   const { name, email, password } = user;
-  const loginSubmit = (e) => {
+
+  const loginSubmit = (e: any) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
-    alert.success("Login Success");
-    navigate("/");
   };
-  const registerSubmit = (e) => {
+
+  const registerSubmit = (e: any) => {
     e.preventDefault();
     const myForm = new FormData();
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("singup from submit");
-    // dispatch(register(myForm));
+    console.log("myForm", myForm);
+    dispatch(register(myForm));
   };
 
-  const registerDataChange = (e) => {
+  const registerDataChange = (e: any) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
       reader.onload = () => {
@@ -71,6 +76,14 @@ const MyAccount = () => {
       transition: { duration: 0.3 },
     },
   };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearError());
+    }
+  }, [dispatch, error, alert]);
+
   return (
     <>
       <HeaderTwo />

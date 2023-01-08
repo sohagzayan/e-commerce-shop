@@ -11,7 +11,7 @@ import Pagination from "react-js-pagination";
 import MobileViewFiltering from "../components/Filtering/MobileModeFilteringView/MobileViewFiltering";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import Product from "../components/Product/Product";
-import { fetchProduct } from "../store/productsSlice";
+import { fetchProduct } from "../store/reducerSlice/productsSlice";
 import { AppDispatch } from "../store/store";
 import { ProductType } from "../components/Types/Types";
 import "../style/Shop/Shop.css";

@@ -39,7 +39,7 @@ interface Props {
   loginPassword: string;
   setLoginPassword: React.Dispatch<React.SetStateAction<string>>;
   setActiveAction: React.Dispatch<React.SetStateAction<boolean>>;
-  loginSubmit: () => void;
+  loginSubmit: any;
 }
 
 const MyAccountLogin: React.FunctionComponent<Props> = (props) => {

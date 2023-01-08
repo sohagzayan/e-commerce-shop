@@ -17,13 +17,22 @@ const Input = styled("input")(({ theme }) => ({
   },
 }));
 
-const MyAccountRegister = ({
-  registerDataChange,
-  registerSubmit,
-  user,
-  avatarPreview,
-  setActiveAction,
-}) => {
+interface Props {
+  registerDataChange: any;
+  registerSubmit: any;
+  user: any;
+  avatarPreview: any;
+  setActiveAction: any;
+}
+
+const MyAccountRegister: React.FunctionComponent<Props> = (props) => {
+  const {
+    registerDataChange,
+    registerSubmit,
+    user,
+    avatarPreview,
+    setActiveAction,
+  } = props;
   const { name, email, password } = user;
   return (
     <>
@@ -59,7 +68,6 @@ const MyAccountRegister = ({
           </label>
           <Input
             id="name"
-            label="User Name"
             type="text"
             required
             name="name"
@@ -125,10 +133,12 @@ const MyAccountRegister = ({
               name="avatar"
               accept="image/*"
               onChange={registerDataChange}
+              required
             />
           </Box>
 
           <Button
+            type="submit"
             style={{
               width: "100%",
               backgroundColor: "#111827",

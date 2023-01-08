@@ -15,7 +15,10 @@ const GoCreateAccount = () => {
         borderBottom: "1px solid #e5e2e2",
       }}
     >
-      <img style={{ marginTop: "20px" }} width="70px" src={userGif} alt="" />
+      <i
+        style={{ fontSize: "5rem", color: "#00000013" }}
+        className="ri-user-6-line"
+      ></i>
       <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
         No account yet?
       </Typography>

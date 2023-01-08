@@ -55,9 +55,14 @@ export const IconListWrapper = styled("ul")(({ theme }) => ({
 }));
 
 export const IconListElement = styled("li")(({ theme }) => ({
-  marginLeft: "4px",
   fontSize: "15px",
   cursor: "pointer",
+  color: "#333",
+  transition: "all .3s ease-in",
+  marginLeft: "20px",
+  ":hover": {
+    color: "rgba(51,51,51,.6)",
+  },
 }));
 
 export const Logo = styled("img")(({ theme }) => ({

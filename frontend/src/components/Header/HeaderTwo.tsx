@@ -95,54 +95,37 @@ const HeaderTwo = () => {
                 <IconListWrapper>
                   {!isAuthenticated && (
                     <IconListElement>
-                      <Typography
-                        onClick={() => setShowLoginSideBar(true)}
-                        sx={{
-                          fontSize: "15px",
-                          color: "#232323",
-                          ":hover": {
-                            color: "#535353",
-                          },
-                        }}
-                      >
+                      <Typography onClick={() => setShowLoginSideBar(true)}>
                         Login / Register
                       </Typography>
                     </IconListElement>
                   )}
-                  <IconListElement
-                    className="onActiveIconLook"
-                    onClick={() => setIsOpenSearchProduct(true)}
-                  >
+                  <IconListElement onClick={() => setIsOpenSearchProduct(true)}>
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-search-line"
                     ></i>
                   </IconListElement>
-                  <IconListElement
-                    className="onActiveIconLook"
-                    onClick={() => navigate("/wishlist")}
-                  >
+                  <IconListElement onClick={() => navigate("/wishlist")}>
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-heart-2-line"
                     ></i>
                   </IconListElement>
                   <IconListElement
-                    className="onActiveIconLook"
                     onClick={() => setShowCardView((state) => !state)}
                   >
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-shopping-cart-line"
                     ></i>
                   </IconListElement>
                   {isAuthenticated && (
                     <IconListElement
                       onClick={() => setShowMyAccountMenu((state) => !state)}
-                      className="onActiveIconLook"
                     >
                       <i
-                        style={{ fontSize: "20px", color: "#232323" }}
+                        style={{ fontSize: "20px" }}
                         className="ri-user-line"
                       ></i>
                       <AnimatePresence>
@@ -160,10 +143,6 @@ const HeaderTwo = () => {
                     </IconListElement>
                   )}
                 </IconListWrapper>
-                <UsdLanOptionWrapper>
-                  {/* <UsdAndLan menu={usd} />
-                  <UsdAndLan menu={lan} /> */}
-                </UsdLanOptionWrapper>
                 <MenuHamburger>
                   <Hamburger
                     easing="ease-in"

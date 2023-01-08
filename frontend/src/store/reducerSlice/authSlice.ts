@@ -58,6 +58,25 @@ export const login =
     }
   };
 
+export const register = (userData: any) => async (dispatch: Dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const url = `/api/v1/register`;
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.post(url, userData, config);
+    dispatch(setLoading(false));
+    dispatch(setUser(data.user));
+    console.log(data);
+  } catch (error: any) {
+    dispatch(setLoading(false));
+    dispatch(setError(error.response.data.message));
+  }
+};
+
+export const clearError = () => async (dispatch: Dispatch) => {
+  dispatch(setError(null));
+};
+
 export const loadUser = () => async (dispatch: Dispatch, getState: any) => {
   try {
     dispatch(setLoading(true));

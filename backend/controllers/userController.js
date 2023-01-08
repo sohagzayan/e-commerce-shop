@@ -11,12 +11,14 @@ const cloudinary = require("cloudinary");
 
 // create a new user
 exports.registerUser = tryCatch(async (req, res, next) => {
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  const userData = req.body;
+  const { avatar, name, email, password } = userData;
+  const myCloud = await cloudinary.v2.uploader.upload(avatar, {
     folder: "avatars",
     width: 150,
     crop: "scale",
   });
-  const { name, email, password } = req.body;
+  // const { name, email, password } = req.body;
   const hashPassword = await bcrypt.hash(password, 10);
   const user = await User.create({
     name,

@@ -1,9 +1,9 @@
-import { useAppDispatch } from "./../hocks/hocks";
-import { AppDispatch, RootState } from "./store";
+import { useAppDispatch } from "../../hocks/hocks";
+import { AppDispatch, RootState } from "../store";
 import { createAsyncThunk, createSlice, Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setEngine } from "crypto";
-import { SortsStateType } from "../util/FilterOption";
+import { SortsStateType } from "../../util/FilterOption";
 
 export interface sortsType {
   id: number;

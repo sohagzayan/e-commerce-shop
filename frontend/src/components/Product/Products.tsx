@@ -10,7 +10,7 @@ import Pagination from "react-js-pagination";
 import "./Product.css";
 import { filterColor, filterPrice } from "../../util/FilterOption";
 import { ScrollTop } from "../../sharedFunction/ScrollTop";
-import { fetchProduct } from "../../store/productsSlice";
+import { fetchProduct } from "../../store/reducerSlice/productsSlice";
 import { AppDispatch } from "../../store/store";
 import { ProductType } from "../Types/Types";
 

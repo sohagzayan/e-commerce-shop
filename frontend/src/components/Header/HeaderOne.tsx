@@ -123,47 +123,19 @@ const BottomHeader = () => {
                     </IconListElement>
                   )}
 
-                  <IconListElement
-                    sx={{
-                      color: "#333",
-                      transition: "all .3s ease-in",
-                      marginLeft: "20px",
-                      ":hover": {
-                        color: "rgba(51,51,51,.6)",
-                      },
-                    }}
-                    onClick={() => setIsOpenSearchProduct(true)}
-                  >
+                  <IconListElement onClick={() => setIsOpenSearchProduct(true)}>
                     <i
                       style={{ fontSize: "20px" }}
                       className="ri-search-line"
                     ></i>
                   </IconListElement>
-                  <IconListElement
-                    sx={{
-                      color: "#333",
-                      transition: "all .3s ease-in",
-                      marginLeft: "20px",
-                      ":hover": {
-                        color: "rgba(51,51,51,.6)",
-                      },
-                    }}
-                    onClick={() => navigate("/wishlist")}
-                  >
+                  <IconListElement onClick={() => navigate("/wishlist")}>
                     <i
                       style={{ fontSize: "20px" }}
                       className="ri-heart-2-line"
                     ></i>
                   </IconListElement>
                   <IconListElement
-                    sx={{
-                      color: "#333",
-                      transition: "all .3s ease-in",
-                      marginLeft: "20px",
-                      ":hover": {
-                        color: "rgba(51,51,51,.6)",
-                      },
-                    }}
                     onClick={() => setShowCardView((state) => !state)}
                   >
                     <i
@@ -173,14 +145,6 @@ const BottomHeader = () => {
                   </IconListElement>
                   {isAuthenticated && (
                     <IconListElement
-                      sx={{
-                        color: "#333",
-                        transition: "all .3s ease-in",
-                        marginLeft: "20px",
-                        ":hover": {
-                          color: "rgba(51,51,51,.6)",
-                        },
-                      }}
                       onClick={() => setShowMyAccountMenu((state) => !state)}
                     >
                       <i

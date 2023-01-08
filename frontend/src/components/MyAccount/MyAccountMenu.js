@@ -9,7 +9,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
 // import { logOut } from "../../actions/userAction";
 import { useAlert } from "react-alert";
-import { logOut } from "../../store/authSlice";
+import { logOut } from "../../store/reducerSlice/authSlice";
 
 const Button = styled("button")(({ theme }) => ({
   backgroundColor: "#3577f0",
