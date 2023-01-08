@@ -51,7 +51,7 @@ const CategoriesFiltering: React.FunctionComponent<Props> = (props) => {
           >
             <Box
               sx={{
-                width: "450px",
+                width: "300px",
                 position: "absolute",
                 top: "50px",
                 left: "0",

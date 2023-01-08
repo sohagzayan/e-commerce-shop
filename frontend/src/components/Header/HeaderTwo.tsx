@@ -34,7 +34,7 @@ const HeaderTwo = () => {
   const [showCardView, setShowCardView] = useState(false);
   const [showLoginSideBar, setShowLoginSideBar] = useState(false);
   const [navbar, setNavbar] = useState(false);
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state: any) => state.user);
 
   const navigate = useNavigate();
 
@@ -93,7 +93,7 @@ const HeaderTwo = () => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
-                  {/* {!isAuthenticated && (
+                  {!isAuthenticated && (
                     <IconListElement>
                       <Typography
                         onClick={() => setShowLoginSideBar(true)}
@@ -108,7 +108,7 @@ const HeaderTwo = () => {
                         Login / Register
                       </Typography>
                     </IconListElement>
-                  )} */}
+                  )}
                   <IconListElement
                     className="onActiveIconLook"
                     onClick={() => setIsOpenSearchProduct(true)}
@@ -136,19 +136,15 @@ const HeaderTwo = () => {
                       className="ri-shopping-cart-line"
                     ></i>
                   </IconListElement>
-                  {/* {isAuthenticated && (
-                    <IconListElement>
-                    
-                      <img
-                        onClick={() => setShowMyAccountMenu((state) => !state)}
-                        style={{
-                          width: "40px",
-                          borderRadius: "50%",
-                          border: "3px solid #cbd3d9",
-                        }}
-                        src={user.avatar.url}
-                        alt="avater"
-                      />
+                  {isAuthenticated && (
+                    <IconListElement
+                      onClick={() => setShowMyAccountMenu((state) => !state)}
+                      className="onActiveIconLook"
+                    >
+                      <i
+                        style={{ fontSize: "20px", color: "#232323" }}
+                        className="ri-user-line"
+                      ></i>
                       <AnimatePresence>
                         {showMyAccountMenu && (
                           <motion.div
@@ -162,7 +158,7 @@ const HeaderTwo = () => {
                         )}
                       </AnimatePresence>
                     </IconListElement>
-                  )} */}
+                  )}
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
                   {/* <UsdAndLan menu={usd} />

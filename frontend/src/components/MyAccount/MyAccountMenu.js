@@ -9,6 +9,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
 // import { logOut } from "../../actions/userAction";
 import { useAlert } from "react-alert";
+import { logOut } from "../../store/authSlice";
 
 const Button = styled("button")(({ theme }) => ({
   backgroundColor: "#3577f0",
@@ -25,7 +26,7 @@ const MyAccountMenu = ({ user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOutHandle = () => {
-    // dispatch(logOut());
+    dispatch(logOut());
     alert.success("Logout Successfully");
   };
   return (
@@ -43,16 +44,31 @@ const MyAccountMenu = ({ user }) => {
       }}
     >
       <List>
-        <Typography
+        <Box
           sx={{
-            fontSize: "12px",
-            color: "#C4C4C4",
+            display: "flex",
+            alignItems: "center",
+            borderBottom: "1px solid #eee",
             paddingBottom: "20px",
-            fontWeight: "500",
+            marginBottom: "15px",
           }}
         >
-          QUICKLINKS
-        </Typography>
+          <img
+            style={{
+              width: "40px",
+              borderRadius: "50%",
+              marginRight: "15px",
+            }}
+            src={user.avatar.url}
+            alt="avater"
+          />
+          <Box>
+            <Typography sx={{ fontSize: "16px", fontWeight: "600" }}>
+              {user.name}
+            </Typography>
+            <Typography sx={{ fontSize: "14px" }}>Los Angeles, CA</Typography>
+          </Box>
+        </Box>
         {user.role === "admin" && (
           <ListItem
             sx={{
@@ -71,48 +87,78 @@ const MyAccountMenu = ({ user }) => {
         )}
 
         <ListItem
+          onClick={() => navigate("/my-profile")}
           sx={{
-            borderBottom: "1px solid #eee",
-            margin: "11px 0",
             padding: "0 0 15px 0",
             display: "flex",
             alignItems: "center",
           }}
         >
-          <ListAltIcon
-            sx={{ color: "#4c4c4e", fontSize: "16px", marginRight: "10px" }}
-          />
-          Order
+          <i
+            style={{ color: "#8D939D", fontSize: "22px", marginRight: "10px" }}
+            className="ri-user-6-line"
+          ></i>
+          My Account
+        </ListItem>
+
+        <ListItem
+          sx={{
+            padding: "0 0 15px 0",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <i
+            style={{ color: "#8D939D", fontSize: "22px", marginRight: "10px" }}
+            className="ri-file-list-3-line"
+          ></i>
+          My Order
         </ListItem>
 
         <ListItem
           onClick={() => navigate("/my-profile")}
           sx={{
             borderBottom: "1px solid #eee",
-            margin: "11px 0",
+            margin: "3px 0",
+            padding: "0 0 15px 0",
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <i
+            style={{ color: "#8D939D", fontSize: "22px", marginRight: "10px" }}
+            className="ri-heart-2-line"
+          ></i>
+          Wishlist
+        </ListItem>
+
+        <ListItem
+          onClick={logOutHandle}
+          sx={{
             padding: "0 0 15px 0",
             display: "flex",
             alignItems: "center",
           }}
         >
-          <PersonIcon
-            sx={{ color: "#4c4c4e", fontSize: "16px", marginRight: "10px" }}
-          />
-          Profile
+          <i
+            style={{ color: "#8D939D", fontSize: "22px", marginRight: "10px" }}
+            className="ri-question-line"
+          ></i>
+          Help
         </ListItem>
         <ListItem
           onClick={logOutHandle}
           sx={{
-            borderBottom: "1px solid #eee",
-            margin: "11px 0",
             padding: "0 0 15px 0",
             display: "flex",
             alignItems: "center",
           }}
         >
-          <ExitToAppIcon
-            sx={{ color: "#4c4c4e", fontSize: "16px", marginRight: "10px" }}
-          />
+          <i
+            style={{ color: "#8D939D", fontSize: "22px", marginRight: "10px" }}
+            className="ri-logout-circle-line"
+          ></i>
           LogOut
         </ListItem>
       </List>

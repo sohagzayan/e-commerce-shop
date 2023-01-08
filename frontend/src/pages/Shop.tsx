@@ -85,8 +85,6 @@ const Shop = () => {
     keyword,
   ]);
 
-  console.log("sorts Here > main", sizes);
-
   /* its working for make page always 
     scrollTop on page also when on modal
      make scroll block 

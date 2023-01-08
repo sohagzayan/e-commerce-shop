@@ -11,8 +11,14 @@ import MyWishList from "./pages/MyWishList";
 import MyAccount from "./pages/MyAccount";
 import ProductDetails from "./pages/ProductDetails";
 import MyProfile from "./pages/MyProfile";
+import { store } from "./store/store";
+import { loadUser } from "./store/authSlice";
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <Routes>

@@ -1,10 +1,28 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, styled, TextField, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
+
+const Input = styled("input")(({ theme }) => ({
+  width: "100%",
+  height: "2.75rem",
+  outline: "none",
+  color: "#777",
+  marginTop: "6px",
+  marginBottom: "20px",
+  border: "1px solid rgba(229,231,235,1)",
+  borderRadius: "1rem",
+  padding: "0 20px",
+  fontSize: "17px",
+  ":focus": {
+    border: "1px solid #7DD3FC",
+  },
+}));
 
 const MyAccountRegister = ({
   registerDataChange,
   registerSubmit,
   user,
   avatarPreview,
+  setActiveAction,
 }) => {
   const { name, email, password } = user;
   return (
@@ -18,86 +36,79 @@ const MyAccountRegister = ({
       >
         <Typography
           sx={{
-            fontSize: "24px",
+            fontSize: "3rem",
             fontWeight: "600",
-            marginBottom: "10px",
+            marginBottom: "20px",
             color: "#292930",
+            textAlign: "center",
           }}
         >
-          I'm New Here
+          Signup
         </Typography>
-        <Typography
-          sx={{
-            fontSize: "13px",
-            fontWeight: "600",
-            marginBottom: "30px",
-            color: "#999FAE",
-          }}
-        >
-          Enter your detail below
-        </Typography>
+
         <form action="" onSubmit={registerSubmit}>
-          <TextField
-            id="outlined-basic-signup-name"
+          <label
+            style={{
+              color: "rgba(31,41,55,1)",
+              fontSize: "17px",
+              marginBottom: "2px",
+            }}
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <Input
+            id="name"
             label="User Name"
             type="text"
             required
             name="name"
             value={name}
             onChange={registerDataChange}
-            style={{
-              width: "100%",
-              height: "42px",
-              outline: "none",
-              fontSize: "14px",
-              color: "#777",
-              marginTop: "6px",
-              marginBottom: "30px",
-            }}
           />
-
-          <TextField
-            id="outlined-basic-signup-email"
-            label="Email Address"
+          <label
+            style={{
+              color: "rgba(31,41,55,1)",
+              fontSize: "17px",
+              marginBottom: "2px",
+            }}
+            htmlFor="email"
+          >
+            Email address
+          </label>
+          <Input
+            id="email"
             type="email"
             required
             name="email"
             value={email}
+            placeholder="example@example.com"
             onChange={registerDataChange}
-            style={{
-              width: "100%",
-              height: "42px",
-              outline: "none",
-              fontSize: "14px",
-              color: "#777",
-              marginTop: "6px",
-              marginBottom: "30px",
-            }}
           />
-
-          <TextField
-            id="outlined-basic-signup-password"
-            label="Password"
+          <label
+            style={{
+              color: "rgba(31,41,55,1)",
+              fontSize: "17px",
+              marginBottom: "2px",
+            }}
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <Input
+            id="password"
             type="password"
             required
             name="password"
             value={password}
             onChange={registerDataChange}
-            style={{
-              width: "100%",
-              height: "42px",
-              outline: "none",
-              fontSize: "14px",
-              color: "#777",
-              marginTop: "6px",
-              marginBottom: "20px",
-            }}
           />
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              marginTop: "20px",
+              marginTop: "10px",
+              marginBottom: "20px",
               justifyContent: "center",
               width: "100%",
             }}
@@ -116,23 +127,15 @@ const MyAccountRegister = ({
               onChange={registerDataChange}
             />
           </Box>
-          <p
-            style={{
-              fontSize: "13px",
-              color: "#777",
-              marginTop: "10px",
-              paddingBottom: "30px",
-              borderBottom: "1px solid rgba(0,0,0,0.1)",
-            }}
-          >
-            Your personal data will be used to support your experience
-            throughout this website, to manage access to your account, and for
-            other purposes described in our privacy policy.
-          </p>
+
           <Button
             style={{
               width: "100%",
-              backgroundColor: "#3577f0",
+              backgroundColor: "#111827",
+              fontWeight: "600",
+              fontSize: "15px",
+              boxShadow:
+                "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
               textTransform: "capitalize",
               border: "none",
               color: "#fff",
@@ -143,6 +146,25 @@ const MyAccountRegister = ({
             Create Account
           </Button>
         </form>
+        <Box>
+          <Typography
+            sx={{
+              fontSize: "16px",
+              color: "#111827",
+              fontWeight: "500",
+              marginTop: "10px",
+              textAlign: "center",
+            }}
+          >
+            Already have an account?{" "}
+            <span
+              style={{ color: "#61A24A", cursor: "pointer" }}
+              onClick={() => setActiveAction(true)}
+            >
+              Sign in
+            </span>
+          </Typography>
+        </Box>
       </Box>
     </>
   );

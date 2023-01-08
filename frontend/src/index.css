@@ -339,7 +339,7 @@ select {
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 10;
+  z-index: 1;
   transition: all 0.2s ease-in;
 }
 .onActiveIconLook:hover > i {
@@ -400,7 +400,7 @@ select {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 99;
+  z-index: 10;
   border-bottom: 1px solid transparent;
 }
 .navbar.onHiddenMoment {
@@ -409,7 +409,7 @@ select {
 .navbar.active {
   position: fixed;
   top: 0;
-  z-index: 99;
+  z-index: 10;
   transition: all 0.2s ease-in;
   background-color: #fff;
   border-bottom: 1px solid rgb(241 245 249/1);

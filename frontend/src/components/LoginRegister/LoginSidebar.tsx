@@ -30,10 +30,10 @@ const LoginSidebar = ({
             top: "0px",
             right: "0px",
             height: "100vh",
-
             backgroundColor: "#fff",
             boxShadow: "0px 4px 10px rgba(37, 47, 63, 0.1)",
             fontWeight: "500",
+            zIndex: 99,
           }}
         >
           <Box>

@@ -48,7 +48,7 @@ const ColorFiltering: React.FunctionComponent<Props> = (props) => {
           >
             <Box
               sx={{
-                width: "450px",
+                width: "300px",
                 position: "absolute",
                 top: "50px",
                 left: "0",
@@ -73,41 +73,6 @@ const ColorFiltering: React.FunctionComponent<Props> = (props) => {
                     </div>
                   ))}
                 </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  backgroundColor: "#F9FAFB",
-                  padding: "15px",
-                }}
-              >
-                <Button
-                  sx={{
-                    border: "2px solid #e5e7eb",
-                    borderRadius: "20px",
-                    fontWeight: "600",
-                    color: "#394353",
-                    fontSize: "14px",
-                    padding: "5px 20px",
-                  }}
-                >
-                  Clear
-                </Button>
-                <Button
-                  sx={{
-                    backgroundColor: "#1E293B",
-                    color: "#E9EBEE",
-                    fontWeight: "600",
-                    fontSize: "15px",
-                    padding: "2px 20px",
-                    ":hover": {
-                      backgroundColor: "#1E293B",
-                    },
-                  }}
-                >
-                  Apply
-                </Button>
               </Box>
             </Box>
           </motion.div>

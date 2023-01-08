@@ -48,7 +48,7 @@ const HeroSlider = () => {
                         initial={{ opacity: 0, x: -1000 }}
                         animate={{
                           opacity: isActive ? 1 : 0,
-                          x: isActive ? 0 : -1000,
+                          x: isActive ? 0 : 2000,
                           transition: {
                             duration: 0.6,
                             delay: 0.3,
@@ -61,10 +61,10 @@ const HeroSlider = () => {
                         initial={{ opacity: 0, x: 1000 }}
                         animate={{
                           opacity: isActive ? 1 : 0,
-                          x: isActive ? 0 : 1000,
+                          x: isActive ? 0 : 2000,
                           transition: {
                             duration: 0.6,
-                            delay: 1.5,
+                            delay: 1,
                             // type: "tween",
 
                             // damping: 10,
@@ -80,7 +80,7 @@ const HeroSlider = () => {
                           initial={{ opacity: 0, y: -1000 }}
                           animate={{
                             opacity: isActive ? 1 : 0,
-                            y: isActive ? 0 : -1000,
+                            x: isActive ? 0 : 2000,
                             transition: {
                               duration: 0.6,
                               delay: 1,
@@ -94,7 +94,7 @@ const HeroSlider = () => {
                             size="large"
                             startIcon={<ShoppingCartOutlinedIcon />}
                             sx={{
-                              backgroundColor: "#0053A8",
+                              backgroundColor: "rgb(15,23,42,1)",
                               color: "#fff",
                               textTransform: "capitalize",
                               fontWeight: "700",
@@ -104,6 +104,7 @@ const HeroSlider = () => {
 
                               "&:hover": {
                                 transform: "scale(1.1)",
+                                backgroundColor: "rgb(15,23,42,1)",
                                 transition: "all .3s ease-in",
                                 boxShadow: "none",
                               },
@@ -120,7 +121,7 @@ const HeroSlider = () => {
                           initial={{ opacity: 0, y: -1000 }}
                           animate={{
                             opacity: isActive ? 1 : 0,
-                            y: isActive ? 0 : -1000,
+                            x: isActive ? 0 : 2000,
                             transition: {
                               duration: 0.6,
                               delay: 1.3,

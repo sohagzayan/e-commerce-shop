@@ -16,6 +16,7 @@ export const TypographyForTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "Inter",
   fontWeight: "600",
   maxWidth: "600px",
+  color: "#0F172A",
   [theme.breakpoints.down("md")]: {
     maxWidth: "100%",
   },

@@ -36,7 +36,10 @@ const BottomHeader = () => {
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
+
+  const { isAuthenticated, user } = useSelector((state: any) => state.user);
+
+  console.log("out user", user);
 
   const menuAnimation = {
     hidden: {
@@ -94,7 +97,7 @@ const BottomHeader = () => {
                 <div className="listWrapperMenu">
                   {headerMenu.map((menu, index) => (
                     <ListElement key={index}>
-                      <NavLink style={{ color: "0F172A" }} to={menu.path}>
+                      <NavLink style={{ color: "#0F172A" }} to={menu.path}>
                         {menu.name}
                       </NavLink>
                     </ListElement>
@@ -103,13 +106,13 @@ const BottomHeader = () => {
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <IconListWrapper>
-                  {/* {!isAuthenticated && (
+                  {!isAuthenticated && (
                     <IconListElement>
                       <Typography
                         onClick={() => setShowLoginSideBar(true)}
                         sx={{
                           fontSize: "15px",
-                          color: "#232323",
+                          color: "#0F172A",
                           ":hover": {
                             color: "#535353",
                           },
@@ -118,47 +121,72 @@ const BottomHeader = () => {
                         Login / Register
                       </Typography>
                     </IconListElement>
-                  )} */}
+                  )}
 
                   <IconListElement
-                    className="onActiveIconLook"
+                    sx={{
+                      color: "#333",
+                      transition: "all .3s ease-in",
+                      marginLeft: "20px",
+                      ":hover": {
+                        color: "rgba(51,51,51,.6)",
+                      },
+                    }}
                     onClick={() => setIsOpenSearchProduct(true)}
                   >
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-search-line"
                     ></i>
                   </IconListElement>
                   <IconListElement
-                    className="onActiveIconLook"
+                    sx={{
+                      color: "#333",
+                      transition: "all .3s ease-in",
+                      marginLeft: "20px",
+                      ":hover": {
+                        color: "rgba(51,51,51,.6)",
+                      },
+                    }}
                     onClick={() => navigate("/wishlist")}
                   >
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-heart-2-line"
                     ></i>
                   </IconListElement>
                   <IconListElement
-                    className="onActiveIconLook"
+                    sx={{
+                      color: "#333",
+                      transition: "all .3s ease-in",
+                      marginLeft: "20px",
+                      ":hover": {
+                        color: "rgba(51,51,51,.6)",
+                      },
+                    }}
                     onClick={() => setShowCardView((state) => !state)}
                   >
                     <i
-                      style={{ fontSize: "20px", color: "#232323" }}
+                      style={{ fontSize: "20px" }}
                       className="ri-shopping-cart-line"
                     ></i>
                   </IconListElement>
-                  {/* {isAuthenticated && (
-                    <IconListElement>
-                      <img
-                        onClick={() => setShowMyAccountMenu((state) => !state)}
-                        style={{
-                          width: "40px",
-                          borderRadius: "50%",
-                          border: "3px solid #cbd3d9",
-                        }}
-                        src={user.avatar.url}
-                        alt="avater"
-                      />
+                  {isAuthenticated && (
+                    <IconListElement
+                      sx={{
+                        color: "#333",
+                        transition: "all .3s ease-in",
+                        marginLeft: "20px",
+                        ":hover": {
+                          color: "rgba(51,51,51,.6)",
+                        },
+                      }}
+                      onClick={() => setShowMyAccountMenu((state) => !state)}
+                    >
+                      <i
+                        style={{ fontSize: "20px" }}
+                        className="ri-user-line"
+                      ></i>
                       <AnimatePresence>
                         {showMyAccountMenu && (
                           <motion.div
@@ -172,7 +200,7 @@ const BottomHeader = () => {
                         )}
                       </AnimatePresence>
                     </IconListElement>
-                  )} */}
+                  )}
                 </IconListWrapper>
                 <UsdLanOptionWrapper>
                   {/* <UsdAndLan menu={usd} />

@@ -5,10 +5,15 @@ import MyAccountLogin from "../components/MyAccount/MyAccountLogin";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
+import { login } from "../store/authSlice";
+import { useAlert } from "react-alert";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { login, register } from "../actions/userAction";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
+  const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [user, setUser] = useState({
@@ -20,11 +25,12 @@ const MyAccount = () => {
   const [avatarPreview, setAvatarPreview] = useState("./profile.png");
 
   const { name, email, password } = user;
-  // const loginSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(login(loginEmail, loginPassword));
-  //   console.log("login from submit");
-  // };
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(loginEmail, loginPassword));
+    alert.success("Login Success");
+    navigate("/");
+  };
   const registerSubmit = (e) => {
     e.preventDefault();
     const myForm = new FormData();
@@ -52,6 +58,7 @@ const MyAccount = () => {
   };
 
   const [activeAction, setActiveAction] = useState(false);
+
   const menuAnimation = {
     hidden: {
       opacity: 0,
@@ -67,34 +74,11 @@ const MyAccount = () => {
   return (
     <>
       <HeaderTwo />
-      <div className="myAccount">
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "60px 0",
-          }}
-        >
-          <Typography variant="h2" sx={{ color: "#fff" }}>
-            My account
-          </Typography>
-          <Typography sx={{ fontSize: ".8rem", color: "#fff" }}>
-            HOME / MY ACCOUNT
-          </Typography>
-        </Box>
-      </div>
       <Box sx={{ marginTop: "40px" }}>
         <Container maxWidth="lg">
-          <Grid container>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  borderRight: "1px solid rgba(0,0,0,0.105)",
-                  minHeight: "100%",
-                }}
-              >
+          <Box sx={{}}>
+            <Grid container>
+              <Grid item xs={12} md={6} sx={{}}>
                 <AnimatePresence>
                   {activeAction ? (
                     <motion.div
@@ -109,7 +93,8 @@ const MyAccount = () => {
                           setLoginEmail,
                           loginPassword,
                           setLoginPassword,
-                          // loginSubmit,
+                          loginSubmit,
+                          setActiveAction,
                         }}
                       />
                     </motion.div>
@@ -121,49 +106,107 @@ const MyAccount = () => {
                           registerSubmit,
                           user,
                           avatarPreview,
+                          setActiveAction,
                         }}
                       />
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </Box>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Box
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={6}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
                   alignItems: "center",
-                  padding: "20px",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
-                <Typography sx={{ fontSize: "1.5rem" }}>LOGIN</Typography>
-                <Typography sx={{ fontSize: "13px", textAlign: "center" }}>
-                  Registering for this site allows you to access your order
-                  status and history. Just fill in the fields below, and we'll
-                  get a new account set up for you in no time. We will only ask
-                  you for information necessary to make the purchase process
-                  faster and easier.
-                </Typography>
-                <Button
-                  onClick={() => setActiveAction((state) => !state)}
-                  style={{
-                    backgroundColor: "#f7f7f7",
-                    color: "#333",
-                    padding: "12px 30px",
-                    border: "none",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    marginTop: "30px",
-                    textTransform: "capitalize",
-                    cursor: "pointer",
+                <Box
+                  sx={{
+                    width: "400px",
+                    margin: "auto",
                   }}
                 >
-                  {activeAction ? "Register" : "Login"}
-                </Button>
-              </Box>
+                  <Button
+                    sx={{
+                      backgroundColor: "#F0F9FF",
+                      textTransform: "capitalize",
+                      color: "#111827",
+                      fontWeight: "500",
+                      width: "100%",
+                      padding: "8px  10px",
+                      position: "relative",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    Continue with Facebook
+                    <i
+                      style={{
+                        position: "absolute",
+                        color: "#3B5998",
+                        fontSize: "22px",
+                        top: "50%",
+                        left: "6%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      className="ri-facebook-box-fill"
+                    ></i>
+                  </Button>
+                  <Button
+                    sx={{
+                      backgroundColor: "#F0F9FF",
+                      textTransform: "capitalize",
+                      color: "#111827",
+                      fontWeight: "500",
+                      width: "100%",
+                      padding: "8px  10px",
+                      position: "relative",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    Continue with Twitter
+                    <i
+                      style={{
+                        position: "absolute",
+                        fontSize: "22px",
+                        top: "50%",
+                        left: "6%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      className="ri-twitter-fill"
+                    ></i>
+                  </Button>
+
+                  <Button
+                    sx={{
+                      backgroundColor: "#F0F9FF",
+                      textTransform: "capitalize",
+                      color: "#111827",
+                      fontWeight: "500",
+                      width: "100%",
+                      padding: "8px  10px",
+                      position: "relative",
+                    }}
+                  >
+                    Continue with Google
+                    <i
+                      style={{
+                        position: "absolute",
+                        fontSize: "22px",
+                        top: "50%",
+                        left: "6%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                      className="ri-google-fill"
+                    ></i>
+                  </Button>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Container>
       </Box>
     </>
