@@ -7,6 +7,11 @@ import SingleSearchProduct from "./SingleSearchProduct";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProduct,
+  searchProduct,
+} from "../../store/reducerSlice/productsSlice";
+import { AppDispatch } from "../../store/store";
 // import { getProduct, getSearchProduct } from "../../actions/productAction";
 
 const SearchProductWrapper = styled(Box)(({ theme }) => ({
@@ -31,14 +36,20 @@ const SearchProductWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const dispatch = useDispatch();
-  // const { products } = useSelector((state) => state.searchProduct);
+interface Props {
+  isOpenSearchProduct: boolean;
+  setIsOpenSearchProduct: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  // useEffect(() => {
-  //   dispatch(getSearchProduct(searchKeyword));
-  // }, [dispatch, searchKeyword]);
+const SearchProduct: React.FunctionComponent<Props> = (props) => {
+  const { isOpenSearchProduct, setIsOpenSearchProduct } = props;
+  const [keyword, setKeyword] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const { searchResult } = useSelector((state: any) => state.products);
+
+  useEffect(() => {
+    dispatch(searchProduct(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <Backdrop open={isOpenSearchProduct}>
@@ -93,7 +104,7 @@ const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
                   }}
                 />
                 <input
-                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  onChange={(e) => setKeyword(e.target.value)}
                   placeholder="Write Something...."
                   style={{
                     width: "100%",
@@ -105,12 +116,12 @@ const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
                     color: "#777",
                     outline: "none",
                   }}
-                  value={searchKeyword}
+                  value={keyword}
                   type="text"
                 />
-                {searchKeyword && (
+                {keyword.length && (
                   <CloseIcon
-                    onClick={() => setSearchKeyword("")}
+                    onClick={() => setKeyword("")}
                     sx={{
                       fontSize: "18px",
                       position: "absolute",
@@ -125,14 +136,14 @@ const SearchProduct = ({ isOpenSearchProduct, setIsOpenSearchProduct }) => {
               </Box>
               <SearchProductHeader />
               <Box>
-                {/* {products &&
-                  products?.map((product, index) => (
+                {searchResult &&
+                  searchResult?.map((product: any, index: number) => (
                     <SingleSearchProduct
                       setIsOpenSearchProduct={setIsOpenSearchProduct}
                       key={index}
                       product={product}
                     />
-                  ))} */}
+                  ))}
               </Box>
             </Box>
           </SearchProductWrapper>

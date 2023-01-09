@@ -4,29 +4,26 @@ import { useState } from "react";
 const Button = styled("button")(({ theme }) => ({}));
 
 const ProductColorPicker = () => {
-  const Color = ["#ff497c", "#ff8666", "#8d6abe"];
+  const Color = ["#ff497c", "#ff8666", "#8d6abe", "#8d6abe", "#8d6abe"];
   const [activeColor, setActiveColor] = useState(Color[0]);
 
   return (
     <>
-      <Grid container sx={{ marginTop: "20px" }}>
-        <Grid item xs={3}>
+      <Box sx={{ marginTop: "20px" }}>
+        <Box>
           <Typography
             sx={{
-              fontSize: "17px",
+              fontSize: "14px",
               color: "#27272E",
               fontWeight: "600",
+              marginBottom: "10px",
             }}
           >
-            Colors:
+            Colors: Black
           </Typography>
-        </Grid>
+        </Box>
 
-        <Grid
-          item
-          xs={9}
-          sx={{ display: "flex", alignItems: "center", padding: "0 6px" }}
-        >
+        <Box>
           {Color.map((c, index) => (
             <Button
               key={index}
@@ -44,8 +41,8 @@ const ProductColorPicker = () => {
               }}
             ></Button>
           ))}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </>
   );
 };

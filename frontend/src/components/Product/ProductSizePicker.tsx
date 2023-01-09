@@ -10,20 +10,21 @@ const ProductSizePicker = () => {
   const [activeSize, setActiveSize] = useState(filterSize[0]);
   return (
     <>
-      <Grid container sx={{ marginTop: "20px" }}>
-        <Grid item xs={3}>
+      <Box sx={{ marginTop: "20px" }}>
+        <Box>
           <Box>
             <Typography
               sx={{
-                fontSize: "17px",
+                fontSize: "14px",
                 color: "#27272E",
                 fontWeight: "600",
+                marginBottom: "10px",
               }}
             >
-              Size:
+              Size: M
             </Typography>
           </Box>
-        </Grid>
+        </Box>
         <Grid item xs={9} sx={{ display: "flex", flexWrap: "wrap" }}>
           {filterSize.map((size, index) => (
             <GetSizeButton
@@ -40,7 +41,7 @@ const ProductSizePicker = () => {
             </GetSizeButton>
           ))}
         </Grid>
-      </Grid>
+      </Box>
     </>
   );
 };

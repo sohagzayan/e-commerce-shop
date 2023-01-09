@@ -32,23 +32,21 @@ import ProductReviews from "../components/ProductReviews/ProductReviews";
 import { useAlert } from "react-alert";
 import Loading from "../components/Loading/Loading";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
+import ProductAccordion from "../components/ProductAccordion/ProductAccordion";
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
+  marginTop: "30px",
 }));
 
 const ThumbanalImage = styled("img")(({ theme }) => ({
   width: "491px",
-  paddingRight: "45px",
+  paddingRight: "5px",
   [theme.breakpoints.down("md")]: {
     width: "100%",
   },
 }));
 
-const ProductDetails = ({}) => {
-  useEffect(() => {
-    ScrollTop();
-  }, []);
-
+const ProductDetails = () => {
   const alert = useAlert();
   const { id } = useParams();
   const ProductImage = [product1, product2, product3];
@@ -57,6 +55,7 @@ const ProductDetails = ({}) => {
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch();
+
   // const { loading, error, product } = useSelector(
   //   (state) => state.productDetails
   // );
@@ -73,13 +72,17 @@ const ProductDetails = ({}) => {
     value: 3,
   };
 
+  useEffect(() => {
+    ScrollTop();
+  }, []);
+
   return (
     <Fragment>
       {false ? (
         <Loading />
       ) : (
         <Fragment>
-          <Box sx={{ marginTop: "30px", overflow: "hidden" }}>
+          <Box sx={{ overflow: "hidden" }}>
             <HeaderTwo />
             <div>
               <ProductDetailsWrapper>
@@ -88,7 +91,7 @@ const ProductDetails = ({}) => {
                     <Box>
                       <Grid container>
                         <Grid item xs={12} md={7}>
-                          <Box sx={{ padding: "25px" }}>
+                          <Box>
                             <Grid
                               container
                               direction={breakpoint ? "column-reverse" : "row"}
@@ -126,27 +129,7 @@ const ProductDetails = ({}) => {
                           </Box>
                         </Grid>
                         <Grid item xs={12} md={5}>
-                          <Box sx={{ padding: "25px" }}>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                borderBottom: "2px solid #f6f7fb",
-                                paddingBottom: "15px",
-                              }}
-                            >
-                              <ReviewStar {...option} />
-
-                              <Typography
-                                sx={{
-                                  fontSize: "14px",
-                                  color: "#777",
-                                  marginLeft: "3px",
-                                }}
-                              >
-                                (1 customer reviews)
-                              </Typography>
-                            </Box>
+                          <Box>
                             <Typography
                               sx={{
                                 color: "#27272E",
@@ -155,73 +138,67 @@ const ProductDetails = ({}) => {
                                 marginTop: "20px",
                               }}
                             >
+                              Heavy Weight Shoes
                               {/* {product?.name} */}
                             </Typography>
-                            <Typography
+                            <Box
                               sx={{
-                                color: "#27272E",
-                                fontSize: "25px",
-                                fontWeight: "500",
-                                marginTop: "12px",
+                                display: "flex",
+                                alignItems: "center",
+                                marginTop: "10px",
                               }}
                             >
-                              {/* ${product?.price} */}
-                            </Typography>
-                            <Box
-                              sx={{ marginTop: "20px", marginBottom: "20px" }}
-                            >
-                              <ul>
-                                <li
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    color: "#3577f0",
-                                    marginBottom: "5px",
+                              <Box>
+                                <Typography
+                                  sx={{
+                                    color: "#22C55E",
+                                    border: "2px solid #22C55E",
+                                    borderRadius: "6px",
+                                    fontWeight: "600",
+                                    fontSize: "18px",
+                                    padding: "1px 10px",
                                   }}
                                 >
-                                  <CheckRoundedIcon
-                                    sx={{
-                                      fontSize: "18px",
-                                      marginRight: "10px",
-                                    }}
-                                  />
-                                  In stock
-                                </li>
-                                <li
-                                  style={{
+                                  $112.00
+                                  {/* ${product?.price} */}
+                                </Typography>
+                              </Box>
+
+                              <Box
+                                sx={{ display: "flex", alignItems: "center" }}
+                              >
+                                <Typography
+                                  sx={{
+                                    fontSize: "14px",
+                                    color: "#777",
+                                    marginLeft: "3px",
                                     display: "flex",
                                     alignItems: "center",
-                                    color: "#3577f0",
-                                    marginBottom: "5px",
+                                    marginRight: "6px",
                                   }}
                                 >
-                                  {" "}
-                                  <CheckRoundedIcon
-                                    sx={{
-                                      fontSize: "18px",
-                                      marginRight: "10px",
+                                  <i
+                                    style={{
+                                      color: "#FACC15",
+                                      padding: "0 4px",
                                     }}
-                                  />
-                                  Free delivery available
-                                </li>
-                                <li
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    color: "#3577f0",
+                                    className="ri-star-fill"
+                                  ></i>
+                                  4.9
+                                </Typography>
+                                <Typography
+                                  sx={{
+                                    fontSize: "14px",
+                                    color: "#0F172A",
+                                    marginLeft: "3px",
+                                    textDecoration: "underline",
                                   }}
                                 >
-                                  {" "}
-                                  <CheckRoundedIcon
-                                    sx={{
-                                      fontSize: "18px",
-                                      marginRight: "10px",
-                                    }}
-                                  />
-                                  Sales 30% Off Use Code: MOTIVE30
-                                </li>
-                              </ul>
+                                  133 reviews
+                                </Typography>
+                              </Box>
                             </Box>
+
                             <Typography
                               sx={{ fontSize: "17px", color: "#333" }}
                             >
@@ -230,6 +207,7 @@ const ProductDetails = ({}) => {
                             <ProductColorPicker />
                             <ProductSizePicker />
                             <ProductDetailsController />
+                            <ProductAccordion />
                           </Box>
                         </Grid>
                       </Grid>

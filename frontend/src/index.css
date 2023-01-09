@@ -192,8 +192,8 @@ ul {
   background: #fff;
   padding: 5px 13px;
   border-radius: 30px;
-  min-width: 44px;
-  min-height: 44px;
+  width: 60px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -43,9 +43,11 @@ interface ProductData {
   error: string | null;
 }
 
-const initialState: ProductData = {
+const initialState = {
   data: [],
+  searchResult: [],
   loading: false,
+  searchLoading: false,
   error: null,
 };
 
@@ -59,13 +61,25 @@ const productSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
+    setSearchLoading(state, action) {
+      state.searchLoading = action.payload;
+    },
+    setSearchProduct(state, action) {
+      state.searchResult = action.payload;
+    },
     setError(state, action) {
       state.error = action.payload;
     },
   },
 });
 
-export const { setProducts, setLoading, setError } = productSlice.actions;
+export const {
+  setProducts,
+  setLoading,
+  setError,
+  setSearchProduct,
+  setSearchLoading,
+} = productSlice.actions;
 export default productSlice.reducer;
 
 /* Thunk Here */
@@ -98,6 +112,26 @@ export const fetchProduct =
       dispatch(setLoading(false));
     } catch (error: any) {
       dispatch(setLoading(false));
+      dispatch(setError(error.response.data.message));
+    }
+  };
+
+/* Search Action */
+export const searchProduct =
+  (keyword: string = "") =>
+  async (dispatch: Dispatch, getState: any) => {
+    dispatch(setSearchLoading(true));
+    try {
+      const url = `/api/v1/products/get`;
+      const { data } = await axios.post(url, {
+        search: keyword,
+      });
+      // console.log("data", data);
+      dispatch(setSearchProduct(data.products));
+      dispatch(setError(null));
+      dispatch(setSearchLoading(false));
+    } catch (error: any) {
+      dispatch(setSearchLoading(false));
       dispatch(setError(error.response.data.message));
     }
   };
