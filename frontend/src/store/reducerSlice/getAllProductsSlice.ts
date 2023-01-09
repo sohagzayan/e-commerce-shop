@@ -37,17 +37,9 @@ export interface Product {
   createdAt: string;
 }
 
-interface ProductData {
-  data: Product[];
-  loading: boolean;
-  error: string | null;
-}
-
 const initialState = {
   data: [],
-  searchResult: [],
   loading: false,
-  searchLoading: false,
   error: null,
 };
 
@@ -55,35 +47,27 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts(state, action) {
+    fetchProductStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchProductSuccess(state, action) {
+      state.loading = false;
       state.data = action.payload;
     },
-    setLoading(state, action) {
-      state.loading = action.payload;
-    },
-    setSearchLoading(state, action) {
-      state.searchLoading = action.payload;
-    },
-    setSearchProduct(state, action) {
-      state.searchResult = action.payload;
-    },
-    setError(state, action) {
+    fetchProductFailure(state, action) {
+      state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const {
-  setProducts,
-  setLoading,
-  setError,
-  setSearchProduct,
-  setSearchLoading,
-} = productSlice.actions;
+export const { fetchProductStart, fetchProductSuccess, fetchProductFailure } =
+  productSlice.actions;
 export default productSlice.reducer;
 
 /* Thunk Here */
-export const fetchProduct =
+export const fetchAllProduct =
   (
     currentPage: number = 1,
     categoryes: string[] = [],
@@ -94,7 +78,7 @@ export const fetchProduct =
     keyword: string = ""
   ) =>
   async (dispatch: Dispatch, getState: any) => {
-    dispatch(setLoading(true));
+    dispatch(fetchProductStart());
     try {
       const url = `/api/v1/products/get?page=${currentPage}`;
       const { data } = await axios.post(url, {
@@ -107,12 +91,9 @@ export const fetchProduct =
         search: keyword,
       });
       // console.log("data", data);
-      dispatch(setProducts(data));
-      dispatch(setError(null));
-      dispatch(setLoading(false));
+      dispatch(fetchProductSuccess(data));
     } catch (error: any) {
-      dispatch(setLoading(false));
-      dispatch(setError(error.response.data.message));
+      dispatch(fetchProductFailure(error.response.data.message));
     }
   };
 
@@ -120,19 +101,19 @@ export const fetchProduct =
 export const searchProduct =
   (keyword: string = "") =>
   async (dispatch: Dispatch, getState: any) => {
-    dispatch(setSearchLoading(true));
+    // dispatch(setSearchLoading(true));
     try {
       const url = `/api/v1/products/get`;
       const { data } = await axios.post(url, {
         search: keyword,
       });
       // console.log("data", data);
-      dispatch(setSearchProduct(data.products));
-      dispatch(setError(null));
-      dispatch(setSearchLoading(false));
+      // dispatch(setSearchProduct(data.products));
+      // dispatch(setError(null));
+      // dispatch(setSearchLoading(false));
     } catch (error: any) {
-      dispatch(setSearchLoading(false));
-      dispatch(setError(error.response.data.message));
+      // dispatch(setSearchLoading(false));
+      // dispatch(setError(error.response.data.message));
     }
   };
 

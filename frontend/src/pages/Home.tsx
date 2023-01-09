@@ -11,7 +11,7 @@ import Loading from "../components/Loading/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { AppDispatch } from "../store/store";
-import { fetchProduct } from "../store/reducerSlice/productsSlice";
+import { fetchAllProduct } from "../store/reducerSlice/getAllProductsSlice";
 
 const Home = () => {
   useEffect(() => {
@@ -23,7 +23,7 @@ const Home = () => {
   // console.log("p", loading);
 
   useEffect(() => {
-    dispatch(fetchProduct());
+    dispatch(fetchAllProduct());
   }, [dispatch]);
 
   const alert = useAlert();

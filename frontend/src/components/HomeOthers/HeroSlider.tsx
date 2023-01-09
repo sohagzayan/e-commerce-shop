@@ -65,9 +65,6 @@ const HeroSlider = () => {
                           transition: {
                             duration: 0.6,
                             delay: 1,
-                            // type: "tween",
-
-                            // damping: 10,
                           },
                         }}
                       >
@@ -79,7 +76,7 @@ const HeroSlider = () => {
                         <motion.div
                           initial={{ opacity: 0, y: -1000 }}
                           animate={{
-                            opacity: isActive ? 1 : 0,
+                            opacity: isActive ? 1 : 1,
                             x: isActive ? 0 : 2000,
                             transition: {
                               duration: 0.6,
@@ -101,7 +98,6 @@ const HeroSlider = () => {
                               boxShadow: "none",
                               padding: "15px 40px",
                               transition: "all .3s ease-in",
-
                               "&:hover": {
                                 transform: "scale(1.1)",
                                 backgroundColor: "rgb(15,23,42,1)",

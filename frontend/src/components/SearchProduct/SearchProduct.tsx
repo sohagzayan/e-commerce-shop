@@ -7,10 +7,10 @@ import SingleSearchProduct from "./SingleSearchProduct";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProduct,
-  searchProduct,
-} from "../../store/reducerSlice/productsSlice";
+// import {
+//   fetchProduct,
+//   searchProduct,
+// } from "../../store/reducerSlice/getAllProductsSlice";
 import { AppDispatch } from "../../store/store";
 // import { getProduct, getSearchProduct } from "../../actions/productAction";
 
@@ -45,11 +45,11 @@ const SearchProduct: React.FunctionComponent<Props> = (props) => {
   const { isOpenSearchProduct, setIsOpenSearchProduct } = props;
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const { searchResult } = useSelector((state: any) => state.products);
+  // const { searchResult } = useSelector((state: any) => state.products);
 
-  useEffect(() => {
-    dispatch(searchProduct(keyword));
-  }, [dispatch, keyword]);
+  // useEffect(() => {
+  //   dispatch(searchProduct(keyword));
+  // }, [dispatch, keyword]);
 
   return (
     <Backdrop open={isOpenSearchProduct}>
@@ -136,14 +136,14 @@ const SearchProduct: React.FunctionComponent<Props> = (props) => {
               </Box>
               <SearchProductHeader />
               <Box>
-                {searchResult &&
+                {/* {searchResult &&
                   searchResult?.map((product: any, index: number) => (
                     <SingleSearchProduct
                       setIsOpenSearchProduct={setIsOpenSearchProduct}
                       key={index}
                       product={product}
                     />
-                  ))}
+                  ))} */}
               </Box>
             </Box>
           </SearchProductWrapper>

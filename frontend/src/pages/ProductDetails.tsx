@@ -14,8 +14,6 @@ import { Fragment, useEffect, useState } from "react";
 import product1 from "../assets/product/product-big-01.png";
 import product2 from "../assets/product/product-big-02.png";
 import product3 from "../assets/product/product-big-03.png";
-import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import ProductColorPicker from "../components/Product/ProductColorPicker";
 import ProductSizePicker from "../components/Product/ProductSizePicker";
 import ProductDetailsController from "../components/Product/ProductDetailsController";
@@ -33,6 +31,9 @@ import { useAlert } from "react-alert";
 import Loading from "../components/Loading/Loading";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
 import ProductAccordion from "../components/ProductAccordion/ProductAccordion";
+import { getProductDetails } from "../store/reducerSlice/getProductDetailsSlice";
+import { AppDispatch } from "../store/store";
+
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
   marginTop: "30px",
@@ -54,11 +55,12 @@ const ProductDetails = () => {
   const [activeImage, setActiveImage] = useState(ProductImage[0]);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  // const { loading, error, product } = useSelector(
-  //   (state) => state.productDetails
-  // );
+  const { loading, error, data } = useSelector(
+    (state: any) => state.productDetails
+  );
+  const { name } = data;
 
   const option = {
     color: "rgba(20, 20, 20,0.1)",
@@ -74,11 +76,12 @@ const ProductDetails = () => {
 
   useEffect(() => {
     ScrollTop();
-  }, []);
+    dispatch(getProductDetails(id));
+  }, [dispatch, id]);
 
   return (
     <Fragment>
-      {false ? (
+      {loading ? (
         <Loading />
       ) : (
         <Fragment>
@@ -139,7 +142,7 @@ const ProductDetails = () => {
                               }}
                             >
                               Heavy Weight Shoes
-                              {/* {product?.name} */}
+                              {name}
                             </Typography>
                             <Box
                               sx={{
