@@ -22,7 +22,7 @@ const GoCreateAccount = () => {
       <Typography sx={{ fontSize: "13px", fontWeight: "600" }}>
         No account yet?
       </Typography>
-      <Box onClick={() => navigate("/my-account")} sx={{ marginTop: "30px" }}>
+      <Box onClick={() => navigate("/register")} sx={{ marginTop: "30px" }}>
         <Typography
           sx={{
             fontSize: "13px",

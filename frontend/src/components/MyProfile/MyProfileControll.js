@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 
-const MyProfileView = () => {
+const MyProfileControll = () => {
   const [name, setName] = useState("Enrico Cole");
   const [age, setAge] = React.useState("");
 
@@ -104,4 +104,4 @@ const MyProfileView = () => {
   );
 };
 
-export default MyProfileView;
+export default MyProfileControll;

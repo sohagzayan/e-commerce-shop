@@ -1,38 +1,41 @@
-import { Box, Backdrop, styled } from "@mui/material";
+import {
+  Box,
+  Backdrop,
+  styled,
+  Grid,
+  Container,
+  Typography,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchProductHeader from "./SearchProductHeader";
 import { productMenu } from "../../util/Product";
 import SingleSearchProduct from "./SingleSearchProduct";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import {
 //   fetchProduct,
 //   searchProduct,
 // } from "../../store/reducerSlice/getAllProductsSlice";
 import { AppDispatch } from "../../store/store";
+import { startSearchProduct } from "../../store/reducerSlice/productSearchSlice";
 // import { getProduct, getSearchProduct } from "../../actions/productAction";
 
-const SearchProductWrapper = styled(Box)(({ theme }) => ({
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "800px",
-  height: "575px",
-  padding: "40px",
-  maxHeight: "90vh",
-  borderRadius: "10px",
-  background: "#fff",
-  overflowY: "auto",
-  boxShadow: "0px 4px 10px rgba(37, 47, 63, 0.1)",
-  fontWeight: "500",
-  [theme.breakpoints.down("md")]: {
-    width: "90%",
-  },
-  [theme.breakpoints.down("sm")]: {
-    padding: "20px",
+const SearchProductWrapper = styled(Box)(({ theme }) => ({}));
+
+const Input = styled("input")(({ theme }) => ({
+  width: "100%",
+  height: "100%",
+  fontWeight: "600",
+  border: "1px solid #f1f1f1",
+  padding: "0 20px",
+  color: "#333",
+  outline: "none",
+  textAlign: "center",
+  fontSize: "30px",
+  "::placeholder": {
+    color: "#333",
   },
 }));
 
@@ -43,113 +46,108 @@ interface Props {
 
 const SearchProduct: React.FunctionComponent<Props> = (props) => {
   const { isOpenSearchProduct, setIsOpenSearchProduct } = props;
+  const inputElement = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  // const { searchResult } = useSelector((state: any) => state.products);
+  const { data, loading, error } = useSelector(
+    (state: any) => state.searchProduct
+  );
 
-  // useEffect(() => {
-  //   dispatch(searchProduct(keyword));
-  // }, [dispatch, keyword]);
+  useEffect(() => {
+    dispatch(startSearchProduct(keyword));
+  }, [dispatch, keyword]);
 
   return (
-    <Backdrop open={isOpenSearchProduct}>
-      <AnimatePresence>
-        <motion.div
-          animate={{
-            scale: isOpenSearchProduct ? 1 : 0.6,
-            transition: {
-              duration: 0.5,
-              type: "spring",
-              damping: 10,
-            },
-          }}
-        >
-          <SearchProductWrapper>
-            <Box
-              onClick={() => setIsOpenSearchProduct(false)}
-              sx={{
-                backgroundColor: "#F6F7FB",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#777",
-                position: "absolute",
-                top: "10px",
-                right: "30px",
-                cursor: "pointer",
-              }}
-            >
-              <CloseIcon />
-            </Box>
-            <Box>
-              <Box
-                style={{
-                  width: "100%",
-                  height: "50px",
-                  position: "relative",
-                  marginTop: "35px",
-                }}
-              >
-                <SearchIcon
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "4%",
-                    transform: "translate(-50%,-50%)",
-                    color: "#777",
-                    cursor: "pointer",
-                  }}
-                />
-                <input
-                  onChange={(e) => setKeyword(e.target.value)}
-                  placeholder="Write Something...."
+    <Fragment>
+      <Backdrop open={isOpenSearchProduct}>
+        <AnimatePresence>
+          <motion.div
+            animate={{
+              y: isOpenSearchProduct ? 0 : 200,
+              transition: {
+                duration: 0.5,
+                type: "spring",
+              },
+            }}
+            exit={{ y: 0 }}
+            style={{
+              position: "fixed",
+              left: "0",
+              bottom: "0",
+              width: "100%",
+              height: "575px",
+              // padding: "40px",
+              maxHeight: "90vh",
+              background: "#fff",
+              overflowY: "auto",
+              boxShadow: "0px 4px 10px rgba(37, 47, 63, 0.1)",
+              fontWeight: "500",
+            }}
+          >
+            <SearchProductWrapper>
+              <Box>
+                <Box
                   style={{
                     width: "100%",
-                    height: "100%",
-                    borderRadius: "6px",
-                    border: "1px solid #f1f1f1",
-                    padding: "5px 20px 5px 50px",
-                    fontSize: "16px",
-                    color: "#777",
-                    outline: "none",
+                    height: "100px",
+                    position: "sticky",
+                    top: 0,
+                    left: 0,
+                    backgroundColor: "#fff",
+                    zIndex: 10,
+
+                    // marginTop: "35px",
                   }}
-                  value={keyword}
-                  type="text"
-                />
-                {keyword.length && (
-                  <CloseIcon
-                    onClick={() => setKeyword("")}
-                    sx={{
-                      fontSize: "18px",
+                >
+                  <Input
+                    ref={inputElement}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="Search for products"
+                    value={keyword}
+                    type="text"
+                  />
+                  <span
+                    onClick={() => setIsOpenSearchProduct(false)}
+                    style={{
                       position: "absolute",
                       top: "50%",
-                      right: "1%",
-                      transform: "translate(-50%,-50%)",
-                      color: "#777",
+                      right: "0%",
+                      transform: "translate(-50%, -50%)",
                       cursor: "pointer",
                     }}
-                  />
-                )}
+                  >
+                    <i
+                      style={{ fontSize: "3rem" }}
+                      className="ri-close-fill"
+                    ></i>
+                  </span>
+                </Box>
+                <Container maxWidth="lg" sx={{ marginTop: "20px" }}>
+                  {!keyword.length ? (
+                    <Typography sx={{ textAlign: "center", fontSize: "14px" }}>
+                      Start typing to see products you are looking for.
+                    </Typography>
+                  ) : (
+                    <Grid container spacing={3}>
+                      {data.length &&
+                        data?.map((product: any, index: number) => (
+                          <Grid item xs={6} sm={4} md={3} lg={3}>
+                            <SingleSearchProduct
+                              setIsOpenSearchProduct={setIsOpenSearchProduct}
+                              key={index}
+                              product={product}
+                            />
+                          </Grid>
+                        ))}
+                    </Grid>
+                  )}
+                </Container>
               </Box>
-              <SearchProductHeader />
-              <Box>
-                {/* {searchResult &&
-                  searchResult?.map((product: any, index: number) => (
-                    <SingleSearchProduct
-                      setIsOpenSearchProduct={setIsOpenSearchProduct}
-                      key={index}
-                      product={product}
-                    />
-                  ))} */}
-              </Box>
-            </Box>
-          </SearchProductWrapper>
-        </motion.div>
-      </AnimatePresence>
-    </Backdrop>
+            </SearchProductWrapper>
+          </motion.div>
+        </AnimatePresence>
+      </Backdrop>
+    </Fragment>
   );
 };
 

@@ -10,163 +10,79 @@ import { useNavigate } from "react-router-dom";
 
 const ProductContentWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "left",
   width: "100%",
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-    justifyContent: "start",
-    alignItem: "start",
-  },
-}));
-
-const ProductController = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  [theme.breakpoints.down("sm")]: {
-    alignItems: "start",
-    justifyContent: "start",
-    flexDirection: "row",
-    marginTop: "10px",
-  },
-}));
-
-const ControllerButton = styled(Button)(({ theme }) => ({
-  marginBottom: "10px",
-  border: "1px solid #efefef",
-  [theme.breakpoints.down("sm")]: {
-    marginRight: "10px",
-  },
-}));
-
-const ImageWrapper = styled(Box)(({ theme }) => ({
-  marginRight: "30px",
-  cursor: "pointer",
-  [theme.breakpoints.down("sm")]: {
-    marginRight: "10px",
-  },
+  marginTop: "5px",
 }));
 
 const SearchProductWrapper = styled(Box)(({ theme }) => ({
   marginBottom: "20px",
-  border: "1px solid #f1f1f1",
-  padding: "20px",
+  padding: "10px",
   borderRadius: "6px",
-  [theme.breakpoints.down("sm")]: {
-    padding: "10px",
-  },
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "left",
+  alignItems: "left",
+  cursor: "pointer",
 }));
 
 const SingleSearchProduct = ({ product, setIsOpenSearchProduct }) => {
   const navigate = useNavigate();
   return (
-    <SearchProductWrapper>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-          <ImageWrapper
-            onClick={() => {
-              navigate(`/details/${product._id}`);
-              setIsOpenSearchProduct(false);
+    <SearchProductWrapper onClick={() => navigate(`/details/${product._id}`)}>
+      <img width="160px" src={product.image[0].url} alt="" />
+
+      <ProductContentWrapper>
+        <Box
+          sx={{
+            textAlign: "left",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "2px",
             }}
           >
-            <img width="120px" src={product.image[0].url} alt="" />
-          </ImageWrapper>
-          <ProductContentWrapper>
-            <Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "8px",
-                }}
-              >
-                <StarRateIcon
-                  sx={{
-                    color: "#FFA800",
-                    fontSize: "17px",
-                  }}
-                />
-                <StarRateIcon
-                  sx={{
-                    color: "#FFA800",
-                    fontSize: "17px",
-                  }}
-                />
-                <StarRateIcon
-                  sx={{
-                    color: "#FFA800",
-                    fontSize: "17px",
-                  }}
-                />
-                <StarRateIcon
-                  sx={{
-                    color: "#FFA800",
-                    fontSize: "17px",
-                  }}
-                />
-                <StarOutlineIcon
-                  sx={{
-                    color: "#FFA800",
-                    fontSize: "17px",
-                    marginRight: "5px",
-                  }}
-                />
-                <Typography sx={{ fontSize: "12px" }}>100+ Reviews</Typography>
-              </Box>
-              <Typography
-                sx={{ fontSize: "16px", color: "#777777", marginBottom: "8px" }}
-              >
-                {product.name}
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Typography
-                  sx={{
-                    fontSize: "20px",
-                    color: "#292930",
-                    fontWeight: "600",
-                    paddingRight: "20px",
-                  }}
-                >
-                  ${product.discountPercentage}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "20px",
-                    color: "#d6d6d6",
-                    fontWeight: "600",
-                    textDecoration: "line-through",
-                  }}
-                >
-                  ${product.price}
-                </Typography>
-              </Box>
-            </Box>
+            <Typography
+              sx={{
+                fontSize: "12px",
+                display: "flex",
+                alignItems: "center",
+                marginRight: "5px",
+              }}
+            >
+              {" "}
+              <i
+                style={{ color: "#FFA800", fontSize: "17px" }}
+                className="ri-star-s-fill"
+              ></i>
+              3.5
+            </Typography>
+            <Typography sx={{ fontSize: "12px", textDecoration: "underline" }}>
+              133 Reviews
+            </Typography>
+          </Box>
+          <Typography
+            sx={{ fontSize: "16px", color: "#333", marginBottom: "2px" }}
+          >
+            {product.name}
+          </Typography>
 
-            <ProductController>
-              <ControllerButton
-                variant="outlined"
-                sx={{ marginBottom: "10px" }}
-              >
-                <ShoppingCartOutlinedIcon
-                  sx={{ fontSize: "18px", color: "#777" }}
-                />
-              </ControllerButton>
-              <ControllerButton variant="outlined" sx={{}}>
-                <FavoriteBorderOutlinedIcon
-                  sx={{ fontSize: "18px", color: "#777" }}
-                />
-              </ControllerButton>
-            </ProductController>
-          </ProductContentWrapper>
+          <Typography
+            sx={{
+              fontSize: "15px",
+              color: "#333",
+              fontWeight: "600",
+            }}
+          >
+            ${product.price}
+          </Typography>
         </Box>
-      </Box>
+      </ProductContentWrapper>
     </SearchProductWrapper>
   );
 };

@@ -6,7 +6,6 @@ const Protected = ({ isAuthenticated, children }: any) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log("its me");
       return navigate("/login");
     }
   }, [isAuthenticated, navigate]);

@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import "../components/MyProfile/Tab.css";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, styled } from "@mui/material";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import SimCardDownloadOutlinedIcon from "@mui/icons-material/SimCardDownloadOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -15,8 +15,24 @@ import "react-tabs/style/react-tabs.css";
 import ExploreAllProducts from "../components/ShopOthers/ExploreAllProducts";
 import AllOrders from "../components/MyProfile/AllOrders";
 import MyProfileView from "../components/MyProfile/MyProfileView";
+import MyProfileControll from "../components/MyProfile/MyProfileControll";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { innerMenu } from "../util/myProfile";
+
+const InnerMenu = styled("ul")(({ theme }) => ({
+  border: "1px solid #CBD3D9",
+  padding: "20px 30px",
+  borderRadius: "6px",
+  width: "250px",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
+}));
 
 const MyProfile = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <Fragment>
       <HeaderTwo />
@@ -52,48 +68,31 @@ const MyProfile = () => {
             eTrade Member Since Sep 2020
           </Typography>
         </Box>
-        <Tabs style={{ position: "relative" }}>
-          <TabList>
-            <Tab>
-              <PersonOutlineOutlinedIcon
-                sx={{ marginRight: "10px", fontSize: "24px" }}
-              />
-              <span>Account info</span>
-            </Tab>
-            <Tab>
-              <ShoppingBasketOutlinedIcon
-                sx={{ marginRight: "10px", fontSize: "24px" }}
-              />
-              <span>Orders</span>
-            </Tab>
-            <Tab>
-              <SimCardDownloadOutlinedIcon
-                sx={{ marginRight: "10px", fontSize: "24px" }}
-              />
-              <span>Downloads</span>
-            </Tab>
-            <Tab>
-              <HomeOutlinedIcon
-                sx={{ marginRight: "10px", fontSize: "24px" }}
-              />
-              <span>Addresses</span>
-            </Tab>
-
-            <Tab>
-              <LogoutOutlinedIcon
-                sx={{ marginRight: "10px", fontSize: "24px" }}
-              />
-              <span>Logout</span>
-            </Tab>
-          </TabList>
-
-          <TabPanel>
-            <MyProfileView />
-          </TabPanel>
-          <TabPanel>
-            <AllOrders />
-          </TabPanel>
-        </Tabs>
+        <Grid container style={{ position: "relative" }} spacing={4}>
+          <Grid item xs={12} md={3}>
+            <InnerMenu>
+              {innerMenu.map((menu, index) => (
+                <li key={index}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "innerMenu active" : "innerMenu"
+                    }
+                    to={menu.path}
+                  >
+                    <i
+                      style={{ marginRight: "10px", fontSize: "20px" }}
+                      className={menu.icon}
+                    ></i>
+                    {menu.name}
+                  </NavLink>
+                </li>
+              ))}
+            </InnerMenu>
+          </Grid>
+          <Grid item xs={12} md={9}>
+            <Outlet />
+          </Grid>
+        </Grid>
       </Container>
     </Fragment>
   );

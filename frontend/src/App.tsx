@@ -16,9 +16,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import MyProfileView from "./components/MyProfile/MyProfileView";
+import MyProfileControll from "./components/MyProfile/MyProfileControll";
+import AllOrders from "./components/MyProfile/AllOrders";
+import Download from "./components/MyProfile/Download";
 
 function App() {
   const alert = useAlert();
+
   const { loading, isAuthenticated, error } = useSelector(
     (state: any) => state.user
   );
@@ -38,14 +43,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/wishlist" element={<MyWishList />} />
-          <Route
-            path="/my-profile"
-            element={
-              <Protected isAuthenticated={isAuthenticated}>
-                <MyProfile />
-              </Protected>
-            }
-          />
+          <Route path="/profile" element={<MyProfile />}>
+            <Route index={true} element={<MyProfileView />} />
+            <Route path="update" element={<MyProfileControll />} />
+            <Route path="order" element={<AllOrders />} />
+            <Route path="download" element={<Download />} />
+          </Route>
         </Routes>
       </AnimatePresence>
     </Fragment>

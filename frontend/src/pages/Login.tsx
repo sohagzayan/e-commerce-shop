@@ -1,8 +1,8 @@
 import { Box, Button, Divider, styled, Typography } from "@mui/material";
 import { useState, useEffect, Fragment } from "react";
 import { useAlert } from "react-alert";
-import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import SocialLogin from "../components/SocialLogin/SocialLogin";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
@@ -45,6 +45,8 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const navigate = useNavigate();
 
   const loginSubmit = (e: any) => {
     e.preventDefault();
@@ -53,7 +55,10 @@ const Login = () => {
 
   useEffect(() => {
     ScrollTop();
-  }, []);
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <Fragment>
@@ -85,6 +90,7 @@ const Login = () => {
             Email Address
           </label>
           <Input
+            autoComplete="email"
             id="email"
             type="email"
             onChange={(e) => setLoginEmail(e.target.value)}
@@ -114,6 +120,7 @@ const Login = () => {
             </span>
           </Box>
           <Input
+            autoComplete="password"
             id="password"
             onChange={(e) => setLoginPassword(e.target.value)}
             value={loginPassword}

@@ -41,11 +41,10 @@ const LoginSidebar = ({
   const alert = useAlert();
 
   const loginSubmit = (e: any) => {
-    console.log("ok here me");
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
     alert.success("Login Success");
-    navigate("/");
+    setShowLoginSideBar(false);
   };
 
   return (
