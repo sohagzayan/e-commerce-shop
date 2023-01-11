@@ -92,10 +92,13 @@ const MyProfileControll = () => {
           <Box>
             <Box
               sx={{
-                display: "flex",
+                display: "inline-flex",
                 flexDirection: "column",
                 alignItems: "left",
                 justifyContent: "center",
+                backgroundColor: "#FAFAFA",
+                borderRadius: "6px",
+                padding: "10px 20px",
               }}
             >
               <img
@@ -107,8 +110,36 @@ const MyProfileControll = () => {
                 src={avatarPreview}
                 alt="profile"
               />
+              <label
+                style={{
+                  border: "1px solid #22C568",
+                  cursor: "pointer",
+                  width: "250px",
+                  padding: "6px 10px",
+                  borderRadius: "6px",
+                  textAlign: "center",
+                  position: "relative",
+                }}
+                htmlFor="imageUpload"
+              >
+                Upload
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "51%",
+                    left: "90%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <i
+                    style={{ fontSize: "18px", color: "#22C568" }}
+                    className="ri-image-edit-line"
+                  ></i>
+                </span>
+              </label>
               <input
-                style={{ marginBottom: "20px" }}
+                id="imageUpload"
+                style={{ marginBottom: "20px", display: "none" }}
                 type="file"
                 name="avatar"
                 accept="image/*"
