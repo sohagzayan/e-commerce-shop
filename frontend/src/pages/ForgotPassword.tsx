@@ -12,11 +12,18 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { NavLink } from "react-router-dom";
 import { textTransform } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../store/store";
+import {
+  forgotPassword,
+  forgotPasswordClearError,
+} from "../store/reducerSlice/forgotPasswordSlice";
+import { useAlert } from "react-alert";
 
 const ForgotPasswordWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -35,8 +42,28 @@ const ForgotPasswordWrapper = styled(Box)(({ theme }) => ({
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const dispatch = useDispatch<AppDispatch>();
+  const alert = useAlert();
+  const { error, message, loading } = useSelector(
+    (state: any) => state.forgotPassword
+  );
+  const forgotPasswordSubmit = (e: any) => {
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.set("email", email);
+    dispatch(forgotPassword(myForm));
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(forgotPasswordClearError());
+    }
+
+    if (message) {
+      alert.success(message);
+    }
+  }, [dispatch, error, alert, message]);
 
   return (
     <Fragment>
@@ -78,7 +105,7 @@ const ForgotPassword = () => {
               Forgot password
             </Typography>
 
-            <form style={{ width: "100%" }}>
+            <form onSubmit={forgotPasswordSubmit} style={{ width: "100%" }}>
               <TextField
                 sx={{ width: "100%", marginBottom: "15px" }}
                 id="standard-basic"

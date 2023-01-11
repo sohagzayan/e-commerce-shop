@@ -39,7 +39,7 @@ export default forgotPasswordSlice.reducer;
 
 // Thunk
 
-export const forgotPassword = (email: string) => async (dispatch: Dispatch) => {
+export const forgotPassword = (email: any) => async (dispatch: Dispatch) => {
   try {
     dispatch(userPasswordForgotStart());
     const url = `/api/v1/password/forgot`;
@@ -49,4 +49,8 @@ export const forgotPassword = (email: string) => async (dispatch: Dispatch) => {
   } catch (error: any) {
     dispatch(userPasswordForgotFailure(error.response.data.message));
   }
+};
+
+export const forgotPasswordClearError = () => async (dispatch: Dispatch) => {
+  dispatch(userPasswordForgotResetError(null));
 };

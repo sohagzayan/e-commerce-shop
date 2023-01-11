@@ -12,6 +12,7 @@ import getProductDetailsSlice from "./reducerSlice/getProductDetailsSlice";
 import productSearchSlice from "./reducerSlice/productSearchSlice";
 import updatePasswordSlice from "./reducerSlice/updatePasswordSlice";
 import forgotPasswordSlice from "./reducerSlice/forgotPasswordSlice";
+import resetPasswordSlice from "./reducerSlice/resetPassword";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -23,6 +24,7 @@ export const store = configureStore({
     updateProfile: userProfileUpdateSlice,
     updatePassword: updatePasswordSlice,
     forgotPassword: forgotPasswordSlice,
+    resetPassword: resetPasswordSlice,
   },
 });
 

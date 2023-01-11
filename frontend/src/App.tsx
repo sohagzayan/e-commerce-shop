@@ -22,6 +22,7 @@ import AllOrders from "./components/MyProfile/AllOrders";
 import Download from "./components/MyProfile/Download";
 import UpdatePassword from "./components/MyProfile/UpdatePassword";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const alert = useAlert();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route path="/wishlist" element={<MyWishList />} />
           <Route path="/profile" element={<MyProfile />}>
             <Route index={true} element={<MyProfileView />} />
