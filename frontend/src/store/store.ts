@@ -1,3 +1,6 @@
+import userProfileUpdateSlice, {
+  userProfileUpdate,
+} from "./reducerSlice/userProfileUpdateSlice";
 import thunk from "redux-thunk";
 import { configureStore, getDefaultMiddleware, Action } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
@@ -15,6 +18,7 @@ export const store = configureStore({
     user: authSlice,
     productDetails: getProductDetailsSlice,
     searchProduct: productSearchSlice,
+    updateProfile: userProfileUpdateSlice,
   },
 });
 

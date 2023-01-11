@@ -93,6 +93,7 @@ const Register = () => {
 
   useEffect(() => {
     ScrollTop();
+
     if (isAuthenticated) {
       navigate("/");
     }

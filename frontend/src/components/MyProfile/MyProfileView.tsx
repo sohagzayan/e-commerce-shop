@@ -1,5 +1,6 @@
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = styled(Button)(({ theme }) => ({
@@ -19,6 +20,9 @@ const EditProfile = styled(Button)(({ theme }) => ({
 
 const MyProfileView = () => {
   const navigate = useNavigate();
+  const { user, loading, error } = useSelector((state: any) => state.user);
+  const { avatar, name, email } = user;
+
   return (
     <Fragment>
       <Box>
@@ -37,7 +41,7 @@ const MyProfileView = () => {
             <img
               width={250}
               style={{ borderRadius: "10px" }}
-              src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png"
+              src={avatar?.url}
               alt="user"
             />
             <EditProfile onClick={() => navigate("/profile/update")}>
@@ -58,7 +62,7 @@ const MyProfileView = () => {
                   marginBottom: "20px",
                 }}
               >
-                Sohag Hossain Zayan
+                {name}
               </Typography>
               <Typography
                 sx={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
@@ -72,7 +76,7 @@ const MyProfileView = () => {
                   marginBottom: "20px",
                 }}
               >
-                sohag.zayan@gmail.com
+                {email}
               </Typography>
               <Typography
                 sx={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
@@ -86,7 +90,7 @@ const MyProfileView = () => {
                   marginBottom: "20px",
                 }}
               >
-                sohag.zayan@gmail.com
+                01980796731
               </Typography>
               <Typography
                 sx={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
