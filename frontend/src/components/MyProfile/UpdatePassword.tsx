@@ -17,7 +17,7 @@ import {
   userPasswordUpdate,
   userPasswordUpdateTreeReset,
   userPasswordUpdateTreeResetError,
-} from "../../store/reducerSlice/forgotPasswordSlice";
+} from "../../store/reducerSlice/updatePasswordSlice";
 import { AppDispatch } from "../../store/store";
 import { useAlert } from "react-alert";
 import Visibility from "@mui/icons-material/Visibility";
@@ -39,16 +39,7 @@ const ForgotPasswordWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const InputField = styled(TextField)(({ theme }) => ({
-  padding: "0px",
-  height: "30px",
-  width: "100%",
-  marginBottom: "30px",
-}));
-
-const Icon = styled("i")(({ theme }) => ({}));
-
-const ResetPassword = () => {
+const UpdatePassword = () => {
   const dispatch = useDispatch<AppDispatch>();
   const alert = useAlert();
   const navigate = useNavigate();
@@ -113,7 +104,7 @@ const ResetPassword = () => {
                 marginBottom: "10px",
               }}
             >
-              Forgot password
+              Update password
             </Typography>
 
             <form onSubmit={updatePasswordSubmit} style={{ width: "100%" }}>
@@ -217,4 +208,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default UpdatePassword;

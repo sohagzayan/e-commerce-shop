@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearError, login } from "../../store/reducerSlice/authSlice";
 import { useEffect, useState } from "react";
 import { AppDispatch } from "../../store/store";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 
 interface LoginSidebarProps {
@@ -141,9 +141,16 @@ const LoginSidebar = ({
             </form>
 
             <Box sx={{ padding: "0px 20px" }}>
-              <Typography sx={{ fontSize: "14px", color: "#61A24A" }}>
+              <NavLink
+                to="/forgot-password"
+                style={{
+                  fontSize: "14px",
+                  color: "#61A24A",
+                  cursor: "pointer",
+                }}
+              >
                 Forgot password?
-              </Typography>
+              </NavLink>
             </Box>
 
             <GoCreateAccount />

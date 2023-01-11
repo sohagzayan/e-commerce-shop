@@ -2,65 +2,51 @@ import { createSlice, Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const forgotPasswordSlice = createSlice({
-  name: "password",
+  name: "forgot",
   initialState: {
     loading: false,
-    isUpdated: false,
+    message: "",
     error: null,
   },
   reducers: {
-    userPasswordUpdateStart(state) {
+    userPasswordForgotStart(state) {
       state.loading = true;
       state.error = null;
     },
-    userPasswordUpdateSuccess(state, action) {
+    userPasswordForgotSuccess(state, action) {
       state.loading = false;
-      state.isUpdated = action.payload;
+      state.message = action.payload;
     },
-    userPasswordUpdateFailure(state, action) {
+    userPasswordForgotFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
-    userPasswordUpdateReset(state) {
-      state.loading = false;
-      state.isUpdated = false;
-    },
-    userPasswordUpdateResetError(state, action) {
+    userPasswordForgotResetError(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-const {
-  userPasswordUpdateFailure,
-  userPasswordUpdateReset,
-  userPasswordUpdateSuccess,
-  userPasswordUpdateStart,
-  userPasswordUpdateResetError,
+export const {
+  userPasswordForgotStart,
+  userPasswordForgotSuccess,
+  userPasswordForgotFailure,
+  userPasswordForgotResetError,
 } = forgotPasswordSlice.actions;
 
 export default forgotPasswordSlice.reducer;
-//  thunk
 
-export const userPasswordUpdate =
-  (passwords: any) => async (dispatch: Dispatch) => {
-    try {
-      dispatch(userPasswordUpdateStart());
-      const url = `/api/v1/password/update`;
-      const config = { headers: { "Content-Type": "application/json" } };
-      const { data } = await axios.put(url, passwords, config);
-      dispatch(userPasswordUpdateSuccess(data.success));
-      console.log(data);
-    } catch (error: any) {
-      dispatch(userPasswordUpdateFailure(error.response.data.message));
-    }
-  };
+// Thunk
 
-export const userPasswordUpdateTreeReset = () => async (dispatch: Dispatch) => {
-  dispatch(userPasswordUpdateReset());
+export const forgotPassword = (email: string) => async (dispatch: Dispatch) => {
+  try {
+    dispatch(userPasswordForgotStart());
+    const url = `/api/v1/password/forgot`;
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.post(url, email, config);
+    dispatch(userPasswordForgotSuccess(data.message));
+  } catch (error: any) {
+    dispatch(userPasswordForgotFailure(error.response.data.message));
+  }
 };
-export const userPasswordUpdateTreeResetError =
-  () => async (dispatch: Dispatch) => {
-    dispatch(userPasswordUpdateResetError(null));
-  };

@@ -20,7 +20,8 @@ import MyProfileView from "./components/MyProfile/MyProfileView";
 import MyProfileControll from "./components/MyProfile/MyProfileControll";
 import AllOrders from "./components/MyProfile/AllOrders";
 import Download from "./components/MyProfile/Download";
-import ResetPassword from "./components/MyProfile/ResetPassword";
+import UpdatePassword from "./components/MyProfile/UpdatePassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const alert = useAlert();
@@ -43,11 +44,12 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/wishlist" element={<MyWishList />} />
           <Route path="/profile" element={<MyProfile />}>
             <Route index={true} element={<MyProfileView />} />
             <Route path="update" element={<MyProfileControll />} />
-            <Route path="reset-password" element={<ResetPassword />} />
+            <Route path="reset-password" element={<UpdatePassword />} />
             <Route path="order" element={<AllOrders />} />
             <Route path="download" element={<Download />} />
           </Route>
