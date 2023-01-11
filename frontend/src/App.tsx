@@ -20,6 +20,7 @@ import MyProfileView from "./components/MyProfile/MyProfileView";
 import MyProfileControll from "./components/MyProfile/MyProfileControll";
 import AllOrders from "./components/MyProfile/AllOrders";
 import Download from "./components/MyProfile/Download";
+import ResetPassword from "./components/MyProfile/ResetPassword";
 
 function App() {
   const alert = useAlert();
@@ -46,6 +47,7 @@ function App() {
           <Route path="/profile" element={<MyProfile />}>
             <Route index={true} element={<MyProfileView />} />
             <Route path="update" element={<MyProfileControll />} />
+            <Route path="reset-password" element={<ResetPassword />} />
             <Route path="order" element={<AllOrders />} />
             <Route path="download" element={<Download />} />
           </Route>

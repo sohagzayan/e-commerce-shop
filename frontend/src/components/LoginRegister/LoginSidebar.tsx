@@ -2,9 +2,9 @@ import { Box, Backdrop, Button, Typography, styled } from "@mui/material";
 import GoCreateAccount from "./GoCreateAccount";
 import LoginSidebarHeader from "./LoginSidebarHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { login } from "../../store/reducerSlice/authSlice";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearError, login } from "../../store/reducerSlice/authSlice";
+import { useEffect, useState } from "react";
 import { AppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -37,15 +37,25 @@ const LoginSidebar = ({
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const { isAuthenticated, error } = useSelector((state: any) => state.user);
   const navigate = useNavigate();
   const alert = useAlert();
 
   const loginSubmit = (e: any) => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword));
-    alert.success("Login Success");
     setShowLoginSideBar(false);
+    if (isAuthenticated) {
+      alert.success("Login Success");
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearError());
+    }
+  }, [isAuthenticated, alert, error, setShowLoginSideBar, dispatch]);
 
   return (
     <AnimatePresence>

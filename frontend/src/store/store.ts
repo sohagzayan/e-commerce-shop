@@ -10,6 +10,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import authSlice from "./reducerSlice/authSlice";
 import getProductDetailsSlice from "./reducerSlice/getProductDetailsSlice";
 import productSearchSlice from "./reducerSlice/productSearchSlice";
+import forgotPasswordSlice from "./reducerSlice/forgotPasswordSlice";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
     productDetails: getProductDetailsSlice,
     searchProduct: productSearchSlice,
     updateProfile: userProfileUpdateSlice,
+    updatePassword: forgotPasswordSlice,
   },
 });
 

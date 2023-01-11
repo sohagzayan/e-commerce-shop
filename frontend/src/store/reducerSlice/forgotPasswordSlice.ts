@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, Dispatch } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const forgotPasswordSlice = createSlice({
   name: "password",
@@ -31,4 +32,35 @@ const forgotPasswordSlice = createSlice({
   },
 });
 
+const {
+  userPasswordUpdateFailure,
+  userPasswordUpdateReset,
+  userPasswordUpdateSuccess,
+  userPasswordUpdateStart,
+  userPasswordUpdateResetError,
+} = forgotPasswordSlice.actions;
+
+export default forgotPasswordSlice.reducer;
 //  thunk
+
+export const userPasswordUpdate =
+  (passwords: any) => async (dispatch: Dispatch) => {
+    try {
+      dispatch(userPasswordUpdateStart());
+      const url = `/api/v1/password/update`;
+      const config = { headers: { "Content-Type": "application/json" } };
+      const { data } = await axios.put(url, passwords, config);
+      dispatch(userPasswordUpdateSuccess(data.success));
+      console.log(data);
+    } catch (error: any) {
+      dispatch(userPasswordUpdateFailure(error.response.data.message));
+    }
+  };
+
+export const userPasswordUpdateTreeReset = () => async (dispatch: Dispatch) => {
+  dispatch(userPasswordUpdateReset());
+};
+export const userPasswordUpdateTreeResetError =
+  () => async (dispatch: Dispatch) => {
+    dispatch(userPasswordUpdateResetError(null));
+  };
