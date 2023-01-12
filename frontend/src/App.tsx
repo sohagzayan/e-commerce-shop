@@ -24,6 +24,7 @@ import UpdatePassword from "./components/MyProfile/UpdatePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import "react-loading-skeleton/dist/skeleton.css";
+import ShoppingCard from "./pages/ShoppingCard";
 
 function App() {
   const alert = useAlert();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />
+          <Route path="/card" element={<ShoppingCard />} />
           <Route path="/wishlist" element={<MyWishList />} />
           <Route path="/profile" element={<MyProfile />}>
             <Route index={true} element={<MyProfileView />} />
