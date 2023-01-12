@@ -4,8 +4,22 @@ import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { useState } from "react";
 
-const ProductDetailsController = () => {
-  const [quantity, setQuantity] = useState(1);
+interface Props {
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  handleQuantityDec: () => void;
+  handleQuantityInc: () => void;
+  addToCardHandaler: () => void;
+}
+
+const ProductDetailsController: React.FunctionComponent<Props> = (props) => {
+  const {
+    handleQuantityDec,
+    handleQuantityInc,
+    quantity,
+    setQuantity,
+    addToCardHandaler,
+  } = props;
   return (
     <>
       <Box
@@ -28,7 +42,7 @@ const ProductDetailsController = () => {
           }}
         >
           <Box
-            onClick={() => setQuantity((state) => state + 1)}
+            onClick={handleQuantityInc}
             sx={{
               width: "35px",
               height: "35px",
@@ -47,7 +61,7 @@ const ProductDetailsController = () => {
           </Box>
           <Typography sx={{ fontSize: "20px" }}>{quantity}</Typography>
           <Box
-            onClick={() => setQuantity((state) => state - 1)}
+            onClick={handleQuantityDec}
             sx={{
               width: "35px",
               height: "35px",
@@ -68,6 +82,7 @@ const ProductDetailsController = () => {
         </Box>
         <Box sx={{ width: "100%" }}>
           <Button
+            onClick={addToCardHandaler}
             sx={{
               backgroundColor: "rgb(15,23,42,1)",
               boxShadow:

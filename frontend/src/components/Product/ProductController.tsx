@@ -52,6 +52,7 @@ const ProductController = ({ seIsOpenDetails }: ControllerProps) => {
         Add to bag
       </Button>
       <Button
+        onClick={() => seIsOpenDetails(true)}
         sx={{
           display: "flex",
           alignItems: "center",

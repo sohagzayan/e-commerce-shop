@@ -33,6 +33,7 @@ import { ScrollTop } from "../sharedFunction/ScrollTop";
 import ProductAccordion from "../components/ProductAccordion/ProductAccordion";
 import { getProductDetails } from "../store/reducerSlice/getProductDetailsSlice";
 import { AppDispatch } from "../store/store";
+import { addItemsToCard } from "../store/reducerSlice/cardSlice";
 
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
@@ -53,6 +54,7 @@ const ProductDetails = () => {
   const ProductImage = [product1, product2, product3];
   const [ratingValue, setRatingValue] = useState(0);
   const [activeImage, setActiveImage] = useState(ProductImage[0]);
+  const [quantity, setQuantity] = useState(1);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch<AppDispatch>();
@@ -60,7 +62,7 @@ const ProductDetails = () => {
   const { loading, error, data } = useSelector(
     (state: any) => state.productDetails
   );
-  const { name } = data;
+  // const { name } = data;
 
   const option = {
     color: "rgba(20, 20, 20,0.1)",
@@ -72,6 +74,18 @@ const ProductDetails = () => {
     halfIcon: <StarHalfRoundedIcon />,
     filledIcon: <StarRateRoundedIcon />,
     value: 3,
+  };
+
+  const handleQuantityInc = () => {
+    if (data.stock <= quantity) return;
+    setQuantity((state) => state + 1);
+  };
+  const handleQuantityDec = () => {
+    setQuantity((state) => state - 1);
+  };
+  const addToCardHandaler = () => {
+    dispatch(addItemsToCard(id, quantity));
+    alert.success("Item added to card");
   };
 
   useEffect(() => {
@@ -142,7 +156,7 @@ const ProductDetails = () => {
                               }}
                             >
                               Heavy Weight Shoes
-                              {name}
+                              {data?.name}
                             </Typography>
                             <Box
                               sx={{
@@ -162,8 +176,7 @@ const ProductDetails = () => {
                                     padding: "1px 10px",
                                   }}
                                 >
-                                  $112.00
-                                  {/* ${product?.price} */}
+                                  ${data?.price}
                                 </Typography>
                               </Box>
 
@@ -201,6 +214,17 @@ const ProductDetails = () => {
                                 </Typography>
                               </Box>
                             </Box>
+                            <Typography
+                              sx={{
+                                color: "#22C55E",
+                                borderRadius: "6px",
+                                fontWeight: "500",
+                                fontSize: "14px",
+                                marginTop: "10px",
+                              }}
+                            >
+                              InStock: {data.stock}
+                            </Typography>
 
                             <Typography
                               sx={{ fontSize: "17px", color: "#333" }}
@@ -209,7 +233,15 @@ const ProductDetails = () => {
                             </Typography>
                             <ProductColorPicker />
                             <ProductSizePicker />
-                            <ProductDetailsController />
+                            <ProductDetailsController
+                              {...{
+                                handleQuantityDec,
+                                handleQuantityInc,
+                                quantity,
+                                setQuantity,
+                                addToCardHandaler,
+                              }}
+                            />
                             <ProductAccordion />
                           </Box>
                         </Grid>

@@ -64,6 +64,14 @@ const ProductDetailsView = ({
   const [activeImage, setActiveImage] = useState(ProductImage[0]);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
+  const [quantity, setQuantity] = useState(1);
+  const handleQuantityInc = () => {
+    setQuantity((state) => state + 1);
+  };
+  const handleQuantityDec = () => {
+    setQuantity((state) => state - 1);
+  };
+  const addToCardHandaler = () => {};
 
   return (
     <Backdrop open={isOpenDetails} sx={{ zIndex: "99" }}>
@@ -226,7 +234,15 @@ const ProductDetailsView = ({
                       </Typography>
                       <ProductColorPicker />
                       <ProductSizePicker />
-                      <ProductDetailsController />
+                      <ProductDetailsController
+                        {...{
+                          quantity,
+                          setQuantity,
+                          handleQuantityDec,
+                          handleQuantityInc,
+                          addToCardHandaler,
+                        }}
+                      />
                     </Box>
                   </Grid>
                 </Grid>

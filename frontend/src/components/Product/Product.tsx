@@ -21,6 +21,7 @@ import { ProductType } from "../Types/Types";
 import ProductSizeController from "./ProductSizeController";
 import { getRelativeTime } from "../../sharedFunction/getRelativeTime";
 import moment from "moment";
+import ProductDetailsView from "./ProductDetailsView";
 
 interface ProductProps {
   data: ProductType;

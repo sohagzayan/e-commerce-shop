@@ -13,6 +13,7 @@ import productSearchSlice from "./reducerSlice/productSearchSlice";
 import updatePasswordSlice from "./reducerSlice/updatePasswordSlice";
 import forgotPasswordSlice from "./reducerSlice/forgotPasswordSlice";
 import resetPasswordSlice from "./reducerSlice/resetPassword";
+import cardSlice from "./reducerSlice/cardSlice";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -25,6 +26,7 @@ export const store = configureStore({
     updatePassword: updatePasswordSlice,
     forgotPassword: forgotPasswordSlice,
     resetPassword: resetPasswordSlice,
+    cardItems: cardSlice,
   },
 });
 

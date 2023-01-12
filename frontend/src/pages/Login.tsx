@@ -113,11 +113,11 @@ const Login = () => {
             >
               Password
             </label>
-            <span
+            <NavLink to="/forgot-password"
               style={{ fontSize: "14px", color: "#52A755", cursor: "pointer" }}
             >
               Forgot password
-            </span>
+            </NavLink>
           </Box>
           <Input
             autoComplete="password"

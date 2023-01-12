@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { IProductData } from "../../util/Product";
 import GradeIcon from "@mui/icons-material/Grade";
 import AddIcon from "@mui/icons-material/Add";
@@ -14,103 +14,83 @@ const CardProduct = ({ product }: CardProductProps) => {
   const [quentity, setQuentity] = useState(10);
   return (
     <Box sx={{ marginBottom: "25px", marginTop: "25px" }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <Box sx={{ width: "100%" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box sx={{ position: "relative" }}>
             <img width="100px" src={product.image1} alt="product" />
-            <Box
-              sx={{
-                position: "absolute",
-                left: "-10px",
-                top: "-10px",
-                backgroundColor: "#f6f7fb",
-                borderRadius: "50%",
-                border: "3px solid #fff",
-                width: "30px",
-                height: "30px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <CloseIcon sx={{ fontSize: "17px" }} />
-            </Box>
           </Box>
-          <Box sx={{ marginLeft: "30px" }}>
+          <Box sx={{ marginLeft: "30px", width: "100%" }}>
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                marginBottom: "10px",
+                justifyContent: "space-between",
               }}
             >
-              <GradeIcon
-                sx={{ color: "#FFDC60", fontSize: "16px", marginRight: "1px" }}
-              />
-              <GradeIcon
-                sx={{ color: "#FFDC60", fontSize: "16px", marginRight: "1px" }}
-              />
-              <GradeIcon
-                sx={{ color: "#FFDC60", fontSize: "16px", marginRight: "1px" }}
-              />
-              <GradeIcon
-                sx={{ color: "#FFDC60", fontSize: "16px", marginRight: "1px" }}
-              />
-              <GradeIcon
-                sx={{ color: "#FFDC60", fontSize: "16px", marginRight: "1px" }}
-              />
+              <Typography
+                sx={{
+                  marginBottom: "5px",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  color: "#6E7886",
+                }}
+              >
+                {product.name}
+              </Typography>
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    border: "2px solid #4CD07D",
+                    borderRadius: "6px",
+                    padding: "2px 15px",
+                    color: "#4CD07D",
+                  }}
+                >
+                  ${product.price}
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <i
+                style={{
+                  color: "#FFDC60",
+                  fontSize: "16px",
+                  marginRight: "1px",
+                }}
+                className="ri-star-fill"
+              ></i>
               <Typography sx={{ fontSize: "13px" }}>(64)</Typography>
             </Box>
-            <Typography
-              sx={{ marginBottom: "10px", fontSize: "16px", fontWeight: "600" }}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              {product.name}
-            </Typography>
-            <Typography sx={{ fontSize: "18px" }}>${product.price}</Typography>
-          </Box>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Box
-            onClick={() => setQuentity((state) => state - 1)}
-            sx={{
-              backgroundColor: "#f6f7fb",
-              borderRadius: "50%",
-              border: "3px solid #fff",
-              width: "30px",
-              height: "30px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <RemoveIcon sx={{ cursor: "pointer", fontSize: "17px" }} />
-          </Box>
-          <Typography
-            variant="h6"
-            sx={{ marginX: "5px", fontSize: "15px", fontWeight: "600" }}
-          >
-            {quentity}
-          </Typography>
-          <Box
-            onClick={() => setQuentity((state) => state + 1)}
-            sx={{
-              backgroundColor: "#f6f7fb",
-              borderRadius: "50%",
-              border: "3px solid #fff",
-              width: "30px",
-              height: "30px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <AddIcon sx={{ cursor: "pointer", fontSize: "17px" }} />
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "#6E7886",
+                }}
+              >
+                Qty 1
+              </Typography>
+              <Box>
+                <Button
+                  sx={{
+                    textTransform: "capitalize",
+                    color: "#1F92CD",
+                    fontSize: "15px",
+                  }}
+                >
+                  remove
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>

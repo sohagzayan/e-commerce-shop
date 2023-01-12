@@ -23,6 +23,7 @@ import Download from "./components/MyProfile/Download";
 import UpdatePassword from "./components/MyProfile/UpdatePassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const alert = useAlert();

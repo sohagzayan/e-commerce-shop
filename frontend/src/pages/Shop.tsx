@@ -24,6 +24,7 @@ import {
   FilteringMenuAnimation,
   FilteringSearchBar,
 } from "../framerMotion/framerMotion";
+import ProductDetailsView from "../components/Product/ProductDetailsView";
 
 const Paragraph = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
@@ -241,6 +242,12 @@ const Shop = () => {
               </div>
             )}
           </Container>
+          <ProductDetailsView
+            {...{
+              seIsOpenDetails,
+              isOpenDetails,
+            }}
+          />
         </Box>
       </Box>
     </Fragment>

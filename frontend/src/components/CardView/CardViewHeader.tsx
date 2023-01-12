@@ -11,33 +11,28 @@ const CardViewHeader = ({ setShowCardView, showCardView }: CardHeaderProps) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "space-between",
         alignItems: "center",
-        marginTop: "30px",
-        paddingY: "20px",
-        borderBottom: "2px solid #f6f7fb",
+        marginTop: "20px",
+        padding: "0px 40px",
       }}
     >
-      <Box>
-        <Typography variant="h5" sx={{ fontWeight: "600" }}>
-          Cart review
-        </Typography>
-      </Box>
       <Box
-        onClick={() => setShowCardView(false)}
         sx={{
-          backgroundColor: "#f6f7fb",
-          width: "40px",
-          height: "40px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          borderRadius: "50%",
-          cursor: "pointer",
+          justifyContent: "space-between",
         }}
       >
-        <CloseIcon />
+        <Typography variant="h5" sx={{ fontWeight: "600", color: "#1E293B" }}>
+          Shopping cart
+        </Typography>
+        <Typography
+          onClick={() => setShowCardView(false)}
+          variant="h5"
+          sx={{ fontWeight: "600", color: "#1E293B", cursor: "pointer" }}
+        >
+          <i className="ri-close-fill"></i>
+        </Typography>
       </Box>
     </Box>
   );
