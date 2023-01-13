@@ -7,7 +7,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface CardProductProps {
-  product: IProductData;
+  product: any;
 }
 
 const CardProduct = ({ product }: CardProductProps) => {

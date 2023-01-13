@@ -10,13 +10,16 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { IProductData } from "../../util/Product";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 interface Props {
-  data: IProductData;
+  item: any;
+  increaseQuantity: (id: string, quantity: number, stock: number) => void;
+  decreaseQuantity: (id: string, quantity: number) => void;
+  deleteCardItem: (id: string) => void;
 }
 
 const QyButton = styled("button")(({ theme }) => ({
@@ -33,8 +36,8 @@ const QyButton = styled("button")(({ theme }) => ({
 }));
 
 const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
-  const { name, image1, price } = props.data;
-  const [quantity, setQuantity] = useState(1);
+  const { name, product, image, price, stock, quantity } = props.item;
+  const { increaseQuantity, decreaseQuantity, deleteCardItem } = props;
   const matches = useMediaQuery("(min-width:790px)");
 
   return (
@@ -47,8 +50,27 @@ const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
           paddingBottom: "25px",
         }}
       >
-        <Box sx={{ marginRight: "20px" }}>
-          <img height={150} src={image1} alt="po" />
+        <Box sx={{ marginRight: "20px", position: "relative" }}>
+          <img height={150} src={image} alt="po" />
+          <span
+            onClick={() => deleteCardItem(product)}
+            style={{
+              position: "absolute",
+              top: "-10px",
+              left: "-10px",
+              cursor: "pointer",
+              backgroundColor: "#fff",
+              color: "#22C55E",
+              width: "30px",
+              height: "30px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <i style={{ fontSize: "1.5rem" }} className="ri-close-fill"></i>
+          </span>
         </Box>
         <Box
           sx={{
@@ -105,13 +127,15 @@ const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
             </Grid>
             <Grid item xs={3} sx={{ display: matches ? "block" : "none" }}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <QyButton>
+                <QyButton
+                  onClick={() => increaseQuantity(product, quantity, stock)}
+                >
                   <AddRoundedIcon sx={{ fontSize: "16px" }} />
                 </QyButton>
                 <Typography sx={{ fontSize: "20px", margin: "0 10px" }}>
                   {quantity}
                 </Typography>
-                <QyButton>
+                <QyButton onClick={() => decreaseQuantity(product, quantity)}>
                   <RemoveRoundedIcon sx={{ fontSize: "16px" }} />
                 </QyButton>
               </Box>
@@ -142,8 +166,6 @@ const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
             <FormControl sx={{ minWidth: 70 }}>
               <Select
                 sx={{ height: "30px" }}
-                value={quantity}
-                onChange={() => setQuantity((state) => state + 1)}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
               >
@@ -164,7 +186,13 @@ const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
               ${price}
             </Typography>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <Typography
               sx={{
                 display: "inline-flex",
@@ -178,6 +206,19 @@ const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
             >
               <i style={{ marginRight: "5px" }} className="ri-check-fill"></i>
               In Stock
+            </Typography>
+            <Typography
+              sx={{
+                display: "inline-flex",
+                alignItem: "center",
+                color: "#0F172A",
+                border: "1px solid #e5e7eb",
+                padding: "4px 15px",
+                borderRadius: "20px",
+                fontSize: "13px",
+              }}
+            >
+              SubTotal: ${quantity * price}
             </Typography>
           </Box>
         </Box>

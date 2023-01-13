@@ -6,13 +6,46 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import ShoppingCardProduct from "../components/ShoppingCards/ShoppingCardProduct";
+import {
+  addItemsToCard,
+  removeItemsFormCard,
+} from "../store/reducerSlice/cardSlice";
+import { AppDispatch } from "../store/store";
 import { productMenu } from "../util/Product";
 
 const ShoppingCard = () => {
   const matches = useMediaQuery("(min-width:1051px)");
+  const dispatch = useDispatch<AppDispatch>();
+  const { cardItems } = useSelector((state: any) => state.card);
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = (id: string, quantity: number, stock: number) => {
+    console.log("have a nice day");
+    const newQty = quantity + 1;
+    if (stock <= quantity) {
+      return;
+    }
+    dispatch(addItemsToCard(id, newQty));
+  };
+
+  const decreaseQuantity = (id: string, quantity: number) => {
+    console.log("nagitive");
+    const newQty = quantity - 1;
+    if (1 >= quantity) {
+      return;
+    }
+    dispatch(addItemsToCard(id, newQty));
+  };
+
+  const deleteCardItem = (id: string) => {
+    dispatch(removeItemsFormCard(id));
+  };
+
+  console.log(cardItems);
   return (
     <Fragment>
       <HeaderTwo />
@@ -43,9 +76,18 @@ const ShoppingCard = () => {
               xs={matches ? 7 : 12}
               sx={{ borderRight: "1px solid #e5e7eb", paddingRight: "15px" }}
             >
-              {productMenu.map((data) => (
-                <ShoppingCardProduct data={data} />
-              ))}
+              {cardItems &&
+                cardItems?.map((item: any, index: number) => (
+                  <ShoppingCardProduct
+                    key={index}
+                    {...{
+                      item,
+                      increaseQuantity,
+                      decreaseQuantity,
+                      deleteCardItem,
+                    }}
+                  />
+                ))}
             </Grid>
             <Grid item xs={matches ? 5 : 12} sx={{ position: "relative" }}>
               <Box
@@ -94,7 +136,12 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      $249.00
+                      $
+                      {cardItems.reduce(
+                        (acc: any, item: any) =>
+                          acc + item.quantity * item.price,
+                        0
+                      )}
                     </Typography>
                   </Box>
                   <Box

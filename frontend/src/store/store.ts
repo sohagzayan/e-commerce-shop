@@ -26,7 +26,7 @@ export const store = configureStore({
     updatePassword: updatePasswordSlice,
     forgotPassword: forgotPasswordSlice,
     resetPassword: resetPasswordSlice,
-    cardItems: cardSlice,
+    card: cardSlice,
   },
 });
 

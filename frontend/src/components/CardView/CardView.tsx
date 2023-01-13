@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CardViewSummary from "./CardViewSummary";
 import useClickOutside from "../../hocks/OutSideClickCloseMenu";
 import { scrollBlock } from "../../sharedFunction/ScrollBlock";
+import { useSelector } from "react-redux";
 
 interface CardViewProps {
   showCardView: boolean;
@@ -17,6 +18,7 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const cardViewWidth = matches ? "100%" : "500px";
+  const { cardItems } = useSelector((state: any) => state.card);
 
   useEffect(() => {
     scrollBlock(showCardView);
@@ -45,9 +47,10 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
           setShowCardView={setShowCardView}
         />
         <Box sx={{ padding: "0px 40px" }}>
-          {productMenu.map((product, index) => (
-            <CardProduct key={index} product={product} />
-          ))}
+          {cardItems &&
+            cardItems.map((product: any, index: number) => (
+              <CardProduct key={index} product={product} />
+            ))}
         </Box>
         <CardViewSummary />
       </motion.div>

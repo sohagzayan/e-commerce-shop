@@ -28,10 +28,15 @@ const cardSlice = createSlice({
         state.cardItems.push(item);
       }
     },
+    removeCardItem(state, action) {
+      state.cardItems = state.cardItems.filter(
+        (i: any) => i.product !== action.payload
+      );
+    },
   },
 });
 
-export const { addToCard } = cardSlice.actions;
+export const { addToCard, removeCardItem } = cardSlice.actions;
 export default cardSlice.reducer;
 
 // Thunk
@@ -49,6 +54,17 @@ export const addItemsToCard =
         quantity: quantity,
       })
     );
+    localStorage.setItem(
+      "cardItems",
+      JSON.stringify(getState().card.cardItems)
+    );
+  };
 
-    localStorage.setItem("cardItems", JSON.stringify(getState().cardItems));
+export const removeItemsFormCard =
+  (id: any) => async (dispatch: Dispatch, getState: any) => {
+    dispatch(removeCardItem(id));
+    localStorage.setItem(
+      "cardItems",
+      JSON.stringify(getState().card.cardItems)
+    );
   };
