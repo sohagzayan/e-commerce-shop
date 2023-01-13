@@ -7,7 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import CardViewSummary from "./CardViewSummary";
 import useClickOutside from "../../hocks/OutSideClickCloseMenu";
 import { scrollBlock } from "../../sharedFunction/ScrollBlock";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { removeItemsFormCard } from "../../store/reducerSlice/cardSlice";
 
 interface CardViewProps {
   showCardView: boolean;
@@ -16,6 +18,7 @@ interface CardViewProps {
 
 const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
   const theme = useTheme();
+  const dispatch = useDispatch<AppDispatch>();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const cardViewWidth = matches ? "100%" : "500px";
   const { cardItems } = useSelector((state: any) => state.card);
@@ -23,6 +26,10 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
   useEffect(() => {
     scrollBlock(showCardView);
   }, [showCardView]);
+
+  const deleteCardItem = (id: string) => {
+    dispatch(removeItemsFormCard(id));
+  };
 
   return (
     <AnimatePresence>
@@ -46,13 +53,17 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
           showCardView={showCardView}
           setShowCardView={setShowCardView}
         />
-        <Box sx={{ padding: "0px 40px" }}>
+        <Box sx={{ padding: "0px 40px", minHeight: "100%" }}>
           {cardItems &&
             cardItems.map((product: any, index: number) => (
-              <CardProduct key={index} product={product} />
+              <CardProduct
+                key={index}
+                product={product}
+                deleteCardItem={deleteCardItem}
+              />
             ))}
         </Box>
-        <CardViewSummary />
+        <CardViewSummary cardItems={cardItems} />
       </motion.div>
     </AnimatePresence>
   );

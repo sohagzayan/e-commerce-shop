@@ -5,19 +5,25 @@ import GradeIcon from "@mui/icons-material/Grade";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 
 interface CardProductProps {
   product: any;
+  deleteCardItem: (id: string) => void;
 }
 
-const CardProduct = ({ product }: CardProductProps) => {
+const CardProduct = ({ product, deleteCardItem }: CardProductProps) => {
   const [quentity, setQuentity] = useState(10);
+  const navigate = useNavigate();
   return (
     <Box sx={{ marginBottom: "25px", marginTop: "25px" }}>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Box sx={{ position: "relative" }}>
-            <img width="100px" src={product.image1} alt="product" />
+          <Box
+            onClick={() => navigate(`/details/${product.product}`)}
+            sx={{ position: "relative", cursor: "pointer" }}
+          >
+            <img width="100px" src={product.image} alt="product" />
           </Box>
           <Box sx={{ marginLeft: "30px", width: "100%" }}>
             <Box
@@ -77,10 +83,11 @@ const CardProduct = ({ product }: CardProductProps) => {
                   color: "#6E7886",
                 }}
               >
-                Qty 1
+                Qty {product.quantity}
               </Typography>
               <Box>
                 <Button
+                  onClick={() => deleteCardItem(product.product)}
                   sx={{
                     textTransform: "capitalize",
                     color: "#1F92CD",

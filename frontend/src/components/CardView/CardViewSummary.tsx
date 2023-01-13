@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const CardViewSummary = () => {
+const CardViewSummary = ({ cardItems }: any) => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -29,7 +31,11 @@ const CardViewSummary = () => {
         <Typography
           sx={{ fontSize: "16px", fontWeight: "600", color: "#1E293B" }}
         >
-          $610.00
+          $
+          {cardItems.reduce(
+            (acc: any, item: any) => acc + item.quantity * item.price,
+            0
+          )}
         </Typography>
       </Box>
       <Typography
@@ -46,6 +52,7 @@ const CardViewSummary = () => {
         }}
       >
         <button
+          onClick={() => navigate("/card")}
           style={{
             backgroundColor: "#fff",
             border: "1px solid rgb(226,232 ,240,1)",
