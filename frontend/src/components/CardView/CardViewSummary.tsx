@@ -69,6 +69,7 @@ const CardViewSummary = ({ cardItems }: any) => {
           View Card
         </button>
         <button
+          onClick={() => navigate("/shipping")}
           style={{
             backgroundColor: "#1E293B",
             color: "#fff",

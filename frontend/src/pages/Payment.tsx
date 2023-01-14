@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Fragment, useEffect, useRef, useState } from "react";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import {
@@ -130,7 +130,9 @@ const Payment = () => {
     <Fragment>
       <HeaderTwo />
       <Fragment>
-        <MetaData title="Payment" />
+        <Box sx={{ marginTop: "20px" }}>
+          <MetaData title="Payment" />
+        </Box>
         <CheckoutSteps activeStep={2} />
         <div className="paymentContainer">
           <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
@@ -147,13 +149,50 @@ const Payment = () => {
               <VpnKeyIcon />
               <CardCvcElement className="paymentInput" />
             </div>
-
             <input
               type="submit"
               value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
               ref={payBtn}
               className="paymentFormBtn"
             />
+            <Box
+              className="extraControll"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingX: "50px",
+              }}
+            >
+              <Button
+                onClick={() => navigate("/card")}
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: "1rem",
+                  color: "rgb(15,23,42,1)",
+                  fontWeight: "600",
+                  ":hover": {
+                    color: "rgb(15,23,42,1)",
+                  },
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => navigate("/confirm-order")}
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: "1rem",
+                  color: "rgb(15,23,42,1)",
+                  fontWeight: "600",
+                  ":hover": {
+                    color: "rgb(15,23,42,1)",
+                  },
+                }}
+              >
+                Back
+              </Button>
+            </Box>
           </form>
         </div>
       </Fragment>

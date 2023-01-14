@@ -1,11 +1,12 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/checkout/CheckoutSteps";
 import ConformOrderProduct from "../components/checkout/ConformOrderProduct";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import ShoppingCardProduct from "../components/ShoppingCards/ShoppingCardProduct";
+import { ScrollTop } from "../sharedFunction/ScrollTop";
 import {
   addItemsToCard,
   removeItemsFormCard,
@@ -27,7 +28,6 @@ const ConfirmOrder = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const increaseQuantity = (id: string, quantity: number, stock: number) => {
-    console.log("have a nice day");
     const newQty = quantity + 1;
     if (stock <= quantity) {
       return;
@@ -36,7 +36,6 @@ const ConfirmOrder = () => {
   };
 
   const decreaseQuantity = (id: string, quantity: number) => {
-    console.log("nagitive");
     const newQty = quantity - 1;
     if (1 >= quantity) {
       return;
@@ -59,6 +58,10 @@ const ConfirmOrder = () => {
     navigate("/process-payment");
   };
 
+  useEffect(() => {
+    ScrollTop();
+  }, []);
+
   return (
     <Fragment>
       <HeaderTwo />
@@ -69,7 +72,8 @@ const ConfirmOrder = () => {
         <Grid container sx={{ marginTop: "50px" }}>
           <Grid
             item
-            xs={8}
+            xs={12}
+            md={8}
             sx={{ borderRight: "1px solid #E7E9ED", paddingRight: "20px" }}
           >
             <Typography sx={{ fontSize: "1.3rem" }}>Shipping Info</Typography>
@@ -158,7 +162,12 @@ const ConfirmOrder = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={4} sx={{ padding: "0 20px", position: "relative" }}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{ padding: "0 20px", position: "relative" }}
+          >
             <Box sx={{ position: "sticky", top: "100px", left: "0px" }}>
               <label
                 style={{ marginBottom: "5px", display: "inline-block" }}
@@ -219,7 +228,7 @@ const ConfirmOrder = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    $5.00
+                    ${subtotal}
                   </Typography>
                 </Box>
                 <Box
@@ -237,7 +246,7 @@ const ConfirmOrder = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    Shipping estimate
+                    Shipping Charge
                   </Typography>
                   <Typography
                     sx={{
@@ -247,7 +256,7 @@ const ConfirmOrder = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    $5.00
+                    ${shippingCharges}
                   </Typography>
                 </Box>
                 <Box
@@ -275,7 +284,7 @@ const ConfirmOrder = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    $5.00
+                    ${tax}
                   </Typography>
                 </Box>
                 <Box
@@ -303,7 +312,7 @@ const ConfirmOrder = () => {
                       marginBottom: "10px",
                     }}
                   >
-                    $276.00
+                    ${totalPrice}
                   </Typography>
                 </Box>
                 <Button
@@ -316,7 +325,8 @@ const ConfirmOrder = () => {
                     padding: "10px 0",
                     fontSize: "1rem",
                     borderRadius: "30px",
-                    boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
                     marginTop: "10px",
                     ":hover": {
                       backgroundColor: "#1E293B",

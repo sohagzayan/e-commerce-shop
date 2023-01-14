@@ -9,7 +9,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import { Country, State } from "country-state-city";
 import CheckoutSteps from "../components/checkout/CheckoutSteps";
@@ -18,6 +18,7 @@ import { useAlert } from "react-alert";
 import { AppDispatch } from "../store/store";
 import { saveOrderShippingInfo } from "../store/reducerSlice/cardSlice";
 import { useNavigate } from "react-router-dom";
+import { ScrollTop } from "../sharedFunction/ScrollTop";
 
 const InputField = styled("input")(({ theme }) => ({
   border: "1px solid rgba(229,231,235,1)",
@@ -42,6 +43,12 @@ const ShippingWrapper = styled(Box)(({ theme }) => ({
   padding: "10px 10px",
   width: "650px",
   margin: "20px auto",
+  [theme.breakpoints.down("md")]: {
+    width: "90%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "98%",
+  },
 }));
 
 const ShippingInfo = () => {
@@ -51,6 +58,8 @@ const ShippingInfo = () => {
   const { shippingInfo } = useSelector((state: any) => state.card);
   console.log("shippingInfo", shippingInfo);
   const alert = useAlert();
+  const [fastName, setFastName] = useState(shippingInfo.fastName);
+  const [lastName, setLastName] = useState(shippingInfo.lastName);
   const [address, setAddress] = useState(shippingInfo.address);
   const [city, setCity] = useState(shippingInfo.city);
   const [state, setState] = useState(shippingInfo.state);
@@ -75,10 +84,16 @@ const ShippingInfo = () => {
         pinCode,
         phoneNo,
         addressType,
+        fastName,
+        lastName,
       })
     );
     navigate("/confirm-order");
   };
+
+  useEffect(() => {
+    ScrollTop();
+  }, []);
 
   return (
     <Fragment>
@@ -86,54 +101,119 @@ const ShippingInfo = () => {
       <Box sx={{ marginTop: "20px" }}>
         <CheckoutSteps activeStep={0} />
       </Box>
-      <Box>
+      <Box className="controlledOverfollow">
         <Container maxWidth="lg">
           <ShippingWrapper>
             <form
               onSubmit={shippingSubmit}
               style={{ width: "100%", padding: "0 15px" }}
             >
-              <Box sx={{ width: "100%", marginBottom: "10px" }}>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <InputField id="name" />
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    marginBottom: "10px",
+                    paddingRight: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="name">Fast Name</InputLabel>
+                  <InputField
+                    required
+                    value={fastName}
+                    onChange={(e) => setFastName(e.target.value)}
+                    id="address"
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    width: "100%",
+                    marginBottom: "10px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="name">Last Name</InputLabel>
+                  <InputField
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    id="address"
+                  />
+                </Box>
               </Box>
-              <Box sx={{ width: "100%", marginBottom: "10px" }}>
-                <InputLabel htmlFor="address">Address</InputLabel>
-                <InputField
-                  required
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  id="address"
-                />
+
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    marginBottom: "10px",
+                    paddingRight: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="address">Address</InputLabel>
+                  <InputField
+                    required
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    id="address"
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    width: "50%",
+                    marginBottom: "10px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="apt">Phone Number</InputLabel>
+                  <InputField
+                    id="apt"
+                    required
+                    value={phoneNo}
+                    onChange={(e) => setPhoneNo(e.target.value)}
+                  />
+                </Box>
               </Box>
-              <Box sx={{ width: "100%", marginBottom: "10px" }}>
-                <InputLabel htmlFor="apt">City</InputLabel>
-                <InputField
-                  id="apt"
-                  required
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                />
+
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "100%",
+                    marginBottom: "10px",
+                    paddingRight: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="apt">City</InputLabel>
+                  <InputField
+                    id="apt"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    width: "50%",
+                    marginBottom: "10px",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <InputLabel htmlFor="apt">Pin Code</InputLabel>
+                  <InputField
+                    id="apt"
+                    required
+                    value={pinCode}
+                    onChange={(e) => setPinCode(e.target.value)}
+                  />
+                </Box>
               </Box>
-              <Box sx={{ width: "100%", marginBottom: "10px" }}>
-                <InputLabel htmlFor="apt">Pin Code</InputLabel>
-                <InputField
-                  id="apt"
-                  required
-                  value={pinCode}
-                  onChange={(e) => setPinCode(e.target.value)}
-                />
-              </Box>
+
               <Box sx={{ width: "100%", marginBottom: "15px" }}>
-                <InputLabel htmlFor="apt">Phone Number</InputLabel>
-                <InputField
-                  id="apt"
-                  required
-                  value={phoneNo}
-                  onChange={(e) => setPhoneNo(e.target.value)}
-                />
-              </Box>
-              <Box sx={{ width: "100%", marginBottom: "10px" }}>
                 <select
                   required
                   style={{
@@ -189,7 +269,13 @@ const ShippingInfo = () => {
                   }}
                 >
                   <select
-                    style={{ height: "30px" }}
+                    style={{
+                      height: "45px",
+                      borderRadius: "10px",
+                      width: "100%",
+                      border: "1px solid rgba(229,231,235,1)",
+                      outline: "#DCF2FE",
+                    }}
                     className="addressType"
                     value={addressType}
                     onChange={(e) => setAddressType(e.target.value)}
@@ -201,21 +287,46 @@ const ShippingInfo = () => {
                   </select>
                 </Box>
               </Box>
-              <Button
-                type="submit"
-                sx={{
-                  textTransform: "capitalize",
-                  backgroundColor: "rgb(15,23,42,1)",
-                  padding: "10px 100px",
-                  color: "#fff",
-                  fontWeight: "600",
-                  ":hover": {
+              <Box>
+                <Button
+                  type="submit"
+                  sx={{
+                    textTransform: "capitalize",
                     backgroundColor: "rgb(15,23,42,1)",
-                  },
-                }}
-              >
-                Continue
-              </Button>
+                    padding: "15px 50px",
+                    fontSize: ".9rem",
+                    color: "#fff",
+                    fontWeight: "600",
+                    borderRadius: "30px",
+                    marginTop: "10px",
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+                    ":hover": {
+                      backgroundColor: "rgb(15,23,42,1)",
+                    },
+                  }}
+                >
+                  Save and next to Payment
+                </Button>
+                <Button
+                  onClick={() => navigate("/card")}
+                  sx={{
+                    textTransform: "capitalize",
+                    padding: "15px 50px",
+                    fontSize: "1rem",
+                    color: "rgb(15,23,42,1)",
+                    fontWeight: "600",
+
+                    marginTop: "10px",
+
+                    ":hover": {
+                      color: "rgb(15,23,42,1)",
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+              </Box>
             </form>
           </ShippingWrapper>
         </Container>

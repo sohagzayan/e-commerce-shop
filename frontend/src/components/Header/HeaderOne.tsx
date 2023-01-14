@@ -39,8 +39,6 @@ const BottomHeader = () => {
 
   const { isAuthenticated, user } = useSelector((state: any) => state.user);
 
-  console.log("out user", user);
-
   const menuAnimation = {
     hidden: {
       opacity: 0,

@@ -107,7 +107,9 @@ const Shop = () => {
   return (
     <Fragment>
       <HeaderTwo />
-      <Box>
+      <motion.div
+      // style={{ overflow: "hidden" }}
+      >
         <Box>
           <Container maxWidth="lg">
             <Box
@@ -249,7 +251,7 @@ const Shop = () => {
             }}
           />
         </Box>
-      </Box>
+      </motion.div>
     </Fragment>
   );
 };

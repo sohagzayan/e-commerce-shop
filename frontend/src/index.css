@@ -466,3 +466,6 @@ select {
 }
 
 /* addressType */
+.controlledOverfollow {
+  overflow-x: hidden !important;
+}

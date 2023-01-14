@@ -41,7 +41,7 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
         className="cardItemView"
         animate={{
           width: showCardView ? cardViewWidth : "0px",
-          x: showCardView ? 0 : 10,
+          // x: showCardView ? 0 : 10,
           transition: {
             duration: 0.5,
             type: "spring",

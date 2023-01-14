@@ -24,8 +24,11 @@ const ShoppingCard = () => {
   const { cardItems } = useSelector((state: any) => state.card);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+  const subtotal = cardItems.reduce(
+    (acc: any, item: any) => acc + item.quantity * item.price,
+    0
+  );
   const increaseQuantity = (id: string, quantity: number, stock: number) => {
-    console.log("have a nice day");
     const newQty = quantity + 1;
     if (stock <= quantity) {
       return;
@@ -34,7 +37,6 @@ const ShoppingCard = () => {
   };
 
   const decreaseQuantity = (id: string, quantity: number) => {
-    console.log("nagitive");
     const newQty = quantity - 1;
     if (1 >= quantity) {
       return;
@@ -46,7 +48,11 @@ const ShoppingCard = () => {
     dispatch(removeItemsFormCard(id));
   };
 
-  console.log(cardItems);
+  // cal
+  const shippingCharges = subtotal > 1000 ? 0 : 200;
+  const tax = subtotal * 0.18;
+  const totalPrice = subtotal + tax + shippingCharges;
+
   return (
     <Fragment>
       <HeaderTwo />
@@ -137,12 +143,7 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      $
-                      {cardItems.reduce(
-                        (acc: any, item: any) =>
-                          acc + item.quantity * item.price,
-                        0
-                      )}
+                      ${subtotal}
                     </Typography>
                   </Box>
                   <Box
@@ -162,7 +163,7 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      Shpping estimate
+                      Shipping Charge
                     </Typography>
                     <Typography
                       sx={{
@@ -172,7 +173,7 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      $5.00
+                      ${shippingCharges}
                     </Typography>
                   </Box>
                   <Box
@@ -202,7 +203,7 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      $24.90
+                      ${tax}
                     </Typography>
                   </Box>
                   <Box
@@ -230,13 +231,13 @@ const ShoppingCard = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      $276.00
+                      ${totalPrice}
                     </Typography>
                   </Box>
                   <Button
                     onClick={() => navigate("/shipping")}
                     sx={{
-                      backgroundColor: "#1E293B",
+                      backgroundColor: "rgb(15,23,42,1)",
                       color: "#fff",
                       textTransform: "capitalize",
                       width: "100%",
@@ -245,6 +246,9 @@ const ShoppingCard = () => {
                       fontSize: "16px",
                       fontWeight: "600",
                       marginTop: "10px",
+                      ":hover": {
+                        backgroundColor: "#1E293B",
+                      },
                     }}
                   >
                     Checkout
