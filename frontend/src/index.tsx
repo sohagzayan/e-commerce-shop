@@ -21,6 +21,7 @@ const option = {
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <ThemeProvider theme={theme}>
     <SkeletonTheme baseColor="#202020" highlightColor="#444">

@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import ShoppingCardProduct from "../components/ShoppingCards/ShoppingCardProduct";
 import {
@@ -22,7 +23,7 @@ const ShoppingCard = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { cardItems } = useSelector((state: any) => state.card);
   const [quantity, setQuantity] = useState(1);
-
+  const navigate = useNavigate();
   const increaseQuantity = (id: string, quantity: number, stock: number) => {
     console.log("have a nice day");
     const newQty = quantity + 1;
@@ -233,6 +234,7 @@ const ShoppingCard = () => {
                     </Typography>
                   </Box>
                   <Button
+                    onClick={() => navigate("/shipping")}
                     sx={{
                       backgroundColor: "#1E293B",
                       color: "#fff",

@@ -14,6 +14,7 @@ import updatePasswordSlice from "./reducerSlice/updatePasswordSlice";
 import forgotPasswordSlice from "./reducerSlice/forgotPasswordSlice";
 import resetPasswordSlice from "./reducerSlice/resetPassword";
 import cardSlice from "./reducerSlice/cardSlice";
+import newOrderSlice from "./reducerSlice/newOrderSlice";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -27,6 +28,7 @@ export const store = configureStore({
     forgotPassword: forgotPasswordSlice,
     resetPassword: resetPasswordSlice,
     card: cardSlice,
+    newOrder: newOrderSlice,
   },
 });
 

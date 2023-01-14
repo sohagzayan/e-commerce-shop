@@ -3,12 +3,16 @@ import axios from "axios";
 
 export interface CardType {
   cardItems: any;
+  shippingInfo: any;
 }
 
 const initialState: CardType = {
   cardItems: localStorage.getItem("cardItems")
     ? JSON.parse(localStorage.getItem("cardItems") || "{}")
     : [],
+  shippingInfo: localStorage.getItem("shippingInfo")
+    ? JSON.parse(localStorage.getItem("shippingInfo") || "{}")
+    : {},
 };
 
 const cardSlice = createSlice({
@@ -33,10 +37,14 @@ const cardSlice = createSlice({
         (i: any) => i.product !== action.payload
       );
     },
+    saveShippingInfo(state, action) {
+      state.shippingInfo = action.payload;
+    },
   },
 });
 
-export const { addToCard, removeCardItem } = cardSlice.actions;
+export const { addToCard, removeCardItem, saveShippingInfo } =
+  cardSlice.actions;
 export default cardSlice.reducer;
 
 // Thunk
@@ -67,4 +75,12 @@ export const removeItemsFormCard =
       "cardItems",
       JSON.stringify(getState().card.cardItems)
     );
+  };
+
+// shiping info
+
+export const saveOrderShippingInfo =
+  (data: any) => async (dispatch: Dispatch, getState: any) => {
+    dispatch(saveShippingInfo(data));
+    localStorage.setItem("shippingInfo", JSON.stringify(data));
   };
