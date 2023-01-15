@@ -55,209 +55,211 @@ const ShoppingCard = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <Box>
-        <Container maxWidth="lg">
-          <Box sx={{ padding: "60px 0" }}>
-            <Typography
-              sx={{
-                fontSize: "2.5rem",
-                fontWeight: "600",
-                color: "#0F172A",
-                marginBottom: "10px",
-              }}
-            >
-              Shopping Cart
-            </Typography>
-            <Typography
-              sx={{ fontSize: "1rem", fontWeight: "500", color: "#334155" }}
-            >
-              Homepage / Clothing Categories / Shopping Cart
-            </Typography>
-          </Box>
-        </Container>
-        <Container maxWidth="lg">
-          <Grid container spacing={3}>
-            <Grid
-              item
-              xs={matches ? 7 : 12}
-              sx={{ borderRight: "1px solid #e5e7eb", paddingRight: "15px" }}
-            >
-              {cardItems &&
-                cardItems?.map((item: any, index: number) => (
-                  <ShoppingCardProduct
-                    key={index}
-                    {...{
-                      item,
-                      increaseQuantity,
-                      decreaseQuantity,
-                      deleteCardItem,
-                    }}
-                  />
-                ))}
-            </Grid>
-            <Grid item xs={matches ? 5 : 12} sx={{ position: "relative" }}>
-              <Box
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
+        <Box>
+          <Container maxWidth="lg">
+            <Box sx={{ padding: "60px 0" }}>
+              <Typography
                 sx={{
-                  position: "sticky",
-                  top: 100,
-                  left: 0,
-                  padding: "0 25px",
+                  fontSize: "2.5rem",
+                  fontWeight: "600",
+                  color: "#0F172A",
+                  marginBottom: "10px",
                 }}
               >
-                <Typography
+                Shopping Cart
+              </Typography>
+              <Typography
+                sx={{ fontSize: "1rem", fontWeight: "500", color: "#334155" }}
+              >
+                Homepage / Clothing Categories / Shopping Cart
+              </Typography>
+            </Box>
+          </Container>
+          <Container maxWidth="lg">
+            <Grid container spacing={3}>
+              <Grid
+                item
+                xs={matches ? 7 : 12}
+                sx={{ borderRight: "1px solid #e5e7eb", paddingRight: "15px" }}
+              >
+                {cardItems &&
+                  cardItems?.map((item: any, index: number) => (
+                    <ShoppingCardProduct
+                      key={index}
+                      {...{
+                        item,
+                        increaseQuantity,
+                        decreaseQuantity,
+                        deleteCardItem,
+                      }}
+                    />
+                  ))}
+              </Grid>
+              <Grid item xs={matches ? 5 : 12} sx={{ position: "relative" }}>
+                <Box
                   sx={{
-                    color: "#0F172A",
-                    fontSize: "1.3rem",
-                    fontWeight: "600",
-                    marginBottom: "20px",
+                    position: "sticky",
+                    top: 100,
+                    left: 0,
+                    padding: "0 25px",
                   }}
                 >
-                  Order Summary
-                </Typography>
-                <Box>
-                  <Box
+                  <Typography
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      borderBottom: "1px solid #e5e7eb",
-                      marginBottom: "15px",
-                      paddingBottom: "5px",
+                      color: "#0F172A",
+                      fontSize: "1.3rem",
+                      fontWeight: "600",
+                      marginBottom: "20px",
                     }}
                   >
-                    <Typography
+                    Order Summary
+                  </Typography>
+                  <Box>
+                    <Box
                       sx={{
-                        color: "#738296",
-                        fontSize: "1rem",
-                        fontWeight: "500",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      Subtotal
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: "#0F172A",
-                        fontSize: "1rem",
-                        fontWeight: "600",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      ${subtotal}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      borderBottom: "1px solid #e5e7eb",
-                      marginBottom: "15px",
-                      paddingBottom: "5px",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "#738296",
-                        fontSize: "1rem",
-                        fontWeight: "500",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      Shipping Charge
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: "#0F172A",
-                        fontSize: "1rem",
-                        fontWeight: "600",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      ${shippingCharges}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      borderBottom: "1px solid #e5e7eb",
-                      marginBottom: "15px",
-                      paddingBottom: "5px",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "#738296",
-                        fontSize: "1rem",
-                        fontWeight: "500",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      Tax estimate
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: "#0F172A",
-                        fontSize: "1rem",
-                        fontWeight: "600",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      ${tax}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "#0F172A",
-                        fontSize: "1rem",
-                        fontWeight: "600",
-                        marginBottom: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        borderBottom: "1px solid #e5e7eb",
+                        marginBottom: "15px",
                         paddingBottom: "5px",
                       }}
                     >
-                      Order total
-                    </Typography>
-                    <Typography
+                      <Typography
+                        sx={{
+                          color: "#738296",
+                          fontSize: "1rem",
+                          fontWeight: "500",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        Subtotal
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#0F172A",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        ${subtotal}
+                      </Typography>
+                    </Box>
+                    <Box
                       sx={{
-                        color: "#0F172A",
-                        fontSize: "1rem",
-                        fontWeight: "600",
-                        marginBottom: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        borderBottom: "1px solid #e5e7eb",
+                        marginBottom: "15px",
+                        paddingBottom: "5px",
                       }}
                     >
-                      ${totalPrice}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: "#738296",
+                          fontSize: "1rem",
+                          fontWeight: "500",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        Shipping Charge
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#0F172A",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        ${shippingCharges}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        borderBottom: "1px solid #e5e7eb",
+                        marginBottom: "15px",
+                        paddingBottom: "5px",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: "#738296",
+                          fontSize: "1rem",
+                          fontWeight: "500",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        Tax estimate
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#0F172A",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        ${tax}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: "#0F172A",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          marginBottom: "10px",
+                          paddingBottom: "5px",
+                        }}
+                      >
+                        Order total
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#0F172A",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        ${totalPrice}
+                      </Typography>
+                    </Box>
+                    <Button
+                      onClick={() => navigate("/shipping")}
+                      sx={{
+                        backgroundColor: "rgb(15,23,42,1)",
+                        color: "#fff",
+                        textTransform: "capitalize",
+                        width: "100%",
+                        padding: "15px 0",
+                        borderRadius: "50px",
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        marginTop: "10px",
+                        ":hover": {
+                          backgroundColor: "#1E293B",
+                        },
+                      }}
+                    >
+                      Checkout
+                    </Button>
                   </Box>
-                  <Button
-                    onClick={() => navigate("/shipping")}
-                    sx={{
-                      backgroundColor: "rgb(15,23,42,1)",
-                      color: "#fff",
-                      textTransform: "capitalize",
-                      width: "100%",
-                      padding: "15px 0",
-                      borderRadius: "50px",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      marginTop: "10px",
-                      ":hover": {
-                        backgroundColor: "#1E293B",
-                      },
-                    }}
-                  >
-                    Checkout
-                  </Button>
                 </Box>
-              </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </Box>
       </Box>
     </Fragment>
   );

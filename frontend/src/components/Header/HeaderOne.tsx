@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Backdrop, Box, Container, Typography } from "@mui/material";
 import { headerMenu } from "../../util/HeaderMenu";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -183,17 +183,10 @@ const BottomHeader = () => {
               isOpenSideBar={isOpenSideBar}
             />
 
-            <motion.div
-              variants={cardViewAnimation}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-            >
-              <CardView
-                showCardView={showCardView}
-                setShowCardView={setShowCardView}
-              />
-            </motion.div>
+            <CardView
+              showCardView={showCardView}
+              setShowCardView={setShowCardView}
+            />
             <motion.div>
               <SearchProduct
                 setIsOpenSearchProduct={setIsOpenSearchProduct}

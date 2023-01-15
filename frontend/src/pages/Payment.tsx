@@ -128,74 +128,76 @@ const Payment = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <Fragment>
-        <Box sx={{ marginTop: "20px" }}>
-          <MetaData title="Payment" />
-        </Box>
-        <CheckoutSteps activeStep={2} />
-        <div className="paymentContainer">
-          <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
-            <Typography>Card Info</Typography>
-            <div>
-              <CreditCardIcon />
-              <CardNumberElement className="paymentInput" />
-            </div>
-            <div>
-              <EventIcon />
-              <CardExpiryElement className="paymentInput" />
-            </div>
-            <div>
-              <VpnKeyIcon />
-              <CardCvcElement className="paymentInput" />
-            </div>
-            <input
-              type="submit"
-              value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
-              ref={payBtn}
-              className="paymentFormBtn"
-            />
-            <Box
-              className="extraControll"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                paddingX: "50px",
-              }}
-            >
-              <Button
-                onClick={() => navigate("/card")}
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
+        <Fragment>
+          <Box sx={{ marginTop: "20px" }}>
+            <MetaData title="Payment" />
+          </Box>
+          <CheckoutSteps activeStep={2} />
+          <div className="paymentContainer">
+            <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
+              <Typography>Card Info</Typography>
+              <div>
+                <CreditCardIcon />
+                <CardNumberElement className="paymentInput" />
+              </div>
+              <div>
+                <EventIcon />
+                <CardExpiryElement className="paymentInput" />
+              </div>
+              <div>
+                <VpnKeyIcon />
+                <CardCvcElement className="paymentInput" />
+              </div>
+              <input
+                type="submit"
+                value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+                ref={payBtn}
+                className="paymentFormBtn"
+              />
+              <Box
+                className="extraControll"
                 sx={{
-                  textTransform: "capitalize",
-                  fontSize: "1rem",
-                  color: "rgb(15,23,42,1)",
-                  fontWeight: "600",
-                  ":hover": {
-                    color: "rgb(15,23,42,1)",
-                  },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  paddingX: "50px",
                 }}
               >
-                Cancel
-              </Button>
-              <Button
-                onClick={() => navigate("/confirm-order")}
-                sx={{
-                  textTransform: "capitalize",
-                  fontSize: "1rem",
-                  color: "rgb(15,23,42,1)",
-                  fontWeight: "600",
-                  ":hover": {
+                <Button
+                  onClick={() => navigate("/card")}
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: "1rem",
                     color: "rgb(15,23,42,1)",
-                  },
-                }}
-              >
-                Back
-              </Button>
-            </Box>
-          </form>
-        </div>
-      </Fragment>
+                    fontWeight: "600",
+                    ":hover": {
+                      color: "rgb(15,23,42,1)",
+                    },
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => navigate("/confirm-order")}
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: "1rem",
+                    color: "rgb(15,23,42,1)",
+                    fontWeight: "600",
+                    ":hover": {
+                      color: "rgb(15,23,42,1)",
+                    },
+                  }}
+                >
+                  Back
+                </Button>
+              </Box>
+            </form>
+          </div>
+        </Fragment>
+      </Box>
     </Fragment>
   );
 };

@@ -101,144 +101,146 @@ const Register = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <MyAccountLoginWrapper>
-        <Box>
-          <Typography
-            sx={{
-              fontSize: "3rem",
-              fontWeight: "600",
-              marginBottom: "20px",
-              color: "#292930",
-              textAlign: "center",
-            }}
-          >
-            Signup
-          </Typography>
-          <SocialLogin />
-          <Divider sx={{ padding: "10px 0", margin: "20px 0" }}>OR</Divider>
-          <form action="" onSubmit={registerSubmit}>
-            <label
-              style={{
-                color: "rgba(31,41,55,1)",
-                fontSize: "17px",
-                marginBottom: "2px",
-              }}
-              htmlFor="name"
-            >
-              Name
-            </label>
-            <Input
-              id="name"
-              type="text"
-              required
-              name="name"
-              value={name}
-              onChange={registerDataChange}
-            />
-            <label
-              style={{
-                color: "rgba(31,41,55,1)",
-                fontSize: "17px",
-                marginBottom: "2px",
-              }}
-              htmlFor="email"
-            >
-              Email address
-            </label>
-            <Input
-              id="email"
-              type="email"
-              required
-              name="email"
-              value={email}
-              placeholder="example@example.com"
-              onChange={registerDataChange}
-            />
-            <label
-              style={{
-                color: "rgba(31,41,55,1)",
-                fontSize: "17px",
-                marginBottom: "2px",
-              }}
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <Input
-              id="password"
-              type="password"
-              required
-              name="password"
-              value={password}
-              onChange={registerDataChange}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "10px",
-                marginBottom: "20px",
-                justifyContent: "center",
-                width: "100%",
-              }}
-            >
-              <img
-                width="50px"
-                style={{ marginRight: "30px" }}
-                src={avatarPreview}
-                alt="faceicon"
-              />
-              <input
-                className="avatar-upload"
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={registerDataChange}
-                required
-              />
-            </Box>
-
-            <Button
-              type="submit"
-              style={{
-                width: "100%",
-                backgroundColor: "#111827",
-                fontWeight: "600",
-                fontSize: "15px",
-                boxShadow:
-                  "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
-                textTransform: "capitalize",
-                border: "none",
-                color: "#fff",
-                padding: "12px 20px",
-                borderRadius: "6px",
-              }}
-            >
-              Create Account
-            </Button>
-          </form>
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
+        <MyAccountLoginWrapper>
           <Box>
             <Typography
               sx={{
-                fontSize: "16px",
-                color: "#111827",
-                fontWeight: "500",
-                marginTop: "10px",
+                fontSize: "3rem",
+                fontWeight: "600",
+                marginBottom: "20px",
+                color: "#292930",
                 textAlign: "center",
               }}
             >
-              Already have an account?{" "}
-              <NavLink
-                to="/login"
-                style={{ color: "#61A24A", cursor: "pointer" }}
-              >
-                login here
-              </NavLink>
+              Signup
             </Typography>
+            <SocialLogin />
+            <Divider sx={{ padding: "10px 0", margin: "20px 0" }}>OR</Divider>
+            <form action="" onSubmit={registerSubmit}>
+              <label
+                style={{
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "17px",
+                  marginBottom: "2px",
+                }}
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <Input
+                id="name"
+                type="text"
+                required
+                name="name"
+                value={name}
+                onChange={registerDataChange}
+              />
+              <label
+                style={{
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "17px",
+                  marginBottom: "2px",
+                }}
+                htmlFor="email"
+              >
+                Email address
+              </label>
+              <Input
+                id="email"
+                type="email"
+                required
+                name="email"
+                value={email}
+                placeholder="example@example.com"
+                onChange={registerDataChange}
+              />
+              <label
+                style={{
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "17px",
+                  marginBottom: "2px",
+                }}
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                required
+                name="password"
+                value={password}
+                onChange={registerDataChange}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "10px",
+                  marginBottom: "20px",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <img
+                  width="50px"
+                  style={{ marginRight: "30px" }}
+                  src={avatarPreview}
+                  alt="faceicon"
+                />
+                <input
+                  className="avatar-upload"
+                  type="file"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={registerDataChange}
+                  required
+                />
+              </Box>
+
+              <Button
+                type="submit"
+                style={{
+                  width: "100%",
+                  backgroundColor: "#111827",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  boxShadow:
+                    "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
+                  textTransform: "capitalize",
+                  border: "none",
+                  color: "#fff",
+                  padding: "12px 20px",
+                  borderRadius: "6px",
+                }}
+              >
+                Create Account
+              </Button>
+            </form>
+            <Box>
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  color: "#111827",
+                  fontWeight: "500",
+                  marginTop: "10px",
+                  textAlign: "center",
+                }}
+              >
+                Already have an account?{" "}
+                <NavLink
+                  to="/login"
+                  style={{ color: "#61A24A", cursor: "pointer" }}
+                >
+                  login here
+                </NavLink>
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-      </MyAccountLoginWrapper>
+        </MyAccountLoginWrapper>
+      </Box>
     </Fragment>
   );
 };

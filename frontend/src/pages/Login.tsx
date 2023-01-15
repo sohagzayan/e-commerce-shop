@@ -62,115 +62,122 @@ const Login = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <MyAccountLoginWrapper>
-        <Typography
-          sx={{
-            fontSize: "3rem",
-            fontWeight: "600",
-            marginBottom: "20px",
-            color: "#292930",
-            textAlign: "center",
-          }}
-        >
-          Login
-        </Typography>
-        <SocialLogin />
-        <Divider sx={{ padding: "10px 0", margin: "20px 0" }}>OR</Divider>
-
-        <form action="" onSubmit={loginSubmit}>
-          <label
-            style={{
-              color: "rgba(31,41,55,1)",
-              fontSize: "17px",
-              marginBottom: "2px",
-            }}
-            htmlFor="email"
-          >
-            Email Address
-          </label>
-          <Input
-            autoComplete="email"
-            id="email"
-            type="email"
-            onChange={(e) => setLoginEmail(e.target.value)}
-            value={loginEmail}
-          />
-          <Box
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
+        <MyAccountLoginWrapper>
+          <Typography
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              fontSize: "3rem",
+              fontWeight: "600",
+              marginBottom: "20px",
+              color: "#292930",
+              textAlign: "center",
             }}
           >
+            Login
+          </Typography>
+          <SocialLogin />
+          <Divider sx={{ padding: "10px 0", margin: "20px 0" }}>OR</Divider>
+
+          <form action="" onSubmit={loginSubmit}>
             <label
               style={{
                 color: "rgba(31,41,55,1)",
                 fontSize: "17px",
                 marginBottom: "2px",
               }}
-              htmlFor="password"
+              htmlFor="email"
             >
-              Password
+              Email Address
             </label>
-            <NavLink to="/forgot-password"
-              style={{ fontSize: "14px", color: "#52A755", cursor: "pointer" }}
-            >
-              Forgot password
-            </NavLink>
-          </Box>
-          <Input
-            autoComplete="password"
-            id="password"
-            onChange={(e) => setLoginPassword(e.target.value)}
-            value={loginPassword}
-            type="password"
-          />
-
-          <Button
-            type="submit"
-            style={{
-              width: "100%",
-              backgroundColor: "#111827",
-              fontWeight: "600",
-              fontSize: "15px",
-              boxShadow:
-                "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
-              textTransform: "capitalize",
-              border: "none",
-              color: "#fff",
-              padding: "12px 20px",
-              borderRadius: "6px",
-            }}
-          >
-            Login
-          </Button>
-
-          <Box sx={{ textAlign: "center" }}>
-            <Typography
+            <Input
+              autoComplete="email"
+              id="email"
+              type="email"
+              onChange={(e) => setLoginEmail(e.target.value)}
+              value={loginEmail}
+            />
+            <Box
               sx={{
-                fontSize: "16px",
-                color: "#111827",
-                fontWeight: "500",
-                marginTop: "10px",
-                textAlign: "center",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              Already have an account?
-              <NavLink
-                to="/register"
+              <label
                 style={{
-                  color: "#61A24A",
+                  color: "rgba(31,41,55,1)",
+                  fontSize: "17px",
+                  marginBottom: "2px",
+                }}
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <NavLink
+                to="/forgot-password"
+                style={{
+                  fontSize: "14px",
+                  color: "#52A755",
                   cursor: "pointer",
-                  padding: "0 5px",
                 }}
               >
-                Create Account
+                Forgot password
               </NavLink>
-            </Typography>
-          </Box>
-        </form>
-      </MyAccountLoginWrapper>
+            </Box>
+            <Input
+              autoComplete="password"
+              id="password"
+              onChange={(e) => setLoginPassword(e.target.value)}
+              value={loginPassword}
+              type="password"
+            />
+
+            <Button
+              type="submit"
+              style={{
+                width: "100%",
+                backgroundColor: "#111827",
+                fontWeight: "600",
+                fontSize: "15px",
+                boxShadow:
+                  "0 0 #0000,0 0 #0000,0 0 #0000,0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
+                textTransform: "capitalize",
+                border: "none",
+                color: "#fff",
+                padding: "12px 20px",
+                borderRadius: "6px",
+              }}
+            >
+              Login
+            </Button>
+
+            <Box sx={{ textAlign: "center" }}>
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  color: "#111827",
+                  fontWeight: "500",
+                  marginTop: "10px",
+                  textAlign: "center",
+                }}
+              >
+                Already have an account?
+                <NavLink
+                  to="/register"
+                  style={{
+                    color: "#61A24A",
+                    cursor: "pointer",
+                    padding: "0 5px",
+                  }}
+                >
+                  Create Account
+                </NavLink>
+              </Typography>
+            </Box>
+          </form>
+        </MyAccountLoginWrapper>
+      </Box>
     </Fragment>
   );
 };

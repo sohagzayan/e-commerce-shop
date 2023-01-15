@@ -64,282 +64,284 @@ const ConfirmOrder = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <Box sx={{ marginTop: "20px" }}>
-        <CheckoutSteps activeStep={1} />
-      </Box>
-      <Container maxWidth="lg">
-        <Grid container sx={{ marginTop: "50px" }}>
-          <Grid
-            item
-            xs={12}
-            md={8}
-            sx={{ borderRight: "1px solid #E7E9ED", paddingRight: "20px" }}
-          >
-            <Typography sx={{ fontSize: "1.3rem" }}>Shipping Info</Typography>
-            <Box
-              sx={{
-                padding: "0 15px",
-                marginTop: "10px",
-              }}
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
+        <Box sx={{ marginTop: "20px" }}>
+          <CheckoutSteps activeStep={1} />
+        </Box>
+        <Container maxWidth="lg">
+          <Grid container sx={{ marginTop: "50px" }}>
+            <Grid
+              item
+              xs={12}
+              md={8}
+              sx={{ borderRight: "1px solid #E7E9ED", paddingRight: "20px" }}
             >
+              <Typography sx={{ fontSize: "1.3rem" }}>Shipping Info</Typography>
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "5px",
+                  padding: "0 15px",
+                  marginTop: "10px",
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    marginRight: "10px",
-                    color: "#0F172A",
-                  }}
-                >
-                  Name:
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#777" }}>
-                  {user?.name}
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "5px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    marginRight: "10px",
-                    color: "#0F172A",
-                  }}
-                >
-                  Phone:
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#777" }}>
-                  {shippingInfo.phoneNo}
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Typography
-                  sx={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    marginRight: "10px",
-                    color: "#0F172A",
-                  }}
-                >
-                  Address:
-                </Typography>
-                <Typography sx={{ fontSize: "1rem", color: "#777" }}>
-                  {address}
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ marginTop: "60px" }}>
-              <Typography sx={{ fontSize: "20px", marginTop: "20px" }}>
-                {" "}
-                Your Cart Items:
-              </Typography>
-              <Box sx={{ marginTop: "50px" }}>
-                {cardItems &&
-                  cardItems.map((item: any, index: number) => (
-                    <ShoppingCardProduct
-                      key={index}
-                      {...{
-                        item,
-                        increaseQuantity,
-                        decreaseQuantity,
-                        deleteCardItem,
-                      }}
-                    />
-                  ))}
-              </Box>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={4}
-            sx={{ padding: "0 20px", position: "relative" }}
-          >
-            <Box sx={{ position: "sticky", top: "100px", left: "0px" }}>
-              <label
-                style={{ marginBottom: "5px", display: "inline-block" }}
-                htmlFor=""
-              >
-                Discount code
-              </label>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <input
-                  style={{
-                    border: "1px solid #E7E9ED",
-                    width: "100%",
-                    height: "35px",
-                    borderRadius: "10px",
-                    marginRight: "15px",
-                  }}
-                  type="text"
-                />
-                <Button
-                  sx={{
-                    backgroundColor: "rgba(229,231,235,.7)",
-                    textTransform: "capitalize",
-                    color: "#374151",
-                  }}
-                >
-                  Apply
-                </Button>
-              </Box>
-              <Box sx={{ marginTop: "30px" }}>
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    paddingBottom: "5px",
+                    alignItems: "center",
+                    marginBottom: "5px",
                   }}
                 >
                   <Typography
                     sx={{
-                      color: "#738296",
-                      fontSize: ".9rem",
-                      fontWeight: "500",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    Subtotal
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: "#0F172A",
                       fontSize: "1rem",
-                      fontWeight: "600",
-                      marginBottom: "10px",
+                      fontWeight: "500",
+                      marginRight: "10px",
+                      color: "#0F172A",
                     }}
                   >
-                    ${subtotal}
+                    Name:
+                  </Typography>
+                  <Typography sx={{ fontSize: "1rem", color: "#777" }}>
+                    {user?.name}
                   </Typography>
                 </Box>
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    paddingBottom: "5px",
+                    alignItems: "center",
+                    marginBottom: "5px",
                   }}
                 >
                   <Typography
                     sx={{
-                      color: "#738296",
-                      fontSize: ".9rem",
-                      fontWeight: "500",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    Shipping Charge
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: "#0F172A",
                       fontSize: "1rem",
-                      fontWeight: "600",
-                      marginBottom: "10px",
+                      fontWeight: "500",
+                      marginRight: "10px",
+                      color: "#0F172A",
                     }}
                   >
-                    ${shippingCharges}
+                    Phone:
+                  </Typography>
+                  <Typography sx={{ fontSize: "1rem", color: "#777" }}>
+                    {shippingInfo.phoneNo}
                   </Typography>
                 </Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "1rem",
+                      fontWeight: "500",
+                      marginRight: "10px",
+                      color: "#0F172A",
+                    }}
+                  >
+                    Address:
+                  </Typography>
+                  <Typography sx={{ fontSize: "1rem", color: "#777" }}>
+                    {address}
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ marginTop: "60px" }}>
+                <Typography sx={{ fontSize: "20px", marginTop: "20px" }}>
+                  {" "}
+                  Your Cart Items:
+                </Typography>
+                <Box sx={{ marginTop: "50px" }}>
+                  {cardItems &&
+                    cardItems.map((item: any, index: number) => (
+                      <ShoppingCardProduct
+                        key={index}
+                        {...{
+                          item,
+                          increaseQuantity,
+                          decreaseQuantity,
+                          deleteCardItem,
+                        }}
+                      />
+                    ))}
+                </Box>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              sx={{ padding: "0 20px", position: "relative" }}
+            >
+              <Box sx={{ position: "sticky", top: "100px", left: "0px" }}>
+                <label
+                  style={{ marginBottom: "5px", display: "inline-block" }}
+                  htmlFor=""
+                >
+                  Discount code
+                </label>
                 <Box
                   sx={{
                     display: "flex",
+                    alignItems: "center",
                     justifyContent: "space-between",
-                    paddingBottom: "5px",
                   }}
                 >
-                  <Typography
+                  <input
+                    style={{
+                      border: "1px solid #E7E9ED",
+                      width: "100%",
+                      height: "35px",
+                      borderRadius: "10px",
+                      marginRight: "15px",
+                    }}
+                    type="text"
+                  />
+                  <Button
                     sx={{
-                      color: "#738296",
-                      fontSize: ".9rem",
-                      fontWeight: "500",
-                      marginBottom: "10px",
+                      backgroundColor: "rgba(229,231,235,.7)",
+                      textTransform: "capitalize",
+                      color: "#374151",
                     }}
                   >
-                    Tax estimate
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: "#0F172A",
-                      fontSize: "1rem",
-                      fontWeight: "600",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    ${tax}
-                  </Typography>
+                    Apply
+                  </Button>
                 </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Typography
+                <Box sx={{ marginTop: "30px" }}>
+                  <Box
                     sx={{
-                      color: "#0F172A",
-                      fontSize: ".9rem",
-                      fontWeight: "600",
-                      marginBottom: "10px",
+                      display: "flex",
+                      justifyContent: "space-between",
                       paddingBottom: "5px",
                     }}
                   >
-                    Order total
-                  </Typography>
-                  <Typography
+                    <Typography
+                      sx={{
+                        color: "#738296",
+                        fontSize: ".9rem",
+                        fontWeight: "500",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Subtotal
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#0F172A",
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      ${subtotal}
+                    </Typography>
+                  </Box>
+                  <Box
                     sx={{
-                      color: "#0F172A",
-                      fontSize: "1rem",
-                      fontWeight: "600",
-                      marginBottom: "10px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingBottom: "5px",
                     }}
                   >
-                    ${totalPrice}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        color: "#738296",
+                        fontSize: ".9rem",
+                        fontWeight: "500",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Shipping Charge
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#0F172A",
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      ${shippingCharges}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      paddingBottom: "5px",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#738296",
+                        fontSize: ".9rem",
+                        fontWeight: "500",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Tax estimate
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#0F172A",
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      ${tax}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#0F172A",
+                        fontSize: ".9rem",
+                        fontWeight: "600",
+                        marginBottom: "10px",
+                        paddingBottom: "5px",
+                      }}
+                    >
+                      Order total
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: "#0F172A",
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      ${totalPrice}
+                    </Typography>
+                  </Box>
+                  <Button
+                    onClick={proceedToPayment}
+                    sx={{
+                      backgroundColor: "rgb(15,23,42,1)",
+                      width: "100%",
+                      textTransform: "capitalize",
+                      color: "#fff",
+                      padding: "10px 0",
+                      fontSize: "1rem",
+                      borderRadius: "30px",
+                      boxShadow:
+                        "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+                      marginTop: "10px",
+                      ":hover": {
+                        backgroundColor: "#1E293B",
+                      },
+                    }}
+                  >
+                    Proceed To Payment
+                  </Button>
                 </Box>
-                <Button
-                  onClick={proceedToPayment}
-                  sx={{
-                    backgroundColor: "rgb(15,23,42,1)",
-                    width: "100%",
-                    textTransform: "capitalize",
-                    color: "#fff",
-                    padding: "10px 0",
-                    fontSize: "1rem",
-                    borderRadius: "30px",
-                    boxShadow:
-                      "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
-                    marginTop: "10px",
-                    ":hover": {
-                      backgroundColor: "#1E293B",
-                    },
-                  }}
-                >
-                  Proceed To Payment
-                </Button>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Box>
     </Fragment>
   );
 };

@@ -106,152 +106,152 @@ const Shop = () => {
 
   return (
     <Fragment>
-      <HeaderTwo />
-      <motion.div
-      // style={{ overflow: "hidden" }}
-      >
+      <Box sx={{ overflowX: "clip " }}>
+        <HeaderTwo />
         <Box>
-          <Container maxWidth="lg">
-            <Box
-              sx={{
-                padding: "30px 0",
-                marginBottom: "60px",
-                borderBottom: "1px solid #E2E8F0",
-              }}
-            >
-              <Typography
+          <Box>
+            <Container maxWidth="lg">
+              <Box
                 sx={{
-                  fontSize: "2.3rem",
-                  color: "#0F172A",
-                  fontWeight: "600",
-                  marginBottom: "12px",
+                  padding: "30px 0",
+                  marginBottom: "60px",
+                  borderBottom: "1px solid #E2E8F0",
                 }}
               >
-                Man collection
-              </Typography>
-              <Paragraph>
-                We not only help you design exceptional products, but also make
-                it easy for you to share your designs with more like-minded
-                people.
-              </Paragraph>
-            </Box>
-            <Box className="desktopViewFiltering">
-              <Filtering
-                {...{
-                  setPriceRange,
-                  setCategoryes,
-                  categoryes,
-                  priceRange,
-                  colors,
-                  setColors,
-                  sizes,
-                  setSizes,
-                  sorts,
-                  setSorts,
-                  selectAllCategory,
-                  setSelectAllCategory,
-                }}
-              />
-            </Box>
-            <Box className="mobileViewFiltering">
-              <MobileViewFiltering
-                {...{
-                  setPriceRange,
-                  setCategoryes,
-                  categoryes,
-                  priceRange,
-                  colors,
-                  setColors,
-                  sizes,
-                  setSizes,
-                  sorts,
-                  setSorts,
-                  selectAllCategory,
-                  setSelectAllCategory,
-                  showMobileFiltering,
-                  setShowMobileFiltering,
-                  handleResetFiltering,
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                marginBottom: "20px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                onClick={handleResetFiltering}
-                sx={{
-                  textTransform: "capitalize",
-                  fontSize: "14px",
-                  color: "#fff",
-                  fontWeight: "500",
-                  backgroundColor: "#22C55E",
-                  borderRadius: "20px",
-                  border: "1px solid  transparent",
-                  marginRight: "20px",
-                  ":hover": {
-                    border: "1px solid #22C55E",
-                    color: " #22C55E",
-                    backgroundColor: "transparent",
-                  },
-                }}
-              >
-                Reset
-              </Button>
-
-              <ShopSearchBar
-                {...{
-                  showShopSearchBar,
-                  setShowShopSearchBar,
-                  keyword,
-                  setKeyword,
-                }}
-              />
-            </Box>
-          </Container>
-          <Container maxWidth="lg" sx={{ overflowX: "hidden" }}>
-            <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
-              {products &&
-                products?.map((data: ProductType, index: number) => (
-                  <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                    <Product
-                      data={data}
-                      isOpenDetails={isOpenDetails}
-                      seIsOpenDetails={seIsOpenDetails}
-                    />
-                  </Grid>
-                ))}
-            </Grid>
-            {resultPerPage < filteredProductsCount && (
-              <div className="paginationBox">
-                <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={resultPerPage}
-                  totalItemsCount={productsCount}
-                  onChange={setCurrentPageNo}
-                  nextPageText="Next"
-                  prevPageText="Prev"
-                  firstPageText="1st"
-                  lastPageText="Last"
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activeClass="pageItemActive"
-                  activeLinkClass="pageLinkActive"
+                <Typography
+                  sx={{
+                    fontSize: "2.3rem",
+                    color: "#0F172A",
+                    fontWeight: "600",
+                    marginBottom: "12px",
+                  }}
+                >
+                  Man collection
+                </Typography>
+                <Paragraph>
+                  We not only help you design exceptional products, but also
+                  make it easy for you to share your designs with more
+                  like-minded people.
+                </Paragraph>
+              </Box>
+              <Box className="desktopViewFiltering">
+                <Filtering
+                  {...{
+                    setPriceRange,
+                    setCategoryes,
+                    categoryes,
+                    priceRange,
+                    colors,
+                    setColors,
+                    sizes,
+                    setSizes,
+                    sorts,
+                    setSorts,
+                    selectAllCategory,
+                    setSelectAllCategory,
+                  }}
                 />
-              </div>
-            )}
-          </Container>
-          <ProductDetailsView
-            {...{
-              seIsOpenDetails,
-              isOpenDetails,
-            }}
-          />
+              </Box>
+              <Box className="mobileViewFiltering">
+                <MobileViewFiltering
+                  {...{
+                    setPriceRange,
+                    setCategoryes,
+                    categoryes,
+                    priceRange,
+                    colors,
+                    setColors,
+                    sizes,
+                    setSizes,
+                    sorts,
+                    setSorts,
+                    selectAllCategory,
+                    setSelectAllCategory,
+                    showMobileFiltering,
+                    setShowMobileFiltering,
+                    handleResetFiltering,
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  marginBottom: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  onClick={handleResetFiltering}
+                  sx={{
+                    textTransform: "capitalize",
+                    fontSize: "14px",
+                    color: "#fff",
+                    fontWeight: "500",
+                    backgroundColor: "#22C55E",
+                    borderRadius: "20px",
+                    border: "1px solid  transparent",
+                    marginRight: "20px",
+                    ":hover": {
+                      border: "1px solid #22C55E",
+                      color: " #22C55E",
+                      backgroundColor: "transparent",
+                    },
+                  }}
+                >
+                  Reset
+                </Button>
+
+                <ShopSearchBar
+                  {...{
+                    showShopSearchBar,
+                    setShowShopSearchBar,
+                    keyword,
+                    setKeyword,
+                  }}
+                />
+              </Box>
+            </Container>
+            <Container maxWidth="lg" sx={{ overflowX: "hidden" }}>
+              <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
+                {products &&
+                  products?.map((data: ProductType, index: number) => (
+                    <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                      <Product
+                        data={data}
+                        isOpenDetails={isOpenDetails}
+                        seIsOpenDetails={seIsOpenDetails}
+                      />
+                    </Grid>
+                  ))}
+              </Grid>
+              {resultPerPage < filteredProductsCount && (
+                <div className="paginationBox">
+                  <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={resultPerPage}
+                    totalItemsCount={productsCount}
+                    onChange={setCurrentPageNo}
+                    nextPageText="Next"
+                    prevPageText="Prev"
+                    firstPageText="1st"
+                    lastPageText="Last"
+                    itemClass="page-item"
+                    linkClass="page-link"
+                    activeClass="pageItemActive"
+                    activeLinkClass="pageLinkActive"
+                  />
+                </div>
+              )}
+            </Container>
+            <ProductDetailsView
+              {...{
+                seIsOpenDetails,
+                isOpenDetails,
+              }}
+            />
+          </Box>
         </Box>
-      </motion.div>
+      </Box>
     </Fragment>
   );
 };

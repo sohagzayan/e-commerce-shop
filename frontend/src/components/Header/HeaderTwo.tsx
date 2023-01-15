@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Backdrop, Box, Container, Typography } from "@mui/material";
 import { headerMenu } from "../../util/HeaderMenu";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -54,12 +54,12 @@ const HeaderTwo = () => {
   const cardViewAnimation = {
     hidden: {
       opacity: 0,
-      y: 0,
+      x: 100,
       transition: { duration: 0.3 },
     },
     show: {
       opacity: 1,
-      y: 0,
+      x: 0,
       transition: { duration: 0.3 },
     },
   };
@@ -158,17 +158,11 @@ const HeaderTwo = () => {
               isOpenSideBar={isOpenSideBar}
             />
 
-            <motion.div
-              variants={cardViewAnimation}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-            >
-              <CardView
-                showCardView={showCardView}
-                setShowCardView={setShowCardView}
-              />
-            </motion.div>
+            <CardView
+              showCardView={showCardView}
+              setShowCardView={setShowCardView}
+            />
+
             <motion.div>
               <SearchProduct
                 setIsOpenSearchProduct={setIsOpenSearchProduct}
