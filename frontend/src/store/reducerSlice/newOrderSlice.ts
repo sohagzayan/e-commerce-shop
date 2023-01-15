@@ -40,7 +40,6 @@ export default newOrderSlice.reducer;
 export const createNewOrder = (order: any) => async (dispatch: Dispatch) => {
   try {
     dispatch(orderRequestStart());
-
     const config = {
       headers: {
         "Content-Type": "application/json",

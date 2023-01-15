@@ -3,7 +3,13 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import "../components/MyProfile/Tab.css";
-import { Container, Grid, styled } from "@mui/material";
+import {
+  Container,
+  Grid,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import SimCardDownloadOutlinedIcon from "@mui/icons-material/SimCardDownloadOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -13,11 +19,12 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ExploreAllProducts from "../components/ShopOthers/ExploreAllProducts";
-import AllOrders from "../components/MyProfile/AllOrders";
+import AllOrders from "../components/MyProfile/MyOrders";
 import MyProfileView from "../components/MyProfile/MyProfileView";
 import MyProfileControll from "../components/MyProfile/MyProfileControll";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { innerMenu } from "../util/myProfile";
+import MyProfileMobileMenu from "../components/MyProfile/MyProfileMobileMenu";
 
 const InnerMenu = styled("ul")(({ theme }) => ({
   border: "1px solid #CBD3D9",
@@ -32,6 +39,9 @@ const InnerMenu = styled("ul")(({ theme }) => ({
 const MyProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  // console.log(location.pathname === "/profile");
 
   return (
     <Fragment>
@@ -70,27 +80,41 @@ const MyProfile = () => {
             </Typography>
           </Box>
           <Grid container style={{ position: "relative" }} spacing={4}>
-            <Grid item xs={12} md={3}>
-              <InnerMenu>
-                {innerMenu.map((menu, index) => (
-                  <li key={index}>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive ? "innerMenu active" : "innerMenu"
-                      }
-                      to={menu.path}
-                    >
-                      <i
-                        style={{ marginRight: "10px", fontSize: "20px" }}
-                        className={menu.icon}
-                      ></i>
-                      {menu.name}
-                    </NavLink>
-                  </li>
-                ))}
-              </InnerMenu>
+            <Grid item xs={12}>
+              {matches ? (
+                <InnerMenu>
+                  {innerMenu.map((menu, index) => (
+                    <li key={index}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "innerMenu active" : "innerMenu"
+                        }
+                        to={menu.path}
+                      >
+                        <i
+                          style={{ marginRight: "10px", fontSize: "20px" }}
+                          className={menu.icon}
+                        ></i>
+                        {menu.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </InnerMenu>
+              ) : (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "30px",
+                  }}
+                >
+                  {innerMenu.map((menu, index) => (
+                    <MyProfileMobileMenu key={index} menu={menu} />
+                  ))}
+                </Box>
+              )}
             </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12}>
               <Outlet />
             </Grid>
           </Grid>

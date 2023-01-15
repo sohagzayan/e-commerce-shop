@@ -96,33 +96,38 @@ const MyProfileControll = () => {
                 flexDirection: "column",
                 alignItems: "left",
                 justifyContent: "center",
-                backgroundColor: "#FAFAFA",
-                borderRadius: "6px",
-                padding: "10px 20px",
+                borderRadius: "10px",
               }}
             >
               <img
                 style={{
-                  borderRadius: "50%",
                   width: "100px",
+                  clipPath: "circle()",
                   marginBottom: "10px",
+                  // boxShadow: "rgba(3, 102, 214, 0.3) 0px 0px 0px 3px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
                 }}
                 src={avatarPreview}
                 alt="profile"
               />
               <label
                 style={{
-                  border: "1px solid #22C568",
+                  backgroundColor: "rgb(15,23,42,1)",
+                  // boxShadow: "rgba(3, 102, 214, 0.3) 0px 0px 0px 3px",
+                  boxShadow:
+                    "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px",
+                  color: "#fff",
                   cursor: "pointer",
                   width: "250px",
-                  padding: "6px 10px",
+                  padding: "10px 10px",
                   borderRadius: "6px",
                   textAlign: "center",
                   position: "relative",
                 }}
                 htmlFor="imageUpload"
               >
-                Upload
+                Change Image
                 <span
                   style={{
                     position: "absolute",
@@ -132,7 +137,7 @@ const MyProfileControll = () => {
                   }}
                 >
                   <i
-                    style={{ fontSize: "18px", color: "#22C568" }}
+                    style={{ fontSize: "18px", color: "#fff" }}
                     className="ri-image-edit-line"
                   ></i>
                 </span>
@@ -198,14 +203,17 @@ const MyProfileControll = () => {
                   type="submit"
                   sx={{
                     padding: "10px 15px",
-                    backgroundColor: "#0d6efd",
+                    backgroundColor: "rgb(15,23,42,1)",
+                    boxShadow:
+                      "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px",
                     color: "#fff",
                     border: "1px solid transparent",
                     fontWeight: "600",
+                    borderRadius: "6px",
                     ":hover": {
                       backgroundColor: "transparent",
-                      border: "1px solid #0d6efd",
-                      color: "#0d6efd",
+                      border: "1px solid rgb(15,23,42,1)",
+                      color: "rgb(15,23,42,1)",
                     },
                   }}
                 >

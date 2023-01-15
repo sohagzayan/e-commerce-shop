@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import MyProfileView from "./components/MyProfile/MyProfileView";
 import MyProfileControll from "./components/MyProfile/MyProfileControll";
-import AllOrders from "./components/MyProfile/AllOrders";
+import MyOrders from "./components/MyProfile/MyOrders";
 import Download from "./components/MyProfile/Download";
 import UpdatePassword from "./components/MyProfile/UpdatePassword";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -77,7 +77,7 @@ function App() {
               <Route index={true} element={<MyProfileView />} />
               <Route path="update" element={<MyProfileControll />} />
               <Route path="reset-password" element={<UpdatePassword />} />
-              <Route path="order" element={<AllOrders />} />
+              <Route path="order" element={<MyOrders />} />
               <Route path="download" element={<Download />} />
             </Route>
           </Routes>

@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import "./CheckoutSteps.css";
 
 const CheckoutSteps = ({ activeStep }: any) => {
   const steps = [
@@ -22,11 +23,7 @@ const CheckoutSteps = ({ activeStep }: any) => {
 
   return (
     <Fragment>
-      <Stepper
-        alternativeLabel
-        activeStep={activeStep}
-        style={{ boxSizing: "border-box" }}
-      >
+      <Stepper className="" alternativeLabel activeStep={activeStep}>
         {steps.map((item, index) => (
           <Step
             key={index}

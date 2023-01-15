@@ -15,7 +15,7 @@ exports.registerUser = tryCatch(async (req, res, next) => {
   const { avatar, name, email, password } = userData;
   const myCloud = await cloudinary.v2.uploader.upload(avatar, {
     folder: "avatars",
-    width: 150,
+    width: 1000,
     crop: "scale",
   });
   // const { name, email, password } = req.body;
@@ -173,7 +173,7 @@ exports.updateUserProfile = tryCatch(async (req, res, next) => {
     await cloudinary.v2.uploader.destroy(imageId);
     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "avatars",
-      width: 150,
+      width: 1000,
       crop: "scale",
     });
     newUserData.avatar = {

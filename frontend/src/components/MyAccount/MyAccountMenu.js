@@ -56,14 +56,14 @@ const MyAccountMenu = ({ user }) => {
           <img
             style={{
               width: "40px",
-              borderRadius: "50%",
               marginRight: "15px",
+              clipPath: "circle()",
             }}
             src={user.avatar.url}
             alt="avater"
           />
           <Box>
-            <Typography sx={{ fontSize: "16px", fontWeight: "600" }}>
+            <Typography sx={{ fontSize: "15px", fontWeight: "600" }}>
               {user.name}
             </Typography>
             <Typography sx={{ fontSize: "14px" }}>Los Angeles, CA</Typography>

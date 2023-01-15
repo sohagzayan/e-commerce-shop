@@ -45,7 +45,6 @@ const CardView = ({ showCardView, setShowCardView }: CardViewProps) => {
               {cardItems &&
                 cardItems.map((product: any, index: number) => (
                   <CardProduct
-                    key={index}
                     product={product}
                     deleteCardItem={deleteCardItem}
                   />

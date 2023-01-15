@@ -137,7 +137,7 @@ const ResetPassword = () => {
                 variant="standard"
               >
                 <InputLabel htmlFor="standard-adornment-password">
-                  Confom Password
+                  Conform Password
                 </InputLabel>
                 <Input
                   id="standard-adornment-password"
@@ -162,15 +162,19 @@ const ResetPassword = () => {
                 type="submit"
                 sx={{
                   textTransform: "capitalize",
-                  backgroundColor: "#3A7FFD",
+                  backgroundColor: "rgb(15,23,42,1)",
                   color: "#fff",
                   width: "100%",
+                  padding: "10px 10px",
+                  borderRadius: "30px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
                   ":hover": {
-                    backgroundColor: "#3A7FFD",
+                    backgroundColor: "#1E293B",
                   },
                 }}
               >
-                Reset Password
+                Reset Passwords
               </Button>
             </form>
           </Box>

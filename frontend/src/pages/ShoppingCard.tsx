@@ -128,7 +128,7 @@ const ShoppingCard = () => {
                     >
                       <Typography
                         sx={{
-                          color: "#738296",
+                          color: "rgb(15,23,42,1)",
                           fontSize: "1rem",
                           fontWeight: "500",
                           marginBottom: "10px",
@@ -158,7 +158,7 @@ const ShoppingCard = () => {
                     >
                       <Typography
                         sx={{
-                          color: "#738296",
+                          color: "rgb(15,23,42,1)",
                           fontSize: "1rem",
                           fontWeight: "500",
                           marginBottom: "10px",
@@ -188,7 +188,7 @@ const ShoppingCard = () => {
                     >
                       <Typography
                         sx={{
-                          color: "#738296",
+                          color: "rgb(15,23,42,1)",
                           fontSize: "1rem",
                           fontWeight: "500",
                           marginBottom: "10px",
