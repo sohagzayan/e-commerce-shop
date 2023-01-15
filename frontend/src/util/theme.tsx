@@ -9,8 +9,4 @@ export const theme = createTheme({
       main: "rgb(15,23,42,1)",
     },
   },
-
-  // typography:{
-  //   fontFamily: ""
-  // }
 });

@@ -16,6 +16,7 @@ import resetPasswordSlice from "./reducerSlice/resetPassword";
 import cardSlice from "./reducerSlice/cardSlice";
 import newOrderSlice from "./reducerSlice/newOrderSlice";
 import myOrderSlice from "./reducerSlice/myOrderSlice";
+import orderDetailsSlice from "./reducerSlice/orderDetailsSlice";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -31,6 +32,7 @@ export const store = configureStore({
     card: cardSlice,
     newOrder: newOrderSlice,
     myOrder: myOrderSlice,
+    orderDetails: orderDetailsSlice,
   },
 });
 

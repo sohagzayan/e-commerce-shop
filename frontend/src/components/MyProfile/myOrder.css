@@ -2,13 +2,16 @@
   text-align: center;
   padding: 0.5vmax;
   box-sizing: border-box;
-  color: rgb(255, 255, 255);
+  color: #1f2024;
+  font-weight: 500;
+  font-family: "Poppins";
   transition: all 0.5s;
-  background-color: rgb(15, 23, 42, 1);
+  background-color: #f6f7fb;
 }
 
 .myOrdersTable {
   background-color: #fff;
+  border: 1px solid transparent !important;
 }
 
 .myOrdersTable div {
@@ -26,20 +29,22 @@
 }
 
 .MuiDataGrid-columnHeader {
-  background-color: rgb(15, 23, 42, 1);
+  background-color: #f6f7fb;
   padding: 1vmax !important;
 }
 
 .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root:hover {
-  background-color: rgba(255, 255, 255, 0.205) !important;
-  color: "#fff";
+  /* background-color: #1f2024 !important; */
+  color: #1f2024;
 }
 
 .MuiDataGrid-columnHeader div {
-  color: rgb(255, 255, 255);
+  color: #1f2024;
+  font-weight: 500;
+  font-family: "Poppins";
 }
 .MuiDataGrid-menuIconButton {
-  color: #fff !important;
+  color: #1f2024 !important;
 }
 
 .MuiDataGrid-iconSeparator {
@@ -56,13 +61,7 @@
     padding: 4vw;
   }
 
-  .myOrdersTable div {
-  }
-
   .MuiDataGrid-columnHeader {
     padding: 20px !important;
-  }
-
-  .MuiDataGrid-columnHeader div {
   }
 }

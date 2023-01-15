@@ -25,6 +25,8 @@ import MyProfileControll from "../components/MyProfile/MyProfileControll";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { innerMenu } from "../util/myProfile";
 import MyProfileMobileMenu from "../components/MyProfile/MyProfileMobileMenu";
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 const InnerMenu = styled("ul")(({ theme }) => ({
   border: "1px solid #CBD3D9",
@@ -36,47 +38,56 @@ const InnerMenu = styled("ul")(({ theme }) => ({
   },
 }));
 
+const UserProfileSidebar = styled(Box)(({ theme }) => ({
+  backgroundColor: "#fff",
+  shadow: "10px 10px 10px #000",
+}));
+
 const MyProfile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const { user, loading, error } = useSelector((state: any) => state.user);
+  const { avatar, name, email, createdAt } = user;
   // console.log(location.pathname === "/profile");
 
   return (
     <Fragment>
       <Box sx={{ overflowX: "clip " }}>
         <HeaderTwo />
-        <Box sx={{ marginBottom: "100px" }}>
-          <ExploreAllProducts />
-        </Box>
-
-        <Container maxWidth="lg" sx={{ marginBottom: "200px" }}>
+        <Container maxWidth="lg">
           <Box>
             <img
-              style={{ borderRadius: "50%", marginBottom: "3px" }}
-              src="https://new.axilthemes.com/demo/template/etrade/assets/images/product/author1.png"
+              style={{
+                width: "100px",
+                clipPath: "circle()",
+                marginBottom: "3px",
+              }}
+              src={avatar?.url}
               alt="user-images"
             />
             <Typography
               sx={{
                 fontSize: "20px",
-                fontWeight: "600",
+                fontWeight: "500",
                 color: "#292930",
                 marginBottom: "3px",
+                fontFamily: "Poppins",
               }}
             >
-              Hello Annie
+              Hello {name}
             </Typography>
             <Typography
               sx={{
                 fontSize: "13px",
-                fontWeight: "600",
+                fontWeight: "500",
                 color: "#777",
                 marginBottom: "50px",
+                fontFamily: "Poppins",
               }}
             >
-              eTrade Member Since Sep 2020
+              eTrade Member Since Sep {moment(createdAt).format("MMM Do YY")}
             </Typography>
           </Box>
           <Grid container style={{ position: "relative" }} spacing={4}>

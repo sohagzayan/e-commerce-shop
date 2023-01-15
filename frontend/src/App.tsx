@@ -74,8 +74,7 @@ function App() {
 
             <Route path="/wishlist" element={<MyWishList />} />
             <Route path="/profile" element={<MyProfile />}>
-              <Route index={true} element={<MyProfileView />} />
-              <Route path="update" element={<MyProfileControll />} />
+              <Route index={true} element={<MyProfileControll />} />
               <Route path="reset-password" element={<UpdatePassword />} />
               <Route path="order" element={<MyOrders />} />
               <Route path="download" element={<Download />} />

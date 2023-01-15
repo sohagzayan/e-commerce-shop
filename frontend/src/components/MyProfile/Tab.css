@@ -20,6 +20,7 @@
   transition: all 0.2s ease;
   font-size: 13px;
   font-weight: 500;
+  font-family: "Poppins";
 
   cursor: pointer;
 }
