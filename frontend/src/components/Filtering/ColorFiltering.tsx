@@ -6,7 +6,7 @@ import CategoryItem from "./CategoryItem";
 import ColorItem from "./ColorItem";
 import FilteringHeader from "./FilteringHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 
 interface Props {
   colors: string[];

@@ -32,6 +32,7 @@ import Payment from "./pages/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./pages/OrderSuccess";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   const alert = useAlert();
@@ -71,6 +72,7 @@ function App() {
             <Route path="/success" element={<OrderSuccess />} />
 
             <Route path="/process-payment" element={<Payment />} />
+            <Route path="/order/:id" element={<OrderDetails />} />
 
             <Route path="/wishlist" element={<MyWishList />} />
             <Route path="/profile" element={<MyProfile />}>

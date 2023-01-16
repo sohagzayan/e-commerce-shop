@@ -6,7 +6,7 @@ import { filterCategories } from "../../util/FilterOption";
 import CategoryItem from "./CategoryItem";
 import FilteringHeader from "./FilteringHeader";
 import { AnimatePresence, motion } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 import FilteringFooter from "./FilteringFooter";
 
 interface Props {

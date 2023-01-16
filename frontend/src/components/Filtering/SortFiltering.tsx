@@ -6,7 +6,7 @@ import FilteringFooter from "./FilteringFooter";
 import FilteringHeader from "./FilteringHeader";
 import SortItem from "./SortFItem";
 import { motion, AnimatePresence } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 
 interface Props {
   sorts: SortsStateType;

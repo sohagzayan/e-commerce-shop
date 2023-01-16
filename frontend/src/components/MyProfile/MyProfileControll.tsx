@@ -100,11 +100,11 @@ const MyProfileControll = () => {
 
   useEffect(() => {
     if (user) {
-      setName(user.name);
-      setEmail(user.email);
-      setAddress(user.address);
-      setBio(user.bio);
-      setAvatarPreview(user.avatar.url);
+      setName(user?.name);
+      setEmail(user?.email);
+      setAddress(user?.address);
+      setBio(user?.bio);
+      setAvatarPreview(user?.avatar?.url);
     }
     if (error) {
       alert.error(error);
@@ -151,7 +151,6 @@ const MyProfileControll = () => {
                 <Box>
                   <label
                     htmlFor="imageUpload"
-                    onClick={() => navigate("/profile/update")}
                     style={{
                       textTransform: "capitalize",
                       color: "#fff",
@@ -235,7 +234,7 @@ const MyProfileControll = () => {
                     onChange={(e) => setName(e.target.value)}
                     sx={{ marginRight: "10px" }}
                     id="outlined-basics"
-                    label="First Name"
+                    label=" First Name "
                     value={name}
                     variant="outlined"
                     name="name"

@@ -1,7 +1,7 @@
 import { Box, Button, Container } from "@mui/material";
 import { Fragment, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 
 interface Props {
   showShopSearchBar: boolean;

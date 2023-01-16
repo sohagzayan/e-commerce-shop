@@ -4,7 +4,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import useClickOutside from "../../hocks/OutSideClickCloseMenu";
 import FilteringHeader from "./FilteringHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 
 function valuetext(value: number) {
   return `${value}°C`;

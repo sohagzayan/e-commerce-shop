@@ -6,7 +6,7 @@ import ColorItem from "./ColorItem";
 import FilteringHeader from "./FilteringHeader";
 import SizeItem from "./SizeItem";
 import { motion, AnimatePresence } from "framer-motion";
-import { FilteringMenuAnimation } from "../../framerMotion/framerMotion";
+import { FilteringMenuAnimation } from "../framerMotion/framerMotion";
 
 interface Props {
   sizes: string[];

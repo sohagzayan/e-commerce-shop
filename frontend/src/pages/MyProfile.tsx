@@ -98,7 +98,7 @@ const MyProfile = () => {
                     <li key={index}>
                       <NavLink
                         className={({ isActive }) =>
-                          isActive ? "innerMenu active" : "innerMenu"
+                          isActive ? "innerMenu active" : "c"
                         }
                         to={menu.path}
                       >

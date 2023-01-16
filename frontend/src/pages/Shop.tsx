@@ -23,7 +23,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FilteringMenuAnimation,
   FilteringSearchBar,
-} from "../framerMotion/framerMotion";
+} from "../components/framerMotion/framerMotion";
 import ProductDetailsView from "../components/Product/ProductDetailsView";
 
 const Paragraph = styled(Typography)(({ theme }) => ({

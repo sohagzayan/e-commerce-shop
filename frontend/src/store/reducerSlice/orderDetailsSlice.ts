@@ -35,11 +35,11 @@ export const {
 } = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;
 
-export const getMyOrder = (id: any) => async (dispatch: Dispatch) => {
+export const getOrderDetails = (id: any) => async (dispatch: Dispatch) => {
   try {
     dispatch(myOrderDetailsRequestStart());
     const { data } = await axios.get(`/api/v1/order/${id}`);
-    dispatch(myOrderDetailsRequestSuccess(data.orders));
+    dispatch(myOrderDetailsRequestSuccess(data.order));
   } catch (error: any) {
     dispatch(myOrderDetailsRequestFailure(error.response.data.message));
   }
