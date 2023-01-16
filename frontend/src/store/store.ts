@@ -17,6 +17,9 @@ import cardSlice from "./reducerSlice/cardSlice";
 import newOrderSlice from "./reducerSlice/newOrderSlice";
 import myOrderSlice from "./reducerSlice/myOrderSlice";
 import orderDetailsSlice from "./reducerSlice/orderDetailsSlice";
+import getProductReviewsSlice from "./reducerSlice/getProductReviewsSlice";
+import createProductReviewSlice from "./reducerSlice/createProductReviewSlice";
+import getSingleUserDetailsSlice from "./reducerSlice/getSingleUserDetailsSlice";
 // import { productSlice } from "./productsSlice";
 
 export const store = configureStore({
@@ -33,6 +36,9 @@ export const store = configureStore({
     newOrder: newOrderSlice,
     myOrder: myOrderSlice,
     orderDetails: orderDetailsSlice,
+    productReview: getProductReviewsSlice,
+    createNewReview: createProductReviewSlice,
+    singleUserDetailForUser: getSingleUserDetailsSlice,
   },
 });
 

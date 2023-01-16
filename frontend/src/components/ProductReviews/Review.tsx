@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import ReviewStar from "react-rating-stars-component";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
+import { getUserDetails } from "../../store/reducerSlice/getSingleUserDetailsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import moment from "moment";
 
-const Review = ({ rev }) => {
+const Review = ({ rev }: any) => {
+  const dispatch = useDispatch<AppDispatch>();
   const optionForEditMode = {
     color: "rgba(20, 20, 20,0.1)",
     activeColor: "#FFDC60",
@@ -22,16 +27,21 @@ const Review = ({ rev }) => {
     <Box sx={{ marginTop: "40px" }}>
       <Box sx={{ display: "flex", width: "100%" }}>
         <Box sx={{ marginRight: "15px" }}>
-          <img style={{ borderRadius: "50%" }} src={rev.image} alt="" />
+          <img
+            width={50}
+            style={{ clipPath: "circle()" }}
+            src={rev?.user?.avatar?.url}
+            alt=""
+          />
         </Box>
-        <Box>
+        <Box sx={{ width: "100%" }}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              flexWrap: "wrap",
               marginBottom: "5px",
+              width: "100%",
             }}
           >
             <Box
@@ -45,15 +55,17 @@ const Review = ({ rev }) => {
             >
               <Typography
                 sx={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
+                  fontSize: "15px",
+                  fontWeight: "500",
                   fontStyle: "normal",
+                  fontFamily: "Poppins",
                   color: "#333",
+                  marginRight: "5px",
                 }}
               >
-                {rev.name}
+                {rev?.user?.name}
               </Typography>{" "}
-              - September 2, 2022
+              -{moment(rev?.createdAt).format("MMMM Do YYYY")}
             </Box>
             <Box>
               <ReviewStar {...optionForEditMode} />
@@ -61,9 +73,14 @@ const Review = ({ rev }) => {
           </Box>
           <Box>
             <Typography
-              sx={{ fontSize: "13px", color: "#777", lineHeight: "23px" }}
+              sx={{
+                fontFamily: "Poppins",
+                fontSize: "13px",
+                color: "#777",
+                lineHeight: "23px",
+              }}
             >
-              {rev.text}
+              {rev.comment}
             </Typography>
           </Box>
         </Box>

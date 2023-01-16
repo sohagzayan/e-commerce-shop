@@ -2,6 +2,7 @@ const ApiFeatures = require("../utils/apiFetures");
 const tryCatch = require("../middleware/tryCatch");
 const ErrorHandler = require("../utils/errorHandler");
 const Product = require("../models/productModel");
+const Reviews = require("../models/reviewModal");
 
 // create product  -> admin
 exports.createProduct = tryCatch(async (req, res, next) => {
@@ -114,45 +115,60 @@ exports.deleteProduct = tryCatch(async (req, res, next) => {
 
 // get product single product
 exports.getProductDetails = tryCatch(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate({
+    path: "reviews",
+    populate: {
+      path: "user",
+    },
+  });
+
   if (!product) {
     return next(new ErrorHandler("Product not founds", 404));
   }
+  // await product.populate("user").execPopulate();
   res.status(200).json({ success: true, product });
 });
 
 /** Create new review or update your review */
 exports.createProductReview = tryCatch(async (req, res, next) => {
-  const { rating, comment, productId } = req.body;
+  const { rating, comment, productId, name, avatar } = req.body;
   const review = {
     user: req.user._id,
-    name: req.body.name,
+    productId: productId,
     rating: Number(rating),
     comment,
   };
-  const product = await Product.findById(productId);
-  const isReviewed = await product.reviews.find(
-    (re) => re.user.toString() === require.user._id.toString()
-  );
-  if (!isReviewed) {
-    product.reviews.forEach((re) => {
-      if (re.user.toString() === require.user._id.toString())
-        re.rating = rating;
-      re.comment = comment;
-    });
-  } else {
-    product.reviews.push(review);
-    product.numOfReviews = product.reviews.length;
-  }
   let avg = 0;
-
-  product.reviews.forEach((re) => {
-    avg += re.rating;
+  const isReviewed = await Reviews.findOne({
+    productId: productId,
+    user: req.user._id,
   });
 
-  product.ratings = avg / product.reviews.length;
+  if (isReviewed) {
+    await Reviews.findOneAndUpdate(
+      {
+        productId: productId,
+        user: req.user._id,
+      },
+      review
+    );
+  } else {
+    const newReview = await Reviews.create(review);
+    const productReview = await Reviews.find({ productId: productId });
+    const ExitProduct = await Product.findOne({ _id: productId });
+    await ExitProduct.reviews.push(newReview._id);
+    ExitProduct.numOfReviews = productReview.length;
+    productReview.forEach((re) => {
+      avg += Number(re.rating);
+    });
+    ExitProduct.ratings = avg / productReview.length;
+    await ExitProduct.save({ validateBeforeSave: false });
+  }
+  // let avg = 0;
 
-  await product.save({ validateBeforeSave: false });
+  // product.ratings = avg / product.reviews.length;
+
+  // await product.save({ validateBeforeSave: false });
   res.status(200).json({ success: true });
 });
 

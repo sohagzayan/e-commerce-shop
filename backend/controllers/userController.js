@@ -215,6 +215,19 @@ exports.getSingleUser = tryCatch(async (req, res, next) => {
     user,
   });
 });
+/** Get single User > for user */
+exports.getSingleUserForUser = tryCatch(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with id: ${req.params.id}`, 404)
+    );
+  }
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 
 /** Update user role > admin */
 exports.updateUserRole = tryCatch(async (req, res, next) => {

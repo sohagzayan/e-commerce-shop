@@ -21,6 +21,10 @@ const productDetailsSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    fetchProductDetailsErrorClear(state) {
+      state.loading = false;
+      state.error = null;
+    },
   },
 });
 
@@ -28,6 +32,7 @@ export const {
   fetchProductDetailsFailure,
   fetchProductDetailsSuccess,
   fetchProductDetailsStart,
+  fetchProductDetailsErrorClear,
 } = productDetailsSlice.actions;
 export default productDetailsSlice.reducer;
 
@@ -42,4 +47,8 @@ export const getProductDetails = (id: any) => async (dispatch: Dispatch) => {
   } catch (error: any) {
     dispatch(fetchProductDetailsFailure(error.response.data.message));
   }
+};
+
+export const getProductDetailsErrorClear = () => async (dispatch: Dispatch) => {
+  dispatch(fetchProductDetailsErrorClear());
 };

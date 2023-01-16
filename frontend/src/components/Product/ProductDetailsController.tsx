@@ -85,8 +85,9 @@ const ProductDetailsController: React.FunctionComponent<Props> = (props) => {
             onClick={addToCardHandaler}
             sx={{
               backgroundColor: "rgb(15,23,42,1)",
+
               boxShadow:
-                "0 0 #0000,0 0 #0000,0 0 #0000,0 0 #0000),0 20px 25px -5px,rgba(0,0,0,.1),0 8px 10px -6px,rgba(0,0,0,.1)",
+                "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
               color: "#fff",
               padding: "16px 38px",
               borderRadius: "40px",

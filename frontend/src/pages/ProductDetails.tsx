@@ -31,9 +31,17 @@ import { useAlert } from "react-alert";
 import Loading from "../components/Loading/Loading";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
 import ProductAccordion from "../components/ProductAccordion/ProductAccordion";
-import { getProductDetails } from "../store/reducerSlice/getProductDetailsSlice";
+import {
+  getProductDetails,
+  getProductDetailsErrorClear,
+} from "../store/reducerSlice/getProductDetailsSlice";
 import { AppDispatch } from "../store/store";
 import { addItemsToCard } from "../store/reducerSlice/cardSlice";
+import {
+  createReviewClearError,
+  createReviewReset,
+} from "../store/reducerSlice/createProductReviewSlice";
+import AddReviewModal from "../components/ProductReviews/AddReviewModal";
 
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
@@ -58,10 +66,16 @@ const ProductDetails = () => {
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch<AppDispatch>();
+  const [openAddReview, setOpenAddReview] = useState(false);
 
   const { loading, error, data } = useSelector(
     (state: any) => state.productDetails
   );
+
+  const { success, error: reviewError } = useSelector(
+    (state: any) => state.createNewReview
+  );
+
   // const { name } = data;
 
   const option = {
@@ -90,8 +104,24 @@ const ProductDetails = () => {
 
   useEffect(() => {
     ScrollTop();
+
+    if (error) {
+      alert.error(error);
+      dispatch(getProductDetailsErrorClear());
+    }
+
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(createReviewClearError());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch(createReviewReset());
+    }
+
     dispatch(getProductDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, error, alert, reviewError, success]);
 
   return (
     <Fragment>
@@ -151,11 +181,11 @@ const ProductDetails = () => {
                               sx={{
                                 color: "#27272E",
                                 fontSize: "28px",
-                                fontWeight: "600",
+                                fontWeight: "500",
+                                fontFamily: "Poppins",
                                 marginTop: "20px",
                               }}
                             >
-                              Heavy Weight Shoes
                               {data?.name}
                             </Typography>
                             <Box
@@ -169,11 +199,12 @@ const ProductDetails = () => {
                                 <Typography
                                   sx={{
                                     color: "#22C55E",
-                                    border: "2px solid #22C55E",
+                                    border: "1px solid #22C55E",
                                     borderRadius: "6px",
-                                    fontWeight: "600",
+                                    fontWeight: "500",
                                     fontSize: "18px",
                                     padding: "1px 10px",
+                                    fontFamily: "Poppins",
                                   }}
                                 >
                                   ${data?.price}
@@ -191,6 +222,7 @@ const ProductDetails = () => {
                                     display: "flex",
                                     alignItems: "center",
                                     marginRight: "6px",
+                                    fontFamily: "Poppins",
                                   }}
                                 >
                                   <i
@@ -200,7 +232,7 @@ const ProductDetails = () => {
                                     }}
                                     className="ri-star-fill"
                                   ></i>
-                                  4.9
+                                  {data?.ratings}
                                 </Typography>
                                 <Typography
                                   sx={{
@@ -208,9 +240,10 @@ const ProductDetails = () => {
                                     color: "#0F172A",
                                     marginLeft: "3px",
                                     textDecoration: "underline",
+                                    fontFamily: "Poppins",
                                   }}
                                 >
-                                  133 reviews
+                                  {data?.numOfReviews} reviews
                                 </Typography>
                               </Box>
                             </Box>
@@ -219,18 +252,14 @@ const ProductDetails = () => {
                                 color: "#22C55E",
                                 borderRadius: "6px",
                                 fontWeight: "500",
-                                fontSize: "14px",
+                                fontSize: "15px",
                                 marginTop: "10px",
+                                fontFamily: "Poppins",
                               }}
                             >
                               InStock: {data.stock}
                             </Typography>
 
-                            <Typography
-                              sx={{ fontSize: "17px", color: "#333" }}
-                            >
-                              {/* {product?.description} */}
-                            </Typography>
                             <ProductColorPicker />
                             <ProductSizePicker />
                             <ProductDetailsController
@@ -243,6 +272,29 @@ const ProductDetails = () => {
                               }}
                             />
                             <ProductAccordion />
+                            <Button
+                              onClick={() => setOpenAddReview(true)}
+                              sx={{
+                                backgroundColor: "rgb(15,23,42,1)",
+                                boxShadow:
+                                  "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
+                                color: "#fff",
+                                padding: "10px 25px",
+                                borderRadius: "40px",
+                                textTransform: "capitalize",
+                                fontFamily: "Poppins",
+                                fontWeight: "500",
+                                transition: "all 0.3s  ",
+                                marginBottom: "20px",
+                                ":hover": {
+                                  transform: "scale(1.1)",
+                                  backgroundColor: "#1E293B",
+                                  transition: "all 0.3s  ",
+                                },
+                              }}
+                            >
+                              Submit Review
+                            </Button>
                           </Box>
                         </Grid>
                       </Grid>
@@ -251,8 +303,12 @@ const ProductDetails = () => {
                   </Container>
                 </Box>
               </ProductDetailsWrapper>
+              <Container maxWidth="lg">
+                <ProductReviews product={data} id={id} />
+              </Container>
             </div>
           </Box>
+          <AddReviewModal {...{ setOpenAddReview, openAddReview, id }} />
         </Fragment>
       )}
     </Fragment>
