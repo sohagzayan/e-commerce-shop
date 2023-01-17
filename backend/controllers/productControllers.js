@@ -133,13 +133,13 @@ exports.getProductDetails = tryCatch(async (req, res, next) => {
 /** Create new review or update your review */
 exports.createProductReview = tryCatch(async (req, res, next) => {
   const { rating, comment, productId, name, avatar } = req.body;
-  const review = {
+  const reviewData = {
     user: req.user._id,
     productId: productId,
     rating: Number(rating),
     comment,
   };
-  console.log("review", review);
+  console.log("review", reviewData);
   let avg = 0;
   const isReviewed = await Reviews.findOne({
     productId: productId,
@@ -152,25 +152,26 @@ exports.createProductReview = tryCatch(async (req, res, next) => {
         productId: productId,
         user: req.user._id,
       },
-      review
+      reviewData
     );
   } else {
-    const newReview = await Reviews.create(review);
-    const productReview = await Reviews.find({ productId: productId });
+    const newReview = await Reviews.create(reviewData);
     const ExitProduct = await Product.findOne({ _id: productId });
     await ExitProduct.reviews.push(newReview._id);
-    ExitProduct.numOfReviews = productReview.length;
-    productReview.forEach((re) => {
-      avg += Number(re.rating);
-    });
-    ExitProduct.ratings = Number(avg / productReview.length);
     await ExitProduct.save({ validateBeforeSave: false });
   }
-  // let avg = 0;
 
-  // product.ratings = avg / product.reviews.length;
+  const product = await Product.findOne({ _id: productId });
 
-  // await product.save({ validateBeforeSave: false });
+  const review = await Reviews.find({ productId: productId });
+  product.numOfReviews = review.length;
+  review.forEach((re) => {
+    avg += Number(re.rating);
+  });
+  console.log("avg", avg);
+  product.ratings = Number(avg / review.length);
+  await product.save({ validateBeforeSave: false });
+
   res.status(200).json({ success: true });
 });
 

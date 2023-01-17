@@ -26,7 +26,7 @@ const SearchProductWrapper = styled(Box)(({ theme }) => ({
   cursor: "pointer",
 }));
 
-const SingleSearchProduct = ({ product, setIsOpenSearchProduct }) => {
+const SingleSearchProduct = ({ product, setIsOpenSearchProduct }: any) => {
   const navigate = useNavigate();
   return (
     <SearchProductWrapper onClick={() => navigate(`/details/${product._id}`)}>

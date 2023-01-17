@@ -5,7 +5,7 @@ export const headerMenu = [
   },
   {
     name: "Shop",
-    path: "/shop",
+    path: "/shopping",
   },
   {
     name: "Blog",

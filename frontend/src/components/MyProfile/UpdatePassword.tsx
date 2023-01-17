@@ -70,7 +70,7 @@ const UpdatePassword = () => {
     if (isUpdated) {
       alert.success("Profile Updated Successfully");
       dispatch(userPasswordUpdateTreeReset());
-      navigate("/profile");
+      navigate("/account");
     }
   }, [dispatch, error, alert, isUpdated, navigate]);
 

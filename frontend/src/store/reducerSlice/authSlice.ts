@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   user: [],
-  loading: false,
+  loading: true,
   isAuthenticated: false,
   error: null,
 };
@@ -12,24 +12,41 @@ const authSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setUser(state, action) {
+    requestUser(state) {
+      state.loading = true;
+      state.error = null;
+      state.isAuthenticated = false;
+    },
+    requestUserSuccess(state, action) {
+      state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
     },
-    removeUser(state, action) {
+    requestUserLogOut(state, action) {
+      state.loading = false;
       state.isAuthenticated = false;
       state.user = action.payload;
+      state.error = null;
     },
-    setLoading(state, action) {
-      state.loading = action.payload;
+    requestUserFailure(state, action) {
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.error = action.payload;
     },
-    setError(state, action) {
+
+    requestUserClearError(state, action) {
       state.error = action.payload;
     },
   },
 });
 
-export const { setUser, setLoading, setError, removeUser } = authSlice.actions;
+export const {
+  requestUser,
+  requestUserSuccess,
+  requestUserFailure,
+  requestUserClearError,
+  requestUserLogOut,
+} = authSlice.actions;
 export default authSlice.reducer;
 
 /* Thunk  */
@@ -37,7 +54,7 @@ export default authSlice.reducer;
 export const login =
   (email: string, password: string) => async (dispatch: Dispatch) => {
     try {
-      dispatch(setLoading(true));
+      dispatch(requestUser());
       const url = `/api/v1/login`;
       const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.post(
@@ -49,55 +66,48 @@ export const login =
         config
       );
 
-      dispatch(setLoading(false));
-      dispatch(setUser(data.user));
+      dispatch(requestUserSuccess(data.user));
       console.log(data);
     } catch (error: any) {
-      dispatch(setLoading(false));
-      dispatch(setError(error.response.data.message));
+      dispatch(requestUserFailure(error.response.data.message));
     }
   };
 
 export const register = (userData: any) => async (dispatch: Dispatch) => {
   try {
-    dispatch(setLoading(true));
+    dispatch(requestUser());
     const url = `/api/v1/register`;
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.post(url, userData, config);
-    dispatch(setLoading(false));
-    dispatch(setUser(data.user));
+    dispatch(requestUserSuccess(data.user));
     console.log(data);
   } catch (error: any) {
-    dispatch(setLoading(false));
-    dispatch(setError(error.response.data.message));
+    dispatch(requestUserFailure(error.response.data.message));
   }
 };
 
 export const clearError = () => async (dispatch: Dispatch) => {
-  dispatch(setError(null));
+  dispatch(requestUserClearError(null));
 };
 
 export const loadUser = () => async (dispatch: Dispatch, getState: any) => {
   try {
-    dispatch(setLoading(true));
+    dispatch(requestUser());
     const { data } = await axios.get("/api/v1/me");
-    dispatch(setLoading(false));
-    dispatch(setUser(data.user));
+    dispatch(requestUserSuccess(data.user));
     // console.log(data);
   } catch (error: any) {
-    dispatch(setLoading(false));
-    dispatch(setError(error.response.data.message));
+    dispatch(requestUserFailure(error.response.data.message));
   }
 };
 
 export const logOut = () => async (dispatch: Dispatch) => {
   try {
+    dispatch(requestUser());
     await axios.get("/api/v1/logout");
-    dispatch(setLoading(false));
-    dispatch(removeUser(null));
+    dispatch(requestUserLogOut(null));
     // console.log(data);
   } catch (error: any) {
-    dispatch(setLoading(false));
-    dispatch(setError(error.response.data.message));
+    dispatch(requestUserClearError(error.response.data.message));
   }
 };

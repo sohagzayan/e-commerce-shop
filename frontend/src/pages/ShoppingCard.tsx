@@ -236,7 +236,7 @@ const ShoppingCard = () => {
                       </Typography>
                     </Box>
                     <Button
-                      onClick={() => navigate("/shipping")}
+                      onClick={() => navigate("/shipping-information")}
                       sx={{
                         backgroundColor: "rgb(15,23,42,1)",
                         color: "#fff",

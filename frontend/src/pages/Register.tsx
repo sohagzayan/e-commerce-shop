@@ -15,6 +15,7 @@ import { register } from "../store/reducerSlice/authSlice";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import SocialLogin from "../components/SocialLogin/SocialLogin";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
+import ActionLoadingSpinner from "../components/Loading/ActionLoadingSpinner";
 
 const MyAccountLoginWrapper = styled(Box)(({ theme }) => ({
   padding: "20px 0",
@@ -241,6 +242,7 @@ const Register = () => {
           </Box>
         </MyAccountLoginWrapper>
       </Box>
+      {loading && <ActionLoadingSpinner />}
     </Fragment>
   );
 };

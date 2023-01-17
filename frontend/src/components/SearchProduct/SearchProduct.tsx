@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 // } from "../../store/reducerSlice/getAllProductsSlice";
 import { AppDispatch } from "../../store/store";
 import { startSearchProduct } from "../../store/reducerSlice/productSearchSlice";
+import SkeletonProductSmall from "../LoadSkeleton/SkeletonProductSmall";
 // import { getProduct, getSearchProduct } from "../../actions/productAction";
 
 const SearchProductWrapper = styled(Box)(({ theme }) => ({}));
@@ -129,16 +130,22 @@ const SearchProduct: React.FunctionComponent<Props> = (props) => {
                     </Typography>
                   ) : (
                     <Grid container spacing={3}>
-                      {data.length &&
-                        data?.map((product: any, index: number) => (
-                          <Grid item xs={6} sm={4} md={3} lg={3}>
-                            <SingleSearchProduct
-                              setIsOpenSearchProduct={setIsOpenSearchProduct}
-                              key={index}
-                              product={product}
-                            />
-                          </Grid>
-                        ))}
+                      {loading
+                        ? [...Array(4)].map((e, index) => (
+                            <Grid item xs={6} sm={4} md={3} lg={3}>
+                              <SkeletonProductSmall />
+                            </Grid>
+                          ))
+                        : data.length &&
+                          data?.map((product: any, index: number) => (
+                            <Grid item xs={6} sm={4} md={3} lg={3}>
+                              <SingleSearchProduct
+                                setIsOpenSearchProduct={setIsOpenSearchProduct}
+                                key={index}
+                                product={product}
+                              />
+                            </Grid>
+                          ))}
                     </Grid>
                   )}
                 </Container>

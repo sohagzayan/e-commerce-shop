@@ -87,7 +87,7 @@ const MyAccountMenu = ({ user }) => {
         )}
 
         <ListItem
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/account")}
           sx={{
             padding: "0 0 15px 0",
             display: "flex",

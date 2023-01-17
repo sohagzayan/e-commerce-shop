@@ -29,26 +29,22 @@ const Home = () => {
   const alert = useAlert();
   return (
     <Fragment>
-      {loading ? (
-        <Loading />
-      ) : (
-        <Fragment>
-          <MetaData title="Home Page Is Working" />
-          <Header />
-          <Box sx={{ overflowX: "hidden" }}>
-            <motion.div
-              initial={{ x: -200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, type: "tween" }}
-            >
-              {/* <Hero /> */}
-              <HeroSlider />
-              <OurProduct products={products} />
-            </motion.div>
-          </Box>
-        </Fragment>
-      )}
+      <Fragment>
+        <MetaData title="Home Page Is Working" />
+        <Header />
+        <Box sx={{ overflowX: "hidden" }}>
+          <motion.div
+          // initial={{ x: -200, opacity: 0 }}
+          // animate={{ x: 0, opacity: 1 }}
+          // exit={{ x: 0, opacity: 1 }}
+          // transition={{ duration: 0.5, type: "tween" }}
+          >
+            {/* <Hero /> */}
+            <HeroSlider />
+            <OurProduct products={products} loading={loading} />
+          </motion.div>
+        </Box>
+      </Fragment>
     </Fragment>
   );
 };

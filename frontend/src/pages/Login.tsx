@@ -2,12 +2,15 @@ import { Box, Button, Divider, styled, Typography } from "@mui/material";
 import { useState, useEffect, Fragment } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import SocialLogin from "../components/SocialLogin/SocialLogin";
 import { ScrollTop } from "../sharedFunction/ScrollTop";
 import { login } from "../store/reducerSlice/authSlice";
 import { AppDispatch } from "../store/store";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
+import ActionLoadingSpinner from "../components/Loading/ActionLoadingSpinner";
 
 const MyAccountLoginWrapper = styled(Box)(({ theme }) => ({
   padding: "20px 0",
@@ -42,10 +45,12 @@ const Input = styled("input")(({ theme }) => ({
 
 const Login = () => {
   const alert = useAlert();
+  const location = useLocation();
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const { isAuthenticated, loading } = useSelector((state: any) => state.user);
   const navigate = useNavigate();
 
   const loginSubmit = (e: any) => {
@@ -53,12 +58,14 @@ const Login = () => {
     dispatch(login(loginEmail, loginPassword));
   };
 
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
+
   useEffect(() => {
     ScrollTop();
     if (isAuthenticated) {
-      navigate("/");
+      navigate(redirect);
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, redirect]);
 
   return (
     <Fragment>
@@ -90,6 +97,7 @@ const Login = () => {
             >
               Email Address
             </label>
+
             <Input
               autoComplete="email"
               id="email"
@@ -178,6 +186,7 @@ const Login = () => {
           </form>
         </MyAccountLoginWrapper>
       </Box>
+      {loading && <ActionLoadingSpinner />}
     </Fragment>
   );
 };

@@ -94,8 +94,9 @@ const HeroSlider = () => {
                               backgroundColor: "rgb(15,23,42,1)",
                               color: "#fff",
                               textTransform: "capitalize",
-                              fontWeight: "700",
                               boxShadow: "none",
+                              fontWeight: "500",
+                              fontFamily: "Poppins",
                               padding: "15px 40px",
                               transition: "all .3s ease-in",
                               "&:hover": {

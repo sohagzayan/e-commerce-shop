@@ -55,7 +55,7 @@ const ConfirmOrder = () => {
       totalPrice,
     };
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    navigate("/process-payment");
+    navigate("/payment-conform");
   };
 
   useEffect(() => {

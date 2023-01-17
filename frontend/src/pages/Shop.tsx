@@ -20,11 +20,8 @@ import { ScrollTop } from "../sharedFunction/ScrollTop";
 import { sortFiltering, SortsStateType } from "../util/FilterOption";
 import ShopSearchBar from "../components/Filtering/ShopSearchBar";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  FilteringMenuAnimation,
-  FilteringSearchBar,
-} from "../components/framerMotion/framerMotion";
 import ProductDetailsView from "../components/Product/ProductDetailsView";
+import SkeletonProduct from "../components/LoadSkeleton/SkeletonProduct";
 
 const Paragraph = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
@@ -54,7 +51,7 @@ const Shop = () => {
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector((state: any) => state.products);
+  const { data, loading } = useSelector((state: any) => state.products);
   const { products, resultPerPage, productsCount, filteredProductsCount } =
     data;
 
@@ -213,16 +210,22 @@ const Shop = () => {
             </Container>
             <Container maxWidth="lg" sx={{ overflowX: "hidden" }}>
               <Grid container spacing={{ xs: 1, sm: 4, md: 3 }}>
-                {products &&
-                  products?.map((data: ProductType, index: number) => (
-                    <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                      <Product
-                        data={data}
-                        isOpenDetails={isOpenDetails}
-                        seIsOpenDetails={seIsOpenDetails}
-                      />
-                    </Grid>
-                  ))}
+                {loading
+                  ? [...Array(6)].map((e, index) => (
+                      <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                        <SkeletonProduct />
+                      </Grid>
+                    ))
+                  : products &&
+                    products?.map((data: ProductType, index: number) => (
+                      <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                        <Product
+                          data={data}
+                          isOpenDetails={isOpenDetails}
+                          seIsOpenDetails={seIsOpenDetails}
+                        />
+                      </Grid>
+                    ))}
               </Grid>
               {resultPerPage < filteredProductsCount && (
                 <div className="paginationBox">

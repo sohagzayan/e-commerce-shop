@@ -69,7 +69,7 @@ const CardViewSummary = ({ cardItems }: any) => {
           View Card
         </button>
         <button
-          onClick={() => navigate("/shipping")}
+          onClick={() => navigate("/shipping-information")}
           style={{
             backgroundColor: "#1E293B",
             color: "#fff",

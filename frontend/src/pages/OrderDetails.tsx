@@ -80,7 +80,7 @@ const OrderDetails = () => {
                       Back To Order List
                     </Button>
                     <Button
-                      onClick={() => navigate("/shipping")}
+                      onClick={() => navigate("/shipping-information")}
                       sx={{
                         fontFamily: "Poppins",
                         textTransform: "uppercase",

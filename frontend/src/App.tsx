@@ -11,7 +11,7 @@ import ProductDetails from "./pages/ProductDetails";
 import MyProfile from "./pages/MyProfile";
 import { store } from "./store/store";
 import { loadUser } from "./store/reducerSlice/authSlice";
-import Protected from "./components/Routes/ProtectedRoutes";
+import PrivateRoutes from "./Routes/PrivateRoutes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
@@ -26,6 +26,7 @@ import ResetPassword from "./pages/ResetPassword";
 import "react-loading-skeleton/dist/skeleton.css";
 import ShoppingCard from "./pages/ShoppingCard";
 import ShippingInfo from "./pages/ShippingInfo";
+
 import ConformOrder from "./pages/ConfirmOrder";
 import axios from "axios";
 import Payment from "./pages/Payment";
@@ -33,20 +34,22 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./pages/OrderSuccess";
 import OrderDetails from "./pages/OrderDetails";
+import LoadingSpinner from "./components/Loading/LoadingSpinner";
+// const ShippingInfo = import("./pages/ShippingInfo")
 
 function App() {
-  const alert = useAlert();
+  const { user, isAuthenticated, loading } = useSelector(
+    (state: any) => state.user
+  );
+  console.log("loading", loading);
   const [stripeApikey, setStripeApikey] = useState("");
+  const alert = useAlert();
 
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");
     console.log(data);
     setStripeApikey(data.stripeApiKey);
   }
-
-  const { loading, isAuthenticated, error } = useSelector(
-    (state: any) => state.user
-  );
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -55,35 +58,56 @@ function App() {
 
   return (
     <Fragment>
-      <AnimatePresence exitBeforeEnter initial={false}>
-        <Elements stripe={loadStripe(stripeApikey)}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/details/:id" element={<ProductDetails />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/password/reset/:token" element={<ResetPassword />} />
-            <Route path="/card" element={<ShoppingCard />} />
-            <Route path="/shipping" element={<ShippingInfo />} />
-            <Route path="/confirm-order" element={<ConformOrder />} />
-            <Route path="/success" element={<OrderSuccess />} />
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <Elements stripe={loadStripe(stripeApikey)}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details/:id" element={<ProductDetails />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/shopping" element={<Shop />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="/password/reset/:token"
+                element={<ResetPassword />}
+              />
+              <Route path="/card" element={<ShoppingCard />} />
 
-            <Route path="/process-payment" element={<Payment />} />
-            <Route path="/order/:id" element={<OrderDetails />} />
+              <Route element={<PrivateRoutes />}>
+                <Route
+                  element={<ShippingInfo />}
+                  path="/shipping-information"
+                />
+              </Route>
 
-            <Route path="/wishlist" element={<MyWishList />} />
-            <Route path="/profile" element={<MyProfile />}>
-              <Route index={true} element={<MyProfileControll />} />
-              <Route path="reset-password" element={<UpdatePassword />} />
-              <Route path="order" element={<MyOrders />} />
-              <Route path="download" element={<Download />} />
-            </Route>
-          </Routes>
-        </Elements>
-      </AnimatePresence>
+              <Route element={<PrivateRoutes />}>
+                <Route path="/confirm-order" element={<ConformOrder />} />
+              </Route>
+              <Route element={<PrivateRoutes />}>
+                <Route path="/payment-conform" element={<Payment />} />
+              </Route>
+
+              <Route path="/success" element={<OrderSuccess />} />
+
+              <Route path="/order/:id" element={<OrderDetails />} />
+
+              <Route path="/wishlist" element={<MyWishList />} />
+              <Route element={<PrivateRoutes />}>
+                <Route path="/account" element={<MyProfile />}>
+                  <Route index={true} element={<MyProfileControll />} />
+                  <Route path="reset-password" element={<UpdatePassword />} />
+                  <Route path="order" element={<MyOrders />} />
+                  <Route path="download" element={<Download />} />
+                </Route>
+              </Route>
+            </Routes>
+          </Elements>
+        </AnimatePresence>
+      )}
     </Fragment>
   );
 }

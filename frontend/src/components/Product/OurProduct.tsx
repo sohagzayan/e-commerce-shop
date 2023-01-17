@@ -7,13 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType } from "../Types/Types";
+import SkeletonProduct from "../LoadSkeleton/SkeletonProduct";
 // import { getProduct } from "../../actions/productAction";
 
 interface OurProductProps {
   products: ProductType[];
+  loading?: boolean;
 }
 
-const OurProduct = ({ products }: OurProductProps) => {
+const OurProduct = ({ products, loading }: OurProductProps) => {
   const [isOpenDetails, seIsOpenDetails] = useState(false);
 
   return (
@@ -46,16 +48,22 @@ const OurProduct = ({ products }: OurProductProps) => {
           </Box>
           <Box>
             <Grid container spacing={{ xs: 1, md: 3 }}>
-              {products &&
-                products?.map((data, index) => (
-                  <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                    <Product
-                      data={data}
-                      seIsOpenDetails={seIsOpenDetails}
-                      isOpenDetails={isOpenDetails}
-                    />
-                  </Grid>
-                ))}
+              {loading
+                ? [...Array(8)].map((e, index) => (
+                    <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                      <SkeletonProduct />
+                    </Grid>
+                  ))
+                : products &&
+                  products?.map((data, index) => (
+                    <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                      <Product
+                        data={data}
+                        seIsOpenDetails={seIsOpenDetails}
+                        isOpenDetails={isOpenDetails}
+                      />
+                    </Grid>
+                  ))}
             </Grid>
           </Box>
 

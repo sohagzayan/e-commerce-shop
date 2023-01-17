@@ -78,10 +78,10 @@ const BottomHeader = () => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ x: -30, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        // initial={{ x: -30, opacity: 0 }}
+        // animate={{ x: 0, opacity: 1 }}
+        // exit={{ x: 0, opacity: 1 }}
+        // transition={{ duration: 0.3 }}
         className={navbar ? "navbar active" : "navbar"}
       >
         <BottomHeaderRoot>

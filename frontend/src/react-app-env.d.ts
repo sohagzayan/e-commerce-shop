@@ -9,3 +9,4 @@ declare module "react-alert-template-basic";
 declare module "react-alert";
 declare module "react-js-pagination";
 declare module "react-rating-stars-component";
+declare module "@mui/lab/LoadingButton";

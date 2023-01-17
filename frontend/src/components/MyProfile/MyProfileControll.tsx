@@ -113,7 +113,7 @@ const MyProfileControll = () => {
     if (isUpdated) {
       alert.success("Profile update Successfully");
       dispatch(loadUser());
-      navigate("/profile");
+      navigate("/account");
       dispatch(profileUpdateReset());
     }
   }, [dispatch, isUpdated, navigate, user, alert, error]);
