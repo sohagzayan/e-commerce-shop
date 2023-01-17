@@ -117,6 +117,7 @@ exports.deleteProduct = tryCatch(async (req, res, next) => {
 exports.getProductDetails = tryCatch(async (req, res, next) => {
   const product = await Product.findById(req.params.id).populate({
     path: "reviews",
+    options: { sort: { rating: -1 } },
     populate: {
       path: "user",
     },
@@ -138,6 +139,7 @@ exports.createProductReview = tryCatch(async (req, res, next) => {
     rating: Number(rating),
     comment,
   };
+  console.log("review", review);
   let avg = 0;
   const isReviewed = await Reviews.findOne({
     productId: productId,
@@ -161,7 +163,7 @@ exports.createProductReview = tryCatch(async (req, res, next) => {
     productReview.forEach((re) => {
       avg += Number(re.rating);
     });
-    ExitProduct.ratings = avg / productReview.length;
+    ExitProduct.ratings = Number(avg / productReview.length);
     await ExitProduct.save({ validateBeforeSave: false });
   }
   // let avg = 0;

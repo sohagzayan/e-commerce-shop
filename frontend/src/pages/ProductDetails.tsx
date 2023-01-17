@@ -42,6 +42,10 @@ import {
   createReviewReset,
 } from "../store/reducerSlice/createProductReviewSlice";
 import AddReviewModal from "../components/ProductReviews/AddReviewModal";
+import {
+  reviewSortFiltering,
+  ReviewSortsStateType,
+} from "../util/FilterOption";
 
 const ProductDetailsWrapper = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
@@ -60,6 +64,7 @@ const ProductDetails = () => {
   const alert = useAlert();
   const { id } = useParams();
   const ProductImage = [product1, product2, product3];
+
   const [ratingValue, setRatingValue] = useState(0);
   const [activeImage, setActiveImage] = useState(ProductImage[0]);
   const [quantity, setQuantity] = useState(1);
@@ -304,7 +309,7 @@ const ProductDetails = () => {
                 </Box>
               </ProductDetailsWrapper>
               <Container maxWidth="lg">
-                <ProductReviews product={data} id={id} />
+                <ProductReviews {...{ id, data }} />
               </Container>
             </div>
           </Box>

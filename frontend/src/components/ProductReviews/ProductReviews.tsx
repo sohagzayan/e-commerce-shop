@@ -9,9 +9,16 @@ import { reviews } from "../../util/reviews";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { createNewReview } from "../../store/reducerSlice/createProductReviewSlice";
+import AllReviewController from "./AllReviewController";
+import {
+  reviewSortFiltering,
+  ReviewSortsStateType,
+} from "../../util/FilterOption";
 
-const ProductReviews = ({ product, id }: any) => {
+const ProductReviews = ({ data, id }: any) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const [openAllReview, setOpenAllReview] = useState(false);
   const [ratingValue, setRatingValue] = useState(0);
   const [rating, setRating] = useState<any>(0);
   const [comment, setComment] = useState("");
@@ -39,7 +46,7 @@ const ProductReviews = ({ product, id }: any) => {
 
   return (
     <div>
-      <Box>
+      <Box sx={{ position: "relative" }}>
         <Box
           sx={{
             display: "flex",
@@ -73,8 +80,8 @@ const ProductReviews = ({ product, id }: any) => {
 
           <Box>
             <Grid container spacing={4}>
-              {product.reviews &&
-                product.reviews.map((rev: any) => (
+              {data.reviews &&
+                data?.reviews?.slice(0, 4).map((rev: any) => (
                   <Grid item sm={12} md={6}>
                     <Review rev={rev} />
                   </Grid>
@@ -82,6 +89,7 @@ const ProductReviews = ({ product, id }: any) => {
             </Grid>
             <Box>
               <Button
+                onClick={() => setOpenAllReview(true)}
                 sx={{
                   backgroundColor: "rgb(255,255,255,1)",
                   border: "1px solid rgb(203,213,225,1)",
@@ -99,6 +107,7 @@ const ProductReviews = ({ product, id }: any) => {
             </Box>
           </Box>
         </Box>
+        <AllReviewController {...{ setOpenAllReview, openAllReview, data }} />
       </Box>
     </div>
   );

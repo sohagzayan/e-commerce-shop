@@ -75,7 +75,6 @@ const SortFiltering: React.FunctionComponent<Props> = (props) => {
                   ))}
                 </Box>
               </Box>
-              {/* <FilteringFooter {...{ clearFunc, applyFunc }} /> */}
             </Box>
           </motion.div>
         )}

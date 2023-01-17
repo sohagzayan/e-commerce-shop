@@ -38,16 +38,18 @@ export default productDetailsSlice.reducer;
 
 /* Thunk */
 
-export const getProductDetails = (id: any) => async (dispatch: Dispatch) => {
-  try {
-    dispatch(fetchProductDetailsStart());
-    const { data } = await axios.get(`/api/v1/product/${id}`);
-    console.log(data);
-    dispatch(fetchProductDetailsSuccess(data.product));
-  } catch (error: any) {
-    dispatch(fetchProductDetailsFailure(error.response.data.message));
-  }
-};
+export const getProductDetails =
+  (id: any, sorts: any = {}) =>
+  async (dispatch: Dispatch) => {
+    try {
+      dispatch(fetchProductDetailsStart());
+      const { data } = await axios.get(`/api/v1/product/${id}`);
+      console.log(data);
+      dispatch(fetchProductDetailsSuccess(data.product));
+    } catch (error: any) {
+      dispatch(fetchProductDetailsFailure(error.response.data.message));
+    }
+  };
 
 export const getProductDetailsErrorClear = () => async (dispatch: Dispatch) => {
   dispatch(fetchProductDetailsErrorClear());

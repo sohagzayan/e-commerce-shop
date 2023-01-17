@@ -69,3 +69,17 @@ export const sortFiltering = [
   { id: 5, name: "Most Expensive", price: -1 },
   { id: 6, name: "Most Cheapest", price: 1 },
 ];
+
+export interface ReviewSortsStateType {
+  name?: string;
+  createdAt?: number;
+  ratings?: number;
+}
+
+export const reviewSortFiltering = [
+  { id: 1, name: "Sort Order" },
+  { id: 2, name: "Newest", createdAt: -1 },
+  { id: 2, name: "Oldest", createdAt: 1 },
+  { id: 3, name: "Height Rating", ratings: -1 },
+  { id: 4, name: "Lowest Rating", ratings: 1 },
+];
