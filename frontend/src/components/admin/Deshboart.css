@@ -1,0 +1,29 @@
+.css-x53am2-MuiTreeItem-content {
+  padding: 0 !important;
+  /* margin-bottom: 15px; */
+}
+.MuiTreeItem-iconContainer {
+  margin-right: 10px !important;
+}
+.Mui-selected {
+  background-color: transparent !important;
+}
+.css-x53am2-MuiTreeItem-content:hover {
+  background-color: transparent !important;
+}
+.css-x53am2-MuiTreeItem-content {
+  color: #000517;
+}
+.MuiTreeItem-iconContainer {
+  color: #a1a7de;
+}
+
+/* ================ */
+.Dashboard_linkWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.Dashboard_linkWrapper .d_link {
+  margin-bottom: 30px;
+  display: inline-block;
+}

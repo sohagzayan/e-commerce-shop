@@ -35,6 +35,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./pages/OrderSuccess";
 import OrderDetails from "./pages/OrderDetails";
 import LoadingSpinner from "./components/Loading/LoadingSpinner";
+import Dashboard from "./components/admin/Dashboard";
 // const ShippingInfo = import("./pages/ShippingInfo")
 
 function App() {
@@ -90,6 +91,8 @@ function App() {
               <Route element={<PrivateRoutes />}>
                 <Route path="/payment-conform" element={<Payment />} />
               </Route>
+
+              <Route path="/admin/dashboard" element={<Dashboard />} />
 
               <Route path="/success" element={<OrderSuccess />} />
 

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { AppDispatch } from "../store/store";
 import { fetchAllProduct } from "../store/reducerSlice/getAllProductsSlice";
+import WhyUs from "../components/Home/WhyUs";
 
 const Home = () => {
   useEffect(() => {
@@ -43,6 +44,7 @@ const Home = () => {
             <HeroSlider />
             <OurProduct products={products} loading={loading} />
           </motion.div>
+          <WhyUs />
         </Box>
       </Fragment>
     </Fragment>
