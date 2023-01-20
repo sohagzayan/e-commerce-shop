@@ -36,6 +36,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import OrderDetails from "./pages/OrderDetails";
 import LoadingSpinner from "./components/Loading/LoadingSpinner";
 import Dashboard from "./components/admin/Dashboard";
+import NotFound from "./components/NotFound/NotFound";
 // const ShippingInfo = import("./pages/ShippingInfo")
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
                   <Route path="download" element={<Download />} />
                 </Route>
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Elements>
         </AnimatePresence>

@@ -13,6 +13,11 @@ import { useAlert } from "react-alert";
 import { AppDispatch } from "../store/store";
 import { fetchAllProduct } from "../store/reducerSlice/getAllProductsSlice";
 import WhyUs from "../components/Home/WhyUs";
+import Footer from "../components/Home/Footer";
+import WeeklyUpdate from "../components/Home/WeeklyUpdate";
+import Fashion from "../components/Home/Fashion";
+import DontMiss from "../components/Home/DontMiss";
+import BrowseByCategory from "../components/Home/BrowseByCategory";
 
 const Home = () => {
   useEffect(() => {
@@ -31,7 +36,7 @@ const Home = () => {
   return (
     <Fragment>
       <Fragment>
-        <MetaData title="Home Page Is Working" />
+        <MetaData title="Home Page" />
         <Header />
         <Box sx={{ overflowX: "hidden" }}>
           <motion.div
@@ -42,9 +47,14 @@ const Home = () => {
           >
             {/* <Hero /> */}
             <HeroSlider />
+            <BrowseByCategory />
+            <DontMiss />
             <OurProduct products={products} loading={loading} />
           </motion.div>
           <WhyUs />
+          <Fashion />
+          <WeeklyUpdate />
+          <Footer />
         </Box>
       </Fragment>
     </Fragment>

@@ -73,19 +73,7 @@ const HeroSlider = () => {
                         </TypographyForDetails>
                       </motion.div>
                       <ButtonAuthorWrapper>
-                        <motion.div
-                          initial={{ opacity: 0, y: -1000 }}
-                          animate={{
-                            opacity: isActive ? 1 : 1,
-                            x: isActive ? 0 : 2000,
-                            transition: {
-                              duration: 0.6,
-                              delay: 1,
-                              type: "spring",
-                              damping: 10,
-                            },
-                          }}
-                        >
+                        <motion.div>
                           <Button
                             variant="contained"
                             size="large"
@@ -114,17 +102,6 @@ const HeroSlider = () => {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                          }}
-                          initial={{ opacity: 0, y: -1000 }}
-                          animate={{
-                            opacity: isActive ? 1 : 0,
-                            x: isActive ? 0 : 2000,
-                            transition: {
-                              duration: 0.6,
-                              delay: 1.3,
-                              type: "spring",
-                              damping: 10,
-                            },
                           }}
                         >
                           <AuthorImages>

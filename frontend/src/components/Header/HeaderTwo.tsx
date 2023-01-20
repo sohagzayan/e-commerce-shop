@@ -11,7 +11,7 @@ import MobileMenuSidebar from "./MobileMenuSidebar";
 import logo from "../../assets/logo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import MyAccountMenu from "../MyAccount/MyAccountMenu";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   BottomHeaderRoot,
   BottomHeaderWrapper,
@@ -78,13 +78,15 @@ const HeaderTwo = () => {
             <BottomHeaderWrapper>
               <Box sx={{ display: "flex" }}>
                 <Box>
-                  <Logo src={logo} alt="logo" />
+                  <Link to="/">
+                    <Logo src={logo} alt="logo" />
+                  </Link>
                 </Box>
 
                 <div className="listWrapperMenu">
                   {headerMenu.map((menu, index) => (
                     <ListElement key={index}>
-                      <NavLink style={{ color: "#0F172A" }} to={menu.path}>
+                      <NavLink style={{ color: "#0F172A" }} to="/">
                         {menu.name}
                       </NavLink>
                     </ListElement>

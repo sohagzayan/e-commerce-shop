@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductType } from "../Types/Types";
 import SkeletonProduct from "../LoadSkeleton/SkeletonProduct";
+import { Link } from "react-router-dom";
 // import { getProduct } from "../../actions/productAction";
 
 interface OurProductProps {
@@ -74,7 +75,7 @@ const OurProduct = ({ products, loading }: OurProductProps) => {
               marginTop: "50px",
             }}
           >
-            <Button>View All Product</Button>
+            <Link to="/shopping">View All Product</Link>
           </Box>
 
           <motion.div>

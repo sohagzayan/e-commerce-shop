@@ -9,7 +9,7 @@ import image5 from "../../assets/service10.png";
 const WhyUs = () => {
   return (
     <Fragment>
-      <Box sx={{ margin: "50px 0" }}>
+      <Box sx={{ margin: "100px 0" }}>
         <Box
           sx={{
             width: "100%",
