@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.570ecb4d.css",
+    "main.js": "/static/js/main.6d30d333.js",
+    "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
+    "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
+    "static/media/w-accessories-slider.jpg": "/static/media/w-accessories-slider.d9253a029ff2fd8afb00.jpg",
+    "static/media/remixicon.woff?t=1590207869815": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/poster-03.png": "/static/media/poster-03.cc44f8bee752331d1ea0.png",
+    "static/media/product-big-03.png": "/static/media/product-big-03.d22830f48a033cc7aa3b.png",
+    "static/media/accessories-slide-3.jpg": "/static/media/accessories-slide-3.fbe4b42324d050a93b4a.jpg",
+    "static/media/product-big-01.png": "/static/media/product-big-01.f3ae63223abb936f6619.png",
+    "static/media/product-big-02.png": "/static/media/product-big-02.d2fc85246e91da11c874.png",
+    "static/media/poster-02.png": "/static/media/poster-02.69461b664ba26abaa657.png",
+    "static/media/poster-01.png": "/static/media/poster-01.a8b407833e25235c5596.png",
+    "static/media/accessories-page-title.jpg": "/static/media/accessories-page-title.78e04cb6eb049500274d.jpg",
+    "static/media/accessories-slide-2.jpg": "/static/media/accessories-slide-2.566d3f3950d0e1f0ffc3.jpg",
+    "static/media/notFound.png": "/static/media/notFound.b8ef1a62d506afbf26ec.png",
+    "static/media/bg-image-5.jpg": "/static/media/bg-image-5.0784ccebfad3f1fd9181.jpg",
+    "static/media/product-03(2).png": "/static/media/product-03(2).3092180b0f3dfc908839.png",
+    "static/media/product-02.png": "/static/media/product-02.0cfea757195bf3fa5e2a.png",
+    "static/media/product-06.png": "/static/media/product-06.fcf59eefb92aebf18f20.png",
+    "static/media/finalfotgotbg.svg": "/static/media/finalfotgotbg.6820d39d785990746c92.svg",
+    "index.html": "/index.html",
+    "main.570ecb4d.css.map": "/static/css/main.570ecb4d.css.map",
+    "main.6d30d333.js.map": "/static/js/main.6d30d333.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.570ecb4d.css",
+    "static/js/main.6d30d333.js"
+  ]
+}
