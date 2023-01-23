@@ -83,12 +83,8 @@ const Product = ({ data, seIsOpenDetails, isOpenDetails }: any) => {
               className="image_wrapper"
               sx={{ cursor: "pointer" }}
             >
-              <img
-                className="beforeHover"
-                src={data?.image[0].url}
-                alt="product"
-              />
-              <img className="onHover" src={image2} alt="product" />
+              <img className="beforeHover" src={data?.url} alt="product" />
+              <img className="onHover" src={data?.url} alt="product" />
             </Span>
             {!sizeVariant.length && (
               <ProductControllerWrapper className="productCardWrapper">
