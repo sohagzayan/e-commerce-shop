@@ -69,7 +69,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [openAddReview, setOpenAddReview] = useState(false);
 
-  const { isAuthenticated } = useSelector((state: any) => state.user);
+  const { isAuthenticated, user } = useSelector((state: any) => state.user);
   const { loading, error, data } = useSelector(
     (state: any) => state.productDetails
   );
@@ -313,7 +313,12 @@ const ProductDetails = () => {
               </Container>
             </div>
           </Box>
-          <AddReviewModal {...{ setOpenAddReview, openAddReview, id }} />
+          <AddReviewModal
+            setOpenAddReview={setOpenAddReview}
+            openAddReview={openAddReview}
+            id={id}
+            userId={user?._id}
+          />
         </Fragment>
       )}
     </Fragment>

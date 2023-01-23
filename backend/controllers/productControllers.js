@@ -132,9 +132,10 @@ exports.getProductDetails = tryCatch(async (req, res, next) => {
 
 /** Create new review or update your review */
 exports.createProductReview = tryCatch(async (req, res, next) => {
-  const { rating, comment, productId, name, avatar } = req.body;
+  const { rating, comment, productId, userId, name, avatar } = req.body;
+  console.log(req.body);
   const reviewData = {
-    user: req.user._id,
+    user: userId,
     productId: productId,
     rating: Number(rating),
     comment,
@@ -143,14 +144,14 @@ exports.createProductReview = tryCatch(async (req, res, next) => {
   let avg = 0;
   const isReviewed = await Reviews.findOne({
     productId: productId,
-    user: req.user._id,
+    user: userId,
   });
 
   if (isReviewed) {
     await Reviews.findOneAndUpdate(
       {
         productId: productId,
-        user: req.user._id,
+        user: userId,
       },
       reviewData
     );

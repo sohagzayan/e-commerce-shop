@@ -14,7 +14,12 @@ import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded";
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 
-const AddReviewModal = ({ setOpenAddReview, openAddReview, id }: any) => {
+const AddReviewModal = ({
+  setOpenAddReview,
+  openAddReview,
+  id,
+  userId,
+}: any) => {
   const dispatch = useDispatch<AppDispatch>();
   const handleOpen = () => setOpenAddReview(true);
   const handleClose = () => setOpenAddReview(false);
@@ -42,6 +47,7 @@ const AddReviewModal = ({ setOpenAddReview, openAddReview, id }: any) => {
     myForm.set("rating", rating);
     myForm.set("comment", comment);
     myForm.set("productId", id);
+    myForm.set("userId", userId);
     myForm.set("name", user?.name);
     myForm.set("avatar", user?.avatar?.url);
     dispatch(createNewReview(myForm));
