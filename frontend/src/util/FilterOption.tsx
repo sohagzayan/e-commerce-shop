@@ -47,7 +47,7 @@ export const colorFiltering = [
   { id: 2, name: "Beige", value: "#ECDCBD" },
   { id: 3, name: "Blue", value: "#0061B7" },
   { id: 4, name: "Black", value: "#000" },
-  { id: 5, name: "Brown", value: "#AC886B" },
+  { id: 5, name: "Pink", value: "#ff497c" },
   { id: 6, name: "Green", value: "#4ADE80" },
   { id: 7, name: "Navy", value: "#00007C" },
 ];

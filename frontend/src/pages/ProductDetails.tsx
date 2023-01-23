@@ -63,15 +63,13 @@ const ProductDetails = () => {
   const alert = useAlert();
   const { id } = useParams();
   const ProductImage = [product1, product2, product3];
-
-  const [ratingValue, setRatingValue] = useState(0);
-  const [activeImage, setActiveImage] = useState(ProductImage[0]);
   const [quantity, setQuantity] = useState(1);
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.down("md"));
   const dispatch = useDispatch<AppDispatch>();
   const [openAddReview, setOpenAddReview] = useState(false);
 
+  const { isAuthenticated } = useSelector((state: any) => state.user);
   const { loading, error, data } = useSelector(
     (state: any) => state.productDetails
   );
@@ -277,29 +275,31 @@ const ProductDetails = () => {
                               }}
                             />
                             <ProductAccordion description={data.description} />
-                            <Button
-                              onClick={() => setOpenAddReview(true)}
-                              sx={{
-                                backgroundColor: "rgb(15,23,42,1)",
-                                boxShadow:
-                                  "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
-                                color: "#fff",
-                                padding: "10px 25px",
-                                borderRadius: "40px",
-                                textTransform: "capitalize",
-                                fontFamily: "Poppins",
-                                fontWeight: "500",
-                                transition: "all 0.3s  ",
-                                marginBottom: "20px",
-                                ":hover": {
-                                  transform: "scale(1.1)",
-                                  backgroundColor: "#1E293B",
+                            {isAuthenticated && (
+                              <Button
+                                onClick={() => setOpenAddReview(true)}
+                                sx={{
+                                  backgroundColor: "rgb(15,23,42,1)",
+                                  boxShadow:
+                                    "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
+                                  color: "#fff",
+                                  padding: "10px 25px",
+                                  borderRadius: "40px",
+                                  textTransform: "capitalize",
+                                  fontFamily: "Poppins",
+                                  fontWeight: "500",
                                   transition: "all 0.3s  ",
-                                },
-                              }}
-                            >
-                              Submit Review
-                            </Button>
+                                  marginBottom: "20px",
+                                  ":hover": {
+                                    transform: "scale(1.1)",
+                                    backgroundColor: "#1E293B",
+                                    transition: "all 0.3s  ",
+                                  },
+                                }}
+                              >
+                                Submit Review
+                              </Button>
+                            )}
                           </Box>
                         </Grid>
                       </Grid>

@@ -52,12 +52,13 @@ export default cardSlice.reducer;
 export const addItemsToCard =
   (id: any, quantity: any) => async (dispatch: Dispatch, getState: any) => {
     const { data } = await axios.get(`/api/v1/product/${id}`);
+    console.log(data.url);
     dispatch(
       addToCard({
         product: data.product._id,
         name: data.product.name,
         price: data.product.price,
-        image: data.product.image[0].url,
+        image: data.product.url,
         stock: data.product.stock,
         quantity: quantity,
       })

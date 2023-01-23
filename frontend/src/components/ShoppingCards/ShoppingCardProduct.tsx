@@ -37,6 +37,8 @@ const QyButton = styled("button")(({ theme }) => ({
 
 const ShoppingCardProduct: React.FunctionComponent<Props> = (props) => {
   const { name, product, image, price, stock, quantity } = props.item;
+  console.log("form card product", props.item);
+
   const { increaseQuantity, decreaseQuantity, deleteCardItem } = props;
   const matches = useMediaQuery("(min-width:790px)");
 
