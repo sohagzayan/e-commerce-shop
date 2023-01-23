@@ -17,7 +17,6 @@ import product3 from "../assets/product/product-big-03.png";
 import ProductColorPicker from "../components/Product/ProductColorPicker";
 import ProductSizePicker from "../components/Product/ProductSizePicker";
 import ProductDetailsController from "../components/Product/ProductDetailsController";
-import { motion, AnimatePresence } from "framer-motion";
 import HeaderTwo from "../components/Header/HeaderTwo";
 import { useDispatch, useSelector } from "react-redux";
 // import { clearErrors, getProductDetails } from "../actions/productAction";
@@ -128,6 +127,8 @@ const ProductDetails = () => {
     dispatch(getProductDetails(id));
   }, [dispatch, id, error, alert, reviewError, success]);
 
+  // console.log("data?.image[0]", data);
+
   return (
     <Fragment>
       {loading ? (
@@ -144,11 +145,8 @@ const ProductDetails = () => {
                       <Grid container>
                         <Grid item xs={12} md={7}>
                           <Box>
-                            <Grid
-                              container
-                              direction={breakpoint ? "column-reverse" : "row"}
-                            >
-                              <Grid item xs={12} md={2}>
+                            <Box>
+                              {/* <Grid item xs={12} md={2}>
                                 <Box
                                   sx={{
                                     marginTop: breakpoint ? "70px" : "0",
@@ -170,14 +168,16 @@ const ProductDetails = () => {
                                     />
                                   ))}
                                 </Box>
-                              </Grid>
-                              <Grid item xs={10}>
-                                <ThumbanalImage
-                                  src={activeImage}
-                                  alt="images"
-                                />
-                              </Grid>
-                            </Grid>
+                              </Grid> */}
+                              <Box>
+                                {data && (
+                                  <ThumbanalImage
+                                    src={data?.url}
+                                    alt="images"
+                                  />
+                                )}
+                              </Box>
+                            </Box>
                           </Box>
                         </Grid>
                         <Grid item xs={12} md={5}>
@@ -276,7 +276,7 @@ const ProductDetails = () => {
                                 addToCardHandaler,
                               }}
                             />
-                            <ProductAccordion />
+                            <ProductAccordion description={data.description} />
                             <Button
                               onClick={() => setOpenAddReview(true)}
                               sx={{

@@ -28,6 +28,7 @@ const MyAccountMenu = ({ user }) => {
   const logOutHandle = () => {
     dispatch(logOut());
     alert.success("Logout Successfully");
+    navigate("/login");
   };
   return (
     <Box
@@ -102,6 +103,7 @@ const MyAccountMenu = ({ user }) => {
         </ListItem>
 
         <ListItem
+          onClick={() => navigate("/account/order")}
           sx={{
             padding: "0 0 15px 0",
             display: "flex",
@@ -116,7 +118,7 @@ const MyAccountMenu = ({ user }) => {
         </ListItem>
 
         <ListItem
-          onClick={() => navigate("/my-profile")}
+          // onClick={() => navigate("/my-profile")}
           sx={{
             borderBottom: "1px solid #eee",
             margin: "3px 0",

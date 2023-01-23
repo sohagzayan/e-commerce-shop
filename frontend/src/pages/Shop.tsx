@@ -47,7 +47,11 @@ const Shop = () => {
   const [keyword, setKeyword] = useState("");
   const [showMobileFiltering, setShowMobileFiltering] =
     useState<boolean>(false);
+  const [id, setId] = useState(null);
 
+  const getId = () => {
+    setId(id);
+  };
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -246,12 +250,14 @@ const Shop = () => {
                 </div>
               )}
             </Container>
-            <ProductDetailsView
+            {/* <ProductDetailsView
               {...{
+                getId,
+                id,
                 seIsOpenDetails,
                 isOpenDetails,
               }}
-            />
+            /> */}
           </Box>
         </Box>
       </Box>

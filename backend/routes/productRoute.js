@@ -20,9 +20,6 @@ router
   .delete(deleteProduct)
   .get(getProductDetails);
 
-router.route("/review").put(isAuthenticatedUser, createProductReview);
-router
-  .route("/reviews")
-  .get(getAllReview)
-  .delete(isAuthenticatedUser, deleteProductReview);
+router.route("/review").put(createProductReview);
+router.route("/reviews").get(getAllReview).delete(deleteProductReview);
 module.exports = router;

@@ -5,7 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const ProductAccordion = () => {
+const ProductAccordion = ({ description }: any) => {
   const [expanded, setExpanded] = useState<string | false>(false);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -52,9 +52,7 @@ const ProductAccordion = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography sx={{ color: "rgb(71,85,105,1)", fontSize: "14px" }}>
-            Fashion is a form of self-expression and autonomy at a particular
-            period and place and in a specific context, of clothing, footwear,
-            lifestyle, accessories, makeup, hairstyle, and body posture.
+            {description}
           </Typography>
         </AccordionDetails>
       </Accordion>

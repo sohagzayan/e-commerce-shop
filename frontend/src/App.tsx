@@ -37,6 +37,7 @@ import OrderDetails from "./pages/OrderDetails";
 import LoadingSpinner from "./components/Loading/LoadingSpinner";
 import Dashboard from "./components/admin/Dashboard";
 import NotFound from "./components/NotFound/NotFound";
+import ComeIsSoon from "./components/ComeIsSoon/ComeIsSoon";
 // const ShippingInfo = import("./pages/ShippingInfo")
 
 function App() {
@@ -68,7 +69,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/details/:id" element={<ProductDetails />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<ComeIsSoon />} />
+              <Route path="/contact" element={<ComeIsSoon />} />
+              <Route path="/blog" element={<ComeIsSoon />} />
               <Route path="/shopping" element={<Shop />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

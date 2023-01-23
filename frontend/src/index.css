@@ -264,7 +264,8 @@ select {
 /* header Menu */
 
 .headerMenu {
-  margin: 0 20px;
+  font-family: "Poppins";
+  margin: 0 5px;
   position: relative;
   color: #292930;
   transition: all 0.3s ease-in;
@@ -279,8 +280,11 @@ select {
   left: 0;
   transition: all 0.3s ease-in;
 }
-.headerMenu.active::after {
+.active {
+}
+.headerMenu.active:after {
   width: 100%;
+  transition: all 0.3s ease-in;
 }
 
 .headerMenu:hover:after {

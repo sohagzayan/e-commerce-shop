@@ -79,10 +79,12 @@ const OurProduct = ({ products, loading }: OurProductProps) => {
           </Box>
 
           <motion.div>
-            <ProductDetailsView
-              isOpenDetails={isOpenDetails}
-              seIsOpenDetails={seIsOpenDetails}
-            />
+            {/* {true && (
+              <ProductDetailsView
+                isOpenDetails={isOpenDetails}
+                seIsOpenDetails={seIsOpenDetails}
+              />
+            )} */}
           </motion.div>
         </Container>
       </OurProductWraper>

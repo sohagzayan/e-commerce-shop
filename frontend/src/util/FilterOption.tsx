@@ -1,12 +1,12 @@
 export const filterCategories: string[] = [
-  "apple",
-  "mouse",
-  "Treatment",
-  "juse",
-  "Eye Care",
-  "Masks",
-  "Featured",
-  "On Sale",
+  "Accessories",
+  "Dresses",
+  "Phone",
+  "Gaming",
+  "Networking",
+  "Backpacks",
+  "Laptop Sleeves",
+  "New Arrivals",
 ];
 
 export const filterGender = [

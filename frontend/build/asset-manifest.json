@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.570ecb4d.css",
-    "main.js": "/static/js/main.6d30d333.js",
+    "main.css": "/static/css/main.7d0bacfd.css",
+    "main.js": "/static/js/main.580c2dd4.js",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
@@ -29,11 +29,11 @@
     "static/media/product-06.png": "/static/media/product-06.fcf59eefb92aebf18f20.png",
     "static/media/finalfotgotbg.svg": "/static/media/finalfotgotbg.6820d39d785990746c92.svg",
     "index.html": "/index.html",
-    "main.570ecb4d.css.map": "/static/css/main.570ecb4d.css.map",
-    "main.6d30d333.js.map": "/static/js/main.6d30d333.js.map"
+    "main.7d0bacfd.css.map": "/static/css/main.7d0bacfd.css.map",
+    "main.580c2dd4.js.map": "/static/js/main.580c2dd4.js.map"
   },
   "entrypoints": [
-    "static/css/main.570ecb4d.css",
-    "static/js/main.6d30d333.js"
+    "static/css/main.7d0bacfd.css",
+    "static/js/main.580c2dd4.js"
   ]
 }

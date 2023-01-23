@@ -23,6 +23,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  url: {
+    type: String,
+  },
   viewCount: {
     type: Number,
     default: 0,

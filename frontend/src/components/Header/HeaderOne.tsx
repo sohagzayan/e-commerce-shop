@@ -95,7 +95,13 @@ const BottomHeader = () => {
                 <div className="listWrapperMenu">
                   {headerMenu.map((menu, index) => (
                     <ListElement key={index}>
-                      <NavLink style={{ color: "#0F172A" }} to={menu.path}>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "headerMenu active" : "headerMenu"
+                        }
+                        style={{ color: "#0F172A" }}
+                        to={menu.path}
+                      >
                         {menu.name}
                       </NavLink>
                     </ListElement>

@@ -69,43 +69,43 @@ const BrowseByCategory = () => {
             }}
           >
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={catePhone} alt="phone" />
                 <h6 className="cat-title">Phones</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateComputer} alt="phone" />
                 <h6 className="cat-title">Computers</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateAsssi} alt="phone" />
                 <h6 className="cat-title">Accessories</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateLaptop} alt="phone" />
                 <h6 className="cat-title">Laptops</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateMonitor} alt="phone" />
                 <h6 className="cat-title">Monitors</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateNetwork} alt="phone" />
                 <h6 className="cat-title">Networking</h6>
               </a>
             </Box>
             <Box className="categrie-product">
-              <a href="/fdf">
+              <a href="/shopping">
                 <img className="img-fluid" src={cateGaming} alt="phone" />
                 <h6 className="cat-title">PC Gaming</h6>
               </a>
