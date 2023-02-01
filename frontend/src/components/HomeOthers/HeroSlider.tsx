@@ -19,8 +19,10 @@ import {
   TypographyForDetails,
   TypographyForTitle,
 } from "../../style/HomeOthers/HeroSlider";
+import { useNavigate } from "react-router-dom";
 
 const HeroSlider = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Swiper
@@ -75,6 +77,7 @@ const HeroSlider = () => {
                       <ButtonAuthorWrapper>
                         <motion.div>
                           <Button
+                            onClick={() => navigate("/shopping")}
                             variant="contained"
                             size="large"
                             startIcon={<ShoppingCartOutlinedIcon />}

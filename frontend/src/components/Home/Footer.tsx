@@ -8,16 +8,20 @@ import serviceImage4 from "../../assets/service4.png";
 const Footer = () => {
   return (
     <Fragment>
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "enter",
-            justifyContent: "space-between",
-            marginBottom: "30px",
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Container maxWidth="lg" sx={{ marginBottom: "30px" }}>
+        <Grid container>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            md={4}
+            lg={3}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: { lg: 0, xs: "10px" },
+            }}
+          >
             <img
               width={50}
               style={{ marginRight: "20px" }}
@@ -45,8 +49,19 @@ const Footer = () => {
                 Tell about your service.
               </Typography>
             </Box>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          </Grid>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            md={4}
+            lg={3}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: { lg: 0, xs: "10px" },
+            }}
+          >
             <img
               width={50}
               style={{ marginRight: "20px" }}
@@ -74,8 +89,19 @@ const Footer = () => {
                 Within 10 days.
               </Typography>
             </Box>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          </Grid>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            md={4}
+            lg={3}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: { lg: 0, xs: "10px" },
+            }}
+          >
             <img
               width={50}
               style={{ marginRight: "20px" }}
@@ -103,8 +129,19 @@ const Footer = () => {
                 No question ask.
               </Typography>
             </Box>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          </Grid>
+          <Grid
+            item
+            xs={10}
+            sm={6}
+            md={4}
+            lg={3}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: { lg: 0, xs: "10px" },
+            }}
+          >
             <img
               width={50}
               style={{ marginRight: "20px" }}
@@ -132,8 +169,8 @@ const Footer = () => {
                 24/7 Live support.
               </Typography>
             </Box>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Container>
       <Box
         sx={{
@@ -143,7 +180,7 @@ const Footer = () => {
       >
         <Container maxWidth="lg">
           <Grid container>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
               <Box>
                 <Typography
                   sx={{
@@ -205,7 +242,7 @@ const Footer = () => {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
               <Box>
                 <Typography
                   sx={{
@@ -276,7 +313,7 @@ const Footer = () => {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
               <Box>
                 <Typography
                   sx={{
@@ -347,7 +384,7 @@ const Footer = () => {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
               <Box>
                 <Typography
                   sx={{
@@ -403,6 +440,7 @@ const Footer = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              flexWrap: "wrap",
               padding: "15px 0",
               borderTop: "1px solid #f6f7fb",
             }}

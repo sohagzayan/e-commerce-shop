@@ -66,6 +66,7 @@ export const IconListElement = styled("li")(({ theme }) => ({
 }));
 
 export const Logo = styled("img")(({ theme }) => ({
+  cursor: "pointer",
   [theme.breakpoints.down("sm")]: {
     width: "130px",
   },

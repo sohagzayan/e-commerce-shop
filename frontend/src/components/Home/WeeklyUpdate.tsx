@@ -1,21 +1,24 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, styled, Typography } from "@mui/material";
 import { Fragment } from "react";
 import coverImage from "../.././assets/bg-image-5.jpg";
+
+const NewsLatterWrapper = styled(Box)(({ theme }) => ({
+  backgroundImage: `url(${coverImage})`,
+  borderRadius: "8px",
+  width: "100%",
+  height: "100%",
+  padding: "100px 107px 85px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "20px",
+  },
+}));
 
 const WeeklyUpdate = () => {
   return (
     <Fragment>
       <Box sx={{ marginBottom: "50px" }}>
         <Container maxWidth="lg">
-          <Box
-            sx={{
-              backgroundImage: `url(${coverImage})`,
-              borderRadius: "8px",
-              width: "100%",
-              height: "100%",
-              padding: "100px 107px 85px",
-            }}
-          >
+          <NewsLatterWrapper>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Box
                 sx={{
@@ -117,7 +120,7 @@ const WeeklyUpdate = () => {
                 </Button>
               </Box>
             </Box>
-          </Box>
+          </NewsLatterWrapper>
         </Container>
       </Box>
     </Fragment>

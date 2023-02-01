@@ -30,7 +30,7 @@ const SingleSearchProduct = ({ product, setIsOpenSearchProduct }: any) => {
   const navigate = useNavigate();
   return (
     <SearchProductWrapper onClick={() => navigate(`/details/${product._id}`)}>
-      <img width="160px" src={product.image[0].url} alt="" />
+      <img width="160px" src={product?.image} alt="images" />
 
       <ProductContentWrapper>
         <Box
